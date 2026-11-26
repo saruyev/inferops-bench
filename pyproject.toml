@@ -1,0 +1,72 @@
+[project]
+name = "inferops-bench"
+version = "0.1.0"
+description = "Incident-investigation agent for simulated LLM inference infrastructure, plus a reproducible benchmark for it."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.13"
+dependencies = [
+    "anthropic>=2.14.0",
+    "fastmcp>=4.2",
+    "langgraph>=1.2.24",
+    "langgraph-checkpoint-sqlite>=3.1.3",
+    "lark>=1.3.1",
+    "numpy>=2.5.5",
+    "opentelemetry-exporter-otlp>=1.45.2",
+    "opentelemetry-sdk>=1.45.2",
+    "pydantic>=2.14.4",
+    "pydantic-settings>=2.16.3",
+    "pyyaml>=6.0.4",
+    "typer>=0.29.3",
+]
+
+[project.scripts]
+inferops-bench = "inferops_bench.cli:app"
+
+[project.optional-dependencies]
+report = [
+    "matplotlib>=3.11.2",
+]
+tracing = [
+    "arize-phoenix-otel>=0.17.3",
+]
+keychain = [
+    "keyring>=25.7.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.10,<0.14"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+mypy_path = "src"
+packages = ["inferops_bench"]
+
+[[tool.mypy.overrides]]
+module = "inferops_bench.agent.*"
+disallow_untyped_calls = false
+disallow_any_generics = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib"
+markers = ["integration: needs more than unit scope"]
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.170.17",
+    "mypy>=2.4.1",
+    "pre-commit>=4.7.0",
+    "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.6",
+]

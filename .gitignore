@@ -221,3 +221,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# inferops-bench
+.env*
+.venv/
+results/*
+!results/canonical/
+
+# IDEs
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.history/
+*.vsix
+*.code-workspace
