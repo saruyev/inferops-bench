@@ -221,3 +221,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# inferops-bench
+.env*
+.venv/
+results/*
+!results/canonical/
