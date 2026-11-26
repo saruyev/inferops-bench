@@ -60,6 +60,11 @@ disallow_any_generics = false
 testpaths = ["tests"]
 addopts = "--import-mode=importlib"
 markers = ["integration: needs more than unit scope"]
+filterwarnings = [
+    "error",
+    # langsmith (pulled in by langgraph) calls asyncio.iscoroutinefunction, deprecated in 3.14.
+    "ignore:'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning:langsmith",
+]
 
 [dependency-groups]
 dev = [
