@@ -49,6 +49,16 @@ def test_negative_channel_is_rejected() -> None:
         SampleRecord(id="a", audio=Path("a.wav"), channel=-1)
 
 
+def test_offset_without_group_is_rejected() -> None:
+    with pytest.raises(ValidationError):
+        SampleRecord(id="a", audio=Path("a.wav"), offset=12.5)
+
+
+def test_negative_offset_is_rejected() -> None:
+    with pytest.raises(ValidationError):
+        SampleRecord(id="a", audio=Path("a.wav"), group_id="call-1", offset=-1.0)
+
+
 @pytest.mark.parametrize("span", [(-0.1, 1.0), (2.0, 1.0)])
 def test_bad_speech_segments_are_rejected(span: tuple[float, float]) -> None:
     with pytest.raises(ValidationError):
@@ -85,6 +95,7 @@ def test_full_record_round_trips_through_json() -> None:
         audio=Path("calls/7.webm"),
         channel=1,
         group_id="call-7",
+        offset=30.0,
         language="en",
         reference="hello world",
         output=transcript,

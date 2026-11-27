@@ -65,10 +65,20 @@ class Transcript(_Frozen):
 
 
 class SampleRecord(_Frozen):
+    """One unit the user's pipeline sends to ASR, after the pipeline's own chunking.
+
+    paribus takes records as they are and never re-chunks them on load. A record is a
+    whole file, one channel of a file (`channel`), or a chunk the pipeline cut earlier.
+    Records that come from the same call, conversation or batch share a `group_id`;
+    `offset` is where this record starts on the group's timeline, in seconds. Times
+    inside the record stay local: time in the group = `offset` + local time.
+    """
+
     id: str = Field(min_length=1)
     audio: Path
     channel: int | None = Field(default=None, ge=0)
     group_id: str | None = None
+    offset: float | None = Field(default=None, ge=0)
     language: str | None = None
     reference: str | None = None
     output: Transcript | None = None
@@ -94,3 +104,9 @@ class SampleRecord(_Frozen):
         for start, end in value or []:
             _check_span(start, end)
         return value
+
+    @model_validator(mode="after")
+    def _offset_needs_group(self) -> Self:
+        if self.offset is not None and self.group_id is None:
+            raise ValueError("offset is a position on a group's timeline and needs group_id")
+        return self
