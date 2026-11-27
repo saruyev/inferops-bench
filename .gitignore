@@ -225,8 +225,7 @@ __marimo__/
 # paribus
 .env*
 .venv/
-results/*
-!results/canonical/
+.paribus/
 
 # IDEs
 .idea/
