@@ -1,22 +1,23 @@
-"""Data loading: sources of sample records, starting with JSONL/CSV manifests.
+"""Data loading: sources of sample records (JSONL/CSV manifests and audio folders).
 
 A source yields `SampleRecord`s and is built from one config object; the config models
 validate what users write in YAML, so a typo in a key fails like a typo in a manifest.
-`ManifestSource` reads a manifest file the user (or a dataset builder) wrote. The whole
-file is validated before the first record is yielded, so a broken manifest fails at once
-with every problem listed, not halfway through a run.
+`ManifestSource` reads a manifest file the user (or a dataset builder) wrote;
+`FolderSource` turns a folder of audio files into records. Every source is validated as a
+whole before the first record is yielded, so broken input fails at once with every
+problem listed, not halfway through a run.
 """
 
 import csv
 import json
-from collections.abc import Callable, Iterator, Mapping
+from collections.abc import Callable, Iterator, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal, Protocol
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
-from paribus.engine.types import MetaValue, SampleRecord
+from paribus.engine.types import MetaValue, SampleRecord, normalize_language
 
 type TimeUnit = Literal["s", "ms"]
 type MetaType = Literal["str", "int", "float", "bool"]
@@ -31,6 +32,18 @@ MAX_ISSUES = 20
 _TIME_FACTORS: dict[TimeUnit, float] = {"s": 1.0, "ms": 0.001}
 _CSV_META_PREFIX = "meta."
 _CSV_OUTPUT_TEXT = "output_text"
+
+# Audio formats picked up by a folder source unless its config says otherwise; matched
+# case-insensitively, so `.WAV` counts.
+AUDIO_PATTERNS = (
+    "**/*.wav",
+    "**/*.flac",
+    "**/*.mp3",
+    "**/*.ogg",
+    "**/*.opus",
+    "**/*.m4a",
+    "**/*.webm",
+)
 
 
 class Source(Protocol):
@@ -169,6 +182,138 @@ class ManifestSource:
         if "audio" in row:
             row["audio"] = _resolve(Path(row["audio"]), self.config.path.parent)
         return SampleRecord.model_validate(row)
+
+
+class FolderConfig(SourceConfig):
+    """Settings of a folder of audio files.
+
+    Attributes:
+        root: The folder; it is searched recursively.
+        patterns: Glob patterns of audio files, relative to `root`.
+        transcripts: What a text file next to an audio file is: a gold `reference`, the
+            pipeline's `output`, or `none` (ignored). There is no guessing, because
+            mistaking pipeline output for gold would compare the pipeline with itself.
+        transcript_suffix: Suffix of those text files: `a/001.wav` pairs with `a/001.txt`.
+        language: Expected language of every record in the folder, if known.
+    """
+
+    type: Literal["folder"] = "folder"
+    root: Path
+    patterns: tuple[str, ...] = AUDIO_PATTERNS
+    transcripts: Literal["none", "reference", "output"] = "none"
+    transcript_suffix: str = ".txt"
+    language: str | None = None
+
+    @field_validator("language")
+    @classmethod
+    def _language(cls, value: str | None) -> str | None:
+        """Validate the folder's language once here, not once per file."""
+        return None if value is None else normalize_language(value)
+
+
+class FolderSource:
+    """Turns every audio file under a folder into a record.
+
+    A record's id is the file's path relative to the root without its suffix
+    (`calls/2026/001`): stable across runs and unique, except when two files differ only
+    in suffix (`a.wav` and `a.mp3`), which is reported as an error. Files are yielded in
+    path order. Hidden files and folders (names starting with `.`, which includes the
+    `._*` files macOS leaves on external drives) are skipped, and symlinked folders are not
+    followed. The source is named after the folder unless the config names it.
+    """
+
+    def __init__(self, config: FolderConfig) -> None:
+        """Keep the config; the folder is searched only when `records()` is called."""
+        self.config = config
+        self.name = config.name or config.root.name
+        self.license = config.license
+
+    def records(self) -> Iterator[SampleRecord]:
+        """Validate every file under the folder, then yield the records in path order.
+
+        Raises:
+            SourceError: If the folder has no audio, two files map to one id, or a
+                transcript cannot be read.
+        """
+        records, issues = self._validate()
+        if issues:
+            raise SourceError(self.name, issues[:MAX_ISSUES], len(issues) > MAX_ISSUES)
+        yield from records
+
+    def _validate(self) -> tuple[list[SampleRecord], list[SourceIssue]]:
+        """Build a record per audio file, collecting problems instead of stopping."""
+        root = self.config.root
+        if not root.is_dir():
+            return [], [SourceIssue(str(root), "folder not found")]
+        files = _find_audio(root, self.config.patterns)
+        if not files:
+            patterns = ", ".join(self.config.patterns)
+            return [], [SourceIssue(str(root), f"no audio files match {patterns}")]
+        records: list[SampleRecord] = []
+        issues: list[SourceIssue] = []
+        first_file_of: dict[str, Path] = {}
+        for path in files:
+            if len(issues) > MAX_ISSUES:
+                break
+            try:
+                record = self._to_record(path)
+            except (ValidationError, ValueError) as error:
+                issues.append(SourceIssue(str(path), _describe(error)))
+                continue
+            if record.id in first_file_of:
+                message = f"same id {record.id!r} as {first_file_of[record.id]}"
+                issues.append(SourceIssue(str(path), message))
+                continue
+            first_file_of[record.id] = path
+            records.append(record)
+        return records, issues
+
+    def _to_record(self, path: Path) -> SampleRecord:
+        """Build the record for one audio file, with its transcript if configured."""
+        row: RawRow = {
+            "id": path.relative_to(self.config.root).with_suffix("").as_posix(),
+            "audio": path.resolve(),
+            "language": self.config.language,
+        }
+        if self.config.transcripts != "none":
+            text = _read_transcript(path.with_suffix(self.config.transcript_suffix))
+            if text is not None and self.config.transcripts == "reference":
+                row["reference"] = text
+            elif text is not None:
+                row["output"] = {"text": text}
+        return SampleRecord.model_validate(row)
+
+
+def _find_audio(root: Path, patterns: Sequence[str]) -> list[Path]:
+    """Return the audio files under `root` matching any pattern, sorted, without duplicates.
+
+    Matching ignores case. Files inside hidden folders and hidden files are left out.
+    `Path.glob` does not follow symlinked folders for `**`, which keeps the search from
+    looping or wandering off the folder.
+    """
+    found: set[Path] = set()
+    for pattern in patterns:
+        for path in root.glob(pattern, case_sensitive=False):
+            hidden = any(part.startswith(".") for part in path.relative_to(root).parts)
+            if path.is_file() and not hidden:
+                found.add(path)
+    return sorted(found)
+
+
+def _read_transcript(path: Path) -> str | None:
+    """Return the stripped text of a transcript file, or None if there is none.
+
+    A missing file is not an error: gold transcripts often exist for only some files.
+
+    Raises:
+        ValueError: If the file exists but is not UTF-8 text.
+    """
+    if not path.is_file():
+        return None
+    try:
+        return path.read_text(encoding="utf-8").strip()
+    except UnicodeDecodeError:
+        raise ValueError(f"transcript {path.name} is not UTF-8 text") from None
 
 
 def _cross_record_problem(

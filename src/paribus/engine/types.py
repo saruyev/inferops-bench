@@ -32,6 +32,21 @@ class _Frozen(BaseModel):
     model_config = ConfigDict(frozen=True, extra="forbid")
 
 
+def normalize_language(value: str) -> str:
+    """Return `value` as a lowercase ISO 639-1 code, mapping obsolete codes (iw -> he).
+
+    Shared by records and by source configs that set one language for many records.
+
+    Raises:
+        ValueError: If the value is not a two-letter code, e.g. `eng` or `en-US`.
+    """
+    code = value.strip().lower()
+    code = _LEGACY_LANGUAGE_CODES.get(code, code)
+    if len(code) != 2 or not code.isalpha():
+        raise ValueError(f"language must be an ISO 639-1 code like 'en', got {value!r}")
+    return code
+
+
 def _check_span(start: float, end: float) -> None:
     """Raise ValueError unless 0 <= start <= end.
 
@@ -125,14 +140,8 @@ class SampleRecord(_Frozen):
     @field_validator("language")
     @classmethod
     def _language(cls, value: str | None) -> str | None:
-        """Normalize to a lowercase ISO 639-1 code, mapping obsolete codes (iw -> he)."""
-        if value is None:
-            return None
-        code = value.strip().lower()
-        code = _LEGACY_LANGUAGE_CODES.get(code, code)
-        if len(code) != 2 or not code.isalpha():
-            raise ValueError(f"language must be an ISO 639-1 code like 'en', got {value!r}")
-        return code
+        """Normalize the expected language with `normalize_language`."""
+        return None if value is None else normalize_language(value)
 
     @field_validator("speech_segments")
     @classmethod
