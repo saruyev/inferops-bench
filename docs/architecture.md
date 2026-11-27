@@ -190,13 +190,13 @@ frame → profile → signal → slice → fix → experiment → report
 class SessionState(TypedDict):
     session_id: str
     symptom: Symptom
-    sample: SampleRef            # manifest hash, split ids
+    sample: SampleRef  # manifest hash, split ids
     signals: list[SignalRef]
-    hypotheses: list[Hypothesis] # statement, status, evidence ids
+    hypotheses: list[Hypothesis]  # statement, status, evidence ids
     slices: list[SliceRef]
     experiments: list[ExperimentRef]
     findings: list[Finding]
-    budget: Budget               # wall, compute minutes, llm_usd, labels requested, used_*
+    budget: Budget  # wall, compute minutes, llm_usd, labels requested, used_*
     status: Literal["running", "done", "aborted"]
 ```
 
@@ -245,6 +245,7 @@ The agent's own LLM goes through one internal protocol; providers are adapters, 
 ```python
 class ChatModel(Protocol):
     profile: ModelProfile
+
     def complete(self, request: ChatRequest) -> ChatResponse: ...
     def count_tokens(self, request: ChatRequest) -> int: ...
 ```
