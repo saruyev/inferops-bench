@@ -1,0 +1,35 @@
+[project]
+name = "paribus-spike-model-choices"
+version = "0.0.0"
+description = "Benchmark spike: pick VAD, audio tagger, LID and local ASR models for paribus."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy",
+    "soundfile",
+    "soxr",
+    "pyarrow",
+    "jiwer",
+    "scikit-learn",
+    "psutil",
+    "huggingface_hub",
+    "torch",
+    "torchaudio",
+    "torchvision",
+    "silero-vad",
+    "webrtcvad-wheels",
+    "speechbrain",
+    "transformers",
+    "mlx-audio[stt]",
+    "parakeet-mlx",
+    "mlx-whisper",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]

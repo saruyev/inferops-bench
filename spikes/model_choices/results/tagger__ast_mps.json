@@ -1,0 +1,5932 @@
+{
+  "config": {
+    "weights": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "input": "16 kHz, 10.24 s max per window",
+    "device": "mps"
+  },
+  "load_s": 5.183607166982256,
+  "compute_s": 37.275003708782606,
+  "audio_s": 3062.018875000001,
+  "rtf": 0.012173342239368983,
+  "metrics": {
+    "music_present": {
+      "auc": 1.0,
+      "n_pos": 28,
+      "n_neg": 236,
+      "tpr_at_0.5": 0.7142857142857143,
+      "fpr_at_0.5": 0.0
+    },
+    "noise_present": {
+      "auc": 0.8523521192361434,
+      "n_pos": 38,
+      "n_neg": 226,
+      "tpr_at_0.5": 0.23684210526315788,
+      "fpr_at_0.5": 0.017699115044247787
+    },
+    "speech_present": {
+      "auc": 1.0,
+      "n_pos": 240,
+      "n_neg": 24,
+      "tpr_at_0.5": 0.9416666666666667,
+      "fpr_at_0.5": 0.0
+    },
+    "mean_scores_by_condition": {
+      "clean": {
+        "music": 0.010275489432901583,
+        "noise": 0.06952272232156247,
+        "speech": 0.7953299724003848
+      },
+      "music_snr0": {
+        "music": 0.49963227808475497,
+        "noise": 0.028495474834926426,
+        "speech": 0.5067374974489212
+      },
+      "music_snr10": {
+        "music": 0.5672536313533783,
+        "noise": 0.05389087302610278,
+        "speech": 0.6194695830345154
+      },
+      "noise_snr0": {
+        "music": 0.023333262582309545,
+        "noise": 0.2995987251400948,
+        "speech": 0.5098315939307213
+      },
+      "noise_snr10": {
+        "music": 0.02360060950741172,
+        "noise": 0.17583121079951525,
+        "speech": 0.5621571987867355
+      },
+      "noise_snr5": {
+        "music": 0.025236805994063617,
+        "noise": 0.2674633085727692,
+        "speech": 0.5916281908750534
+      },
+      "only_floor": {
+        "music": 0.00712427927646786,
+        "noise": 0.24747171998023987,
+        "speech": 0.003565736536984332
+      },
+      "only_music": {
+        "music": 0.6633020006120205,
+        "noise": 0.01754001821973361,
+        "speech": 0.02988992967584636
+      },
+      "only_noise": {
+        "music": 0.038203780772164464,
+        "noise": 0.4926104284822941,
+        "speech": 0.025148788117803633
+      },
+      "only_zero": {
+        "music": 0.2724137306213379,
+        "noise": 0.03510710643604398,
+        "speech": 0.01886512478813529
+      },
+      "pad_floor": {
+        "music": 0.006322030513547361,
+        "noise": 0.23501066565513612,
+        "speech": 0.7608245253562927
+      },
+      "pad_zero": {
+        "music": 0.19461790472269058,
+        "noise": 0.04785703904926777,
+        "speech": 0.7868153035640717
+      }
+    },
+    "peak_rss_mb": 599.796875
+  },
+  "per_clip": [
+    {
+      "clip_id": "clean_en_000",
+      "condition": "clean",
+      "time_s": 0.09214254200924188,
+      "music": 0.0039007544983178377,
+      "speech": 0.7797685861587524,
+      "noise": 0.02223300375044346,
+      "top3": [
+        [
+          "Speech",
+          0.78
+        ],
+        [
+          "Speech synthesizer",
+          0.091
+        ],
+        [
+          "Female speech, woman speaking",
+          0.058
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_001",
+      "condition": "clean",
+      "time_s": 0.09117291698930785,
+      "music": 0.016103116795420647,
+      "speech": 0.8060946464538574,
+      "noise": 0.017013542354106903,
+      "top3": [
+        [
+          "Speech",
+          0.806
+        ],
+        [
+          "Speech synthesizer",
+          0.148
+        ],
+        [
+          "Male speech, man speaking",
+          0.099
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_002",
+      "condition": "clean",
+      "time_s": 0.09130204102257267,
+      "music": 0.006278530228883028,
+      "speech": 0.8843212723731995,
+      "noise": 0.024665875360369682,
+      "top3": [
+        [
+          "Speech",
+          0.884
+        ],
+        [
+          "Narration, monologue",
+          0.122
+        ],
+        [
+          "Female speech, woman speaking",
+          0.037
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_003",
+      "condition": "clean",
+      "time_s": 0.09136387496255338,
+      "music": 0.0005866974242962897,
+      "speech": 0.8321982026100159,
+      "noise": 0.04556356370449066,
+      "top3": [
+        [
+          "Speech",
+          0.832
+        ],
+        [
+          "Female speech, woman speaking",
+          0.222
+        ],
+        [
+          "Narration, monologue",
+          0.121
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_004",
+      "condition": "clean",
+      "time_s": 0.09137129102600738,
+      "music": 0.002975551877170801,
+      "speech": 0.7288148403167725,
+      "noise": 0.16769953072071075,
+      "top3": [
+        [
+          "Speech",
+          0.729
+        ],
+        [
+          "Tick",
+          0.168
+        ],
+        [
+          "Tick-tock",
+          0.101
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_005",
+      "condition": "clean",
+      "time_s": 0.18251154199242592,
+      "music": 0.009111139923334122,
+      "speech": 0.8746353983879089,
+      "noise": 0.017703473567962646,
+      "top3": [
+        [
+          "Speech",
+          0.875
+        ],
+        [
+          "Speech synthesizer",
+          0.53
+        ],
+        [
+          "Narration, monologue",
+          0.247
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_006",
+      "condition": "clean",
+      "time_s": 0.09150112501811236,
+      "music": 0.0014009851729497313,
+      "speech": 0.9014810919761658,
+      "noise": 0.010358117520809174,
+      "top3": [
+        [
+          "Speech",
+          0.901
+        ],
+        [
+          "Speech synthesizer",
+          0.33
+        ],
+        [
+          "Narration, monologue",
+          0.312
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_007",
+      "condition": "clean",
+      "time_s": 0.09083545894827694,
+      "music": 0.007439004257321358,
+      "speech": 0.6644272804260254,
+      "noise": 0.005036235321313143,
+      "top3": [
+        [
+          "Speech",
+          0.664
+        ],
+        [
+          "Gasp",
+          0.318
+        ],
+        [
+          "Sigh",
+          0.302
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_008",
+      "condition": "clean",
+      "time_s": 0.09038637496996671,
+      "music": 0.009509949944913387,
+      "speech": 0.6938443779945374,
+      "noise": 0.03231734409928322,
+      "top3": [
+        [
+          "Speech",
+          0.694
+        ],
+        [
+          "Animal",
+          0.032
+        ],
+        [
+          "Zipper (clothing)",
+          0.018
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_009",
+      "condition": "clean",
+      "time_s": 0.09094650001497939,
+      "music": 0.004468017257750034,
+      "speech": 0.7511560916900635,
+      "noise": 0.02995394915342331,
+      "top3": [
+        [
+          "Speech",
+          0.751
+        ],
+        [
+          "Female speech, woman speaking",
+          0.043
+        ],
+        [
+          "Narration, monologue",
+          0.033
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_010",
+      "condition": "clean",
+      "time_s": 0.1812202089931816,
+      "music": 0.00888633169233799,
+      "speech": 0.8873277902603149,
+      "noise": 0.02088765799999237,
+      "top3": [
+        [
+          "Speech",
+          0.887
+        ],
+        [
+          "Speech synthesizer",
+          0.467
+        ],
+        [
+          "Narration, monologue",
+          0.25
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_011",
+      "condition": "clean",
+      "time_s": 0.09203924995381385,
+      "music": 0.0013894030125811696,
+      "speech": 0.7221359610557556,
+      "noise": 0.01212698221206665,
+      "top3": [
+        [
+          "Speech",
+          0.722
+        ],
+        [
+          "Speech synthesizer",
+          0.52
+        ],
+        [
+          "Narration, monologue",
+          0.156
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_012",
+      "condition": "clean",
+      "time_s": 0.09102841699495912,
+      "music": 0.005643471144139767,
+      "speech": 0.8614226579666138,
+      "noise": 0.011222617700695992,
+      "top3": [
+        [
+          "Speech",
+          0.861
+        ],
+        [
+          "Narration, monologue",
+          0.278
+        ],
+        [
+          "Female speech, woman speaking",
+          0.243
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_013",
+      "condition": "clean",
+      "time_s": 0.09148416598327458,
+      "music": 0.012409335933625698,
+      "speech": 0.8987082839012146,
+      "noise": 0.056879568845033646,
+      "top3": [
+        [
+          "Speech",
+          0.899
+        ],
+        [
+          "Speech synthesizer",
+          0.163
+        ],
+        [
+          "Spray",
+          0.057
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_014",
+      "condition": "clean",
+      "time_s": 0.09073566598817706,
+      "music": 0.041646040976047516,
+      "speech": 0.7748169302940369,
+      "noise": 0.02604302205145359,
+      "top3": [
+        [
+          "Speech",
+          0.775
+        ],
+        [
+          "Music",
+          0.042
+        ],
+        [
+          "Gasp",
+          0.037
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_015",
+      "condition": "clean",
+      "time_s": 0.09164683398557827,
+      "music": 0.002474949462339282,
+      "speech": 0.867957592010498,
+      "noise": 0.026599669829010963,
+      "top3": [
+        [
+          "Speech",
+          0.868
+        ],
+        [
+          "Narration, monologue",
+          0.511
+        ],
+        [
+          "Female speech, woman speaking",
+          0.376
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_016",
+      "condition": "clean",
+      "time_s": 0.09113400004571304,
+      "music": 0.00620269076898694,
+      "speech": 0.7043846249580383,
+      "noise": 0.14907942712306976,
+      "top3": [
+        [
+          "Speech",
+          0.704
+        ],
+        [
+          "Single-lens reflex camera",
+          0.149
+        ],
+        [
+          "Zipper (clothing)",
+          0.041
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_017",
+      "condition": "clean",
+      "time_s": 0.09137366694631055,
+      "music": 0.0006235231994651258,
+      "speech": 0.8364296555519104,
+      "noise": 0.04211140051484108,
+      "top3": [
+        [
+          "Speech",
+          0.836
+        ],
+        [
+          "Female speech, woman speaking",
+          0.141
+        ],
+        [
+          "Narration, monologue",
+          0.115
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_018",
+      "condition": "clean",
+      "time_s": 0.09154070902150124,
+      "music": 0.0016028929967433214,
+      "speech": 0.752966046333313,
+      "noise": 0.020241713151335716,
+      "top3": [
+        [
+          "Speech",
+          0.753
+        ],
+        [
+          "Narration, monologue",
+          0.181
+        ],
+        [
+          "Speech synthesizer",
+          0.161
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_019",
+      "condition": "clean",
+      "time_s": 0.0912078749970533,
+      "music": 0.005189314018934965,
+      "speech": 0.8352916836738586,
+      "noise": 0.015704652294516563,
+      "top3": [
+        [
+          "Speech",
+          0.835
+        ],
+        [
+          "Speech synthesizer",
+          0.243
+        ],
+        [
+          "Narration, monologue",
+          0.081
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_020",
+      "condition": "clean",
+      "time_s": 0.09088633296778426,
+      "music": 0.008167601190507412,
+      "speech": 0.8090541362762451,
+      "noise": 0.018650833517313004,
+      "top3": [
+        [
+          "Speech",
+          0.809
+        ],
+        [
+          "Female speech, woman speaking",
+          0.051
+        ],
+        [
+          "Inside, small room",
+          0.026
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_021",
+      "condition": "clean",
+      "time_s": 0.09072741703130305,
+      "music": 0.006516031920909882,
+      "speech": 0.810897707939148,
+      "noise": 0.01625281758606434,
+      "top3": [
+        [
+          "Speech",
+          0.811
+        ],
+        [
+          "Speech synthesizer",
+          0.148
+        ],
+        [
+          "Narration, monologue",
+          0.051
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_022",
+      "condition": "clean",
+      "time_s": 0.18172783398767933,
+      "music": 0.009812443517148495,
+      "speech": 0.9103946089744568,
+      "noise": 0.029674362391233444,
+      "top3": [
+        [
+          "Speech",
+          0.91
+        ],
+        [
+          "Narration, monologue",
+          0.419
+        ],
+        [
+          "Female speech, woman speaking",
+          0.152
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_023",
+      "condition": "clean",
+      "time_s": 0.18158675002632663,
+      "music": 0.02482530102133751,
+      "speech": 0.8199174404144287,
+      "noise": 0.07549396902322769,
+      "top3": [
+        [
+          "Speech",
+          0.82
+        ],
+        [
+          "Female speech, woman speaking",
+          0.157
+        ],
+        [
+          "Narration, monologue",
+          0.113
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_024",
+      "condition": "clean",
+      "time_s": 0.0919826669851318,
+      "music": 0.0007861448102630675,
+      "speech": 0.638884961605072,
+      "noise": 0.0030360405799001455,
+      "top3": [
+        [
+          "Speech",
+          0.639
+        ],
+        [
+          "Speech synthesizer",
+          0.637
+        ],
+        [
+          "Narration, monologue",
+          0.123
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_025",
+      "condition": "clean",
+      "time_s": 0.0906136249541305,
+      "music": 0.012960030697286129,
+      "speech": 0.7224704623222351,
+      "noise": 0.020434275269508362,
+      "top3": [
+        [
+          "Speech",
+          0.722
+        ],
+        [
+          "Gasp",
+          0.053
+        ],
+        [
+          "Inside, small room",
+          0.033
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_026",
+      "condition": "clean",
+      "time_s": 0.09105125005589798,
+      "music": 0.009292936883866787,
+      "speech": 0.6289103031158447,
+      "noise": 0.012006082572042942,
+      "top3": [
+        [
+          "Speech",
+          0.629
+        ],
+        [
+          "Narration, monologue",
+          0.077
+        ],
+        [
+          "Male speech, man speaking",
+          0.042
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_027",
+      "condition": "clean",
+      "time_s": 0.0906178749864921,
+      "music": 0.0273129940032959,
+      "speech": 0.6312142014503479,
+      "noise": 0.03678739815950394,
+      "top3": [
+        [
+          "Speech",
+          0.631
+        ],
+        [
+          "Frog",
+          0.037
+        ],
+        [
+          "Music",
+          0.027
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_028",
+      "condition": "clean",
+      "time_s": 0.18164137500571087,
+      "music": 0.02460872009396553,
+      "speech": 0.858197033405304,
+      "noise": 0.0661192312836647,
+      "top3": [
+        [
+          "Speech",
+          0.858
+        ],
+        [
+          "Gasp",
+          0.171
+        ],
+        [
+          "Snort",
+          0.101
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_029",
+      "condition": "clean",
+      "time_s": 0.0909030000329949,
+      "music": 0.008001714944839478,
+      "speech": 0.8355404734611511,
+      "noise": 0.023721812292933464,
+      "top3": [
+        [
+          "Speech",
+          0.836
+        ],
+        [
+          "Narration, monologue",
+          0.053
+        ],
+        [
+          "Female speech, woman speaking",
+          0.029
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_030",
+      "condition": "clean",
+      "time_s": 0.09064004197716713,
+      "music": 0.012073294259607792,
+      "speech": 0.7327436208724976,
+      "noise": 0.02500763162970543,
+      "top3": [
+        [
+          "Speech",
+          0.733
+        ],
+        [
+          "Narration, monologue",
+          0.068
+        ],
+        [
+          "Male speech, man speaking",
+          0.045
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_031",
+      "condition": "clean",
+      "time_s": 0.09153258398873731,
+      "music": 0.0008533464861102402,
+      "speech": 0.7976223826408386,
+      "noise": 0.01975618675351143,
+      "top3": [
+        [
+          "Speech",
+          0.798
+        ],
+        [
+          "Narration, monologue",
+          0.356
+        ],
+        [
+          "Male speech, man speaking",
+          0.274
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_032",
+      "condition": "clean",
+      "time_s": 0.09105241700308397,
+      "music": 0.005242058075964451,
+      "speech": 0.8377950191497803,
+      "noise": 0.02627520263195038,
+      "top3": [
+        [
+          "Speech",
+          0.838
+        ],
+        [
+          "Male speech, man speaking",
+          0.038
+        ],
+        [
+          "Narration, monologue",
+          0.034
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_033",
+      "condition": "clean",
+      "time_s": 0.09113787498790771,
+      "music": 0.004061838611960411,
+      "speech": 0.872280478477478,
+      "noise": 0.05966426059603691,
+      "top3": [
+        [
+          "Speech",
+          0.872
+        ],
+        [
+          "Female speech, woman speaking",
+          0.123
+        ],
+        [
+          "Zipper (clothing)",
+          0.06
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_034",
+      "condition": "clean",
+      "time_s": 0.09113470901502296,
+      "music": 0.010843778029084206,
+      "speech": 0.7965085506439209,
+      "noise": 0.010411045514047146,
+      "top3": [
+        [
+          "Speech",
+          0.797
+        ],
+        [
+          "Speech synthesizer",
+          0.376
+        ],
+        [
+          "Conversation",
+          0.071
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_035",
+      "condition": "clean",
+      "time_s": 0.09105191699927673,
+      "music": 0.00473413523286581,
+      "speech": 0.7574331164360046,
+      "noise": 0.011324416846036911,
+      "top3": [
+        [
+          "Speech",
+          0.757
+        ],
+        [
+          "Narration, monologue",
+          0.107
+        ],
+        [
+          "Male speech, man speaking",
+          0.032
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_036",
+      "condition": "clean",
+      "time_s": 0.18229637504555285,
+      "music": 0.0084986612200737,
+      "speech": 0.7444862127304077,
+      "noise": 0.11406917870044708,
+      "top3": [
+        [
+          "Speech",
+          0.744
+        ],
+        [
+          "Female speech, woman speaking",
+          0.143
+        ],
+        [
+          "Squish",
+          0.114
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_037",
+      "condition": "clean",
+      "time_s": 0.09099258302012458,
+      "music": 0.006617232691496611,
+      "speech": 0.72601318359375,
+      "noise": 0.0442497543990612,
+      "top3": [
+        [
+          "Speech",
+          0.726
+        ],
+        [
+          "Tick",
+          0.044
+        ],
+        [
+          "Tick-tock",
+          0.03
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_038",
+      "condition": "clean",
+      "time_s": 0.0912969580385834,
+      "music": 0.009014599956572056,
+      "speech": 0.6996863484382629,
+      "noise": 0.27560189366340637,
+      "top3": [
+        [
+          "Speech",
+          0.7
+        ],
+        [
+          "Single-lens reflex camera",
+          0.276
+        ],
+        [
+          "Animal",
+          0.036
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_039",
+      "condition": "clean",
+      "time_s": 0.0915571249788627,
+      "music": 0.002866241382434964,
+      "speech": 0.7919762134552002,
+      "noise": 0.086162269115448,
+      "top3": [
+        [
+          "Speech",
+          0.792
+        ],
+        [
+          "Speech synthesizer",
+          0.105
+        ],
+        [
+          "Clicking",
+          0.086
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_040",
+      "condition": "clean",
+      "time_s": 0.09092833299655467,
+      "music": 0.009666764177381992,
+      "speech": 0.7345832586288452,
+      "noise": 0.030008060857653618,
+      "top3": [
+        [
+          "Speech",
+          0.735
+        ],
+        [
+          "Narration, monologue",
+          0.082
+        ],
+        [
+          "Female speech, woman speaking",
+          0.049
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_041",
+      "condition": "clean",
+      "time_s": 0.09106845798669383,
+      "music": 0.005650804843753576,
+      "speech": 0.7886685729026794,
+      "noise": 0.08157264441251755,
+      "top3": [
+        [
+          "Speech",
+          0.789
+        ],
+        [
+          "Tick",
+          0.082
+        ],
+        [
+          "Tick-tock",
+          0.063
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_042",
+      "condition": "clean",
+      "time_s": 0.18263629195280373,
+      "music": 0.005825389176607132,
+      "speech": 0.7546892762184143,
+      "noise": 0.05095389485359192,
+      "top3": [
+        [
+          "Speech",
+          0.755
+        ],
+        [
+          "Narration, monologue",
+          0.303
+        ],
+        [
+          "Male speech, man speaking",
+          0.109
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_043",
+      "condition": "clean",
+      "time_s": 0.18178800004534423,
+      "music": 0.02351483330130577,
+      "speech": 0.9285544157028198,
+      "noise": 0.016021860763430595,
+      "top3": [
+        [
+          "Speech",
+          0.929
+        ],
+        [
+          "Narration, monologue",
+          0.182
+        ],
+        [
+          "Speech synthesizer",
+          0.126
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_044",
+      "condition": "clean",
+      "time_s": 0.09086241602199152,
+      "music": 0.010703569278120995,
+      "speech": 0.7567121386528015,
+      "noise": 0.020660463720560074,
+      "top3": [
+        [
+          "Speech",
+          0.757
+        ],
+        [
+          "Narration, monologue",
+          0.042
+        ],
+        [
+          "Female speech, woman speaking",
+          0.033
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_045",
+      "condition": "clean",
+      "time_s": 0.09052583295851946,
+      "music": 0.00987111683934927,
+      "speech": 0.7504280209541321,
+      "noise": 0.025734368711709976,
+      "top3": [
+        [
+          "Speech",
+          0.75
+        ],
+        [
+          "Narration, monologue",
+          0.043
+        ],
+        [
+          "Male speech, man speaking",
+          0.038
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_046",
+      "condition": "clean",
+      "time_s": 0.09147474996279925,
+      "music": 0.004953661002218723,
+      "speech": 0.8319350481033325,
+      "noise": 0.04034556820988655,
+      "top3": [
+        [
+          "Speech",
+          0.832
+        ],
+        [
+          "Narration, monologue",
+          0.144
+        ],
+        [
+          "Speech synthesizer",
+          0.142
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_047",
+      "condition": "clean",
+      "time_s": 0.09077141602756456,
+      "music": 0.0038901728112250566,
+      "speech": 0.6607166528701782,
+      "noise": 0.10854055732488632,
+      "top3": [
+        [
+          "Speech",
+          0.661
+        ],
+        [
+          "Door",
+          0.109
+        ],
+        [
+          "Sliding door",
+          0.072
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_048",
+      "condition": "clean",
+      "time_s": 0.0910724580171518,
+      "music": 0.007732515688985586,
+      "speech": 0.8908717632293701,
+      "noise": 0.03797290846705437,
+      "top3": [
+        [
+          "Speech",
+          0.891
+        ],
+        [
+          "Speech synthesizer",
+          0.096
+        ],
+        [
+          "Narration, monologue",
+          0.044
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_049",
+      "condition": "clean",
+      "time_s": 0.09068416705122218,
+      "music": 0.010854816064238548,
+      "speech": 0.6905598044395447,
+      "noise": 0.028248455375432968,
+      "top3": [
+        [
+          "Speech",
+          0.691
+        ],
+        [
+          "Female speech, woman speaking",
+          0.033
+        ],
+        [
+          "Inside, small room",
+          0.033
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_050",
+      "condition": "clean",
+      "time_s": 0.09136174997547641,
+      "music": 0.001300351694226265,
+      "speech": 0.7731669545173645,
+      "noise": 0.01224000658839941,
+      "top3": [
+        [
+          "Speech",
+          0.773
+        ],
+        [
+          "Narration, monologue",
+          0.24
+        ],
+        [
+          "Speech synthesizer",
+          0.189
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_051",
+      "condition": "clean",
+      "time_s": 0.18155733402818441,
+      "music": 0.015158145688474178,
+      "speech": 0.7745223045349121,
+      "noise": 0.015187687240540981,
+      "top3": [
+        [
+          "Speech synthesizer",
+          0.775
+        ],
+        [
+          "Speech",
+          0.751
+        ],
+        [
+          "Narration, monologue",
+          0.142
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_052",
+      "condition": "clean",
+      "time_s": 0.18153679103124887,
+      "music": 0.010990160517394543,
+      "speech": 0.872929573059082,
+      "noise": 0.02771572209894657,
+      "top3": [
+        [
+          "Speech",
+          0.873
+        ],
+        [
+          "Speech synthesizer",
+          0.267
+        ],
+        [
+          "Narration, monologue",
+          0.164
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_053",
+      "condition": "clean",
+      "time_s": 0.09118391695665196,
+      "music": 0.014380645006895065,
+      "speech": 0.5815887451171875,
+      "noise": 0.03358538821339607,
+      "top3": [
+        [
+          "Speech",
+          0.582
+        ],
+        [
+          "Single-lens reflex camera",
+          0.034
+        ],
+        [
+          "Inside, small room",
+          0.032
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_054",
+      "condition": "clean",
+      "time_s": 0.09093379200203344,
+      "music": 0.008556919172406197,
+      "speech": 0.6514102220535278,
+      "noise": 0.04361948370933533,
+      "top3": [
+        [
+          "Speech",
+          0.651
+        ],
+        [
+          "Zipper (clothing)",
+          0.044
+        ],
+        [
+          "Single-lens reflex camera",
+          0.032
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_055",
+      "condition": "clean",
+      "time_s": 0.09119312500115484,
+      "music": 0.0015233431477099657,
+      "speech": 0.8562273979187012,
+      "noise": 0.032251715660095215,
+      "top3": [
+        [
+          "Speech",
+          0.856
+        ],
+        [
+          "Narration, monologue",
+          0.203
+        ],
+        [
+          "Speech synthesizer",
+          0.148
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_056",
+      "condition": "clean",
+      "time_s": 0.09056329098530114,
+      "music": 0.010326412506401539,
+      "speech": 0.6912991404533386,
+      "noise": 0.06535499542951584,
+      "top3": [
+        [
+          "Speech",
+          0.691
+        ],
+        [
+          "Whimper",
+          0.079
+        ],
+        [
+          "Bleat",
+          0.065
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_057",
+      "condition": "clean",
+      "time_s": 0.0912201669998467,
+      "music": 0.007286586798727512,
+      "speech": 0.8289979100227356,
+      "noise": 0.04471312090754509,
+      "top3": [
+        [
+          "Speech",
+          0.829
+        ],
+        [
+          "Speech synthesizer",
+          0.383
+        ],
+        [
+          "Narration, monologue",
+          0.077
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_058",
+      "condition": "clean",
+      "time_s": 0.09059087501373142,
+      "music": 0.008816802874207497,
+      "speech": 0.7102553248405457,
+      "noise": 0.01567729189991951,
+      "top3": [
+        [
+          "Speech",
+          0.71
+        ],
+        [
+          "Gasp",
+          0.153
+        ],
+        [
+          "Snort",
+          0.085
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_059",
+      "condition": "clean",
+      "time_s": 0.09075304202269763,
+      "music": 0.018113644793629646,
+      "speech": 0.6525940299034119,
+      "noise": 0.018822992220520973,
+      "top3": [
+        [
+          "Speech",
+          0.653
+        ],
+        [
+          "Male speech, man speaking",
+          0.049
+        ],
+        [
+          "Narration, monologue",
+          0.042
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_060",
+      "condition": "clean",
+      "time_s": 0.09114641597261652,
+      "music": 0.005935188848525286,
+      "speech": 0.8366954326629639,
+      "noise": 0.06024443730711937,
+      "top3": [
+        [
+          "Speech",
+          0.837
+        ],
+        [
+          "Zipper (clothing)",
+          0.06
+        ],
+        [
+          "Snort",
+          0.041
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_061",
+      "condition": "clean",
+      "time_s": 0.09162858303170651,
+      "music": 0.001432305434718728,
+      "speech": 0.9048084616661072,
+      "noise": 0.010071690194308758,
+      "top3": [
+        [
+          "Speech",
+          0.905
+        ],
+        [
+          "Male speech, man speaking",
+          0.335
+        ],
+        [
+          "Narration, monologue",
+          0.308
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_062",
+      "condition": "clean",
+      "time_s": 0.09158629202283919,
+      "music": 0.00265877484343946,
+      "speech": 0.864323616027832,
+      "noise": 0.2567369341850281,
+      "top3": [
+        [
+          "Speech",
+          0.864
+        ],
+        [
+          "Clicking",
+          0.257
+        ],
+        [
+          "Speech synthesizer",
+          0.084
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_063",
+      "condition": "clean",
+      "time_s": 0.09054170799208805,
+      "music": 0.020464299246668816,
+      "speech": 0.7018468379974365,
+      "noise": 0.019104769453406334,
+      "top3": [
+        [
+          "Speech",
+          0.702
+        ],
+        [
+          "Narration, monologue",
+          0.036
+        ],
+        [
+          "Male speech, man speaking",
+          0.025
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_064",
+      "condition": "clean",
+      "time_s": 0.09029170800931752,
+      "music": 0.005088679492473602,
+      "speech": 0.8434046506881714,
+      "noise": 0.04564521089196205,
+      "top3": [
+        [
+          "Speech",
+          0.843
+        ],
+        [
+          "Speech synthesizer",
+          0.219
+        ],
+        [
+          "Male speech, man speaking",
+          0.089
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_065",
+      "condition": "clean",
+      "time_s": 0.18169579200912267,
+      "music": 0.01610131748020649,
+      "speech": 0.85245281457901,
+      "noise": 0.0628698319196701,
+      "top3": [
+        [
+          "Speech",
+          0.852
+        ],
+        [
+          "Speech synthesizer",
+          0.087
+        ],
+        [
+          "Narration, monologue",
+          0.079
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_066",
+      "condition": "clean",
+      "time_s": 0.09074700000928715,
+      "music": 0.015074965544044971,
+      "speech": 0.7251201868057251,
+      "noise": 0.023437215015292168,
+      "top3": [
+        [
+          "Speech",
+          0.725
+        ],
+        [
+          "Male speech, man speaking",
+          0.042
+        ],
+        [
+          "Narration, monologue",
+          0.037
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_067",
+      "condition": "clean",
+      "time_s": 0.09124562499346212,
+      "music": 0.005169695243239403,
+      "speech": 0.7360062599182129,
+      "noise": 0.04255290701985359,
+      "top3": [
+        [
+          "Speech",
+          0.736
+        ],
+        [
+          "Narration, monologue",
+          0.057
+        ],
+        [
+          "Speech synthesizer",
+          0.048
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_068",
+      "condition": "clean",
+      "time_s": 0.09072437504073605,
+      "music": 0.01730417273938656,
+      "speech": 0.6845188736915588,
+      "noise": 0.015669716522097588,
+      "top3": [
+        [
+          "Speech",
+          0.685
+        ],
+        [
+          "Narration, monologue",
+          0.047
+        ],
+        [
+          "Gasp",
+          0.042
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_069",
+      "condition": "clean",
+      "time_s": 0.09101020899834111,
+      "music": 0.009717686101794243,
+      "speech": 0.6288174986839294,
+      "noise": 0.14927858114242554,
+      "top3": [
+        [
+          "Speech",
+          0.629
+        ],
+        [
+          "Owl",
+          0.149
+        ],
+        [
+          "Mouse",
+          0.04
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_070",
+      "condition": "clean",
+      "time_s": 0.09088587498990819,
+      "music": 0.006345710251480341,
+      "speech": 0.7024667263031006,
+      "noise": 0.031051132827997208,
+      "top3": [
+        [
+          "Speech",
+          0.702
+        ],
+        [
+          "Single-lens reflex camera",
+          0.031
+        ],
+        [
+          "Inside, small room",
+          0.027
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_071",
+      "condition": "clean",
+      "time_s": 0.09068454097723588,
+      "music": 0.00493270717561245,
+      "speech": 0.7606533169746399,
+      "noise": 0.02776089869439602,
+      "top3": [
+        [
+          "Speech",
+          0.761
+        ],
+        [
+          "Female speech, woman speaking",
+          0.035
+        ],
+        [
+          "Zipper (clothing)",
+          0.028
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_072",
+      "condition": "clean",
+      "time_s": 0.18359912501182407,
+      "music": 0.0012143319472670555,
+      "speech": 0.7317041754722595,
+      "noise": 0.17339761555194855,
+      "top3": [
+        [
+          "Speech",
+          0.732
+        ],
+        [
+          "Speech synthesizer",
+          0.288
+        ],
+        [
+          "Narration, monologue",
+          0.209
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_073",
+      "condition": "clean",
+      "time_s": 0.18183495802804828,
+      "music": 0.0114382179453969,
+      "speech": 0.8479474186897278,
+      "noise": 0.022457504644989967,
+      "top3": [
+        [
+          "Speech",
+          0.848
+        ],
+        [
+          "Narration, monologue",
+          0.341
+        ],
+        [
+          "Male speech, man speaking",
+          0.175
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_074",
+      "condition": "clean",
+      "time_s": 0.09081758401589468,
+      "music": 0.014593702740967274,
+      "speech": 0.6850704550743103,
+      "noise": 0.025618158280849457,
+      "top3": [
+        [
+          "Speech",
+          0.685
+        ],
+        [
+          "Narration, monologue",
+          0.027
+        ],
+        [
+          "Animal",
+          0.026
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_075",
+      "condition": "clean",
+      "time_s": 0.18131812498904765,
+      "music": 0.04470043629407883,
+      "speech": 0.8964802026748657,
+      "noise": 0.1321137547492981,
+      "top3": [
+        [
+          "Speech",
+          0.896
+        ],
+        [
+          "Squish",
+          0.132
+        ],
+        [
+          "Zipper (clothing)",
+          0.047
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_076",
+      "condition": "clean",
+      "time_s": 0.18147316598333418,
+      "music": 0.025438789278268814,
+      "speech": 0.9065949320793152,
+      "noise": 0.035291846841573715,
+      "top3": [
+        [
+          "Speech",
+          0.907
+        ],
+        [
+          "Female speech, woman speaking",
+          0.465
+        ],
+        [
+          "Narration, monologue",
+          0.283
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_077",
+      "condition": "clean",
+      "time_s": 0.09077416697982699,
+      "music": 0.006526227109134197,
+      "speech": 0.7605577111244202,
+      "noise": 0.010197823867201805,
+      "top3": [
+        [
+          "Speech",
+          0.761
+        ],
+        [
+          "Male speech, man speaking",
+          0.099
+        ],
+        [
+          "Narration, monologue",
+          0.05
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_078",
+      "condition": "clean",
+      "time_s": 0.09128908300772309,
+      "music": 0.009112069383263588,
+      "speech": 0.7428039908409119,
+      "noise": 0.08721286058425903,
+      "top3": [
+        [
+          "Speech",
+          0.743
+        ],
+        [
+          "Tick",
+          0.087
+        ],
+        [
+          "Tick-tock",
+          0.061
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_079",
+      "condition": "clean",
+      "time_s": 0.09154100000159815,
+      "music": 0.007027423474937677,
+      "speech": 0.7152664065361023,
+      "noise": 0.02460877038538456,
+      "top3": [
+        [
+          "Speech",
+          0.715
+        ],
+        [
+          "Narration, monologue",
+          0.146
+        ],
+        [
+          "Female speech, woman speaking",
+          0.08
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_080",
+      "condition": "clean",
+      "time_s": 0.09186787501676008,
+      "music": 0.003080196212977171,
+      "speech": 0.8378751277923584,
+      "noise": 0.02710597775876522,
+      "top3": [
+        [
+          "Speech",
+          0.838
+        ],
+        [
+          "Male speech, man speaking",
+          0.1
+        ],
+        [
+          "Narration, monologue",
+          0.084
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_081",
+      "condition": "clean",
+      "time_s": 0.09190058399690315,
+      "music": 0.012426997534930706,
+      "speech": 0.9339595437049866,
+      "noise": 0.01719343662261963,
+      "top3": [
+        [
+          "Speech",
+          0.934
+        ],
+        [
+          "Speech synthesizer",
+          0.146
+        ],
+        [
+          "Narration, monologue",
+          0.109
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_082",
+      "condition": "clean",
+      "time_s": 0.09097783302422613,
+      "music": 0.006507771089673042,
+      "speech": 0.6363294720649719,
+      "noise": 0.038416583091020584,
+      "top3": [
+        [
+          "Speech",
+          0.636
+        ],
+        [
+          "Hoot",
+          0.038
+        ],
+        [
+          "Owl",
+          0.034
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_083",
+      "condition": "clean",
+      "time_s": 0.18315116700250655,
+      "music": 0.0018517536809667945,
+      "speech": 0.8508124351501465,
+      "noise": 0.021716052666306496,
+      "top3": [
+        [
+          "Speech",
+          0.851
+        ],
+        [
+          "Narration, monologue",
+          0.318
+        ],
+        [
+          "Speech synthesizer",
+          0.211
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_084",
+      "condition": "clean",
+      "time_s": 0.09140491700964049,
+      "music": 0.012798667885363102,
+      "speech": 0.8599096536636353,
+      "noise": 0.02885083295404911,
+      "top3": [
+        [
+          "Speech",
+          0.86
+        ],
+        [
+          "Speech synthesizer",
+          0.119
+        ],
+        [
+          "Narration, monologue",
+          0.092
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_085",
+      "condition": "clean",
+      "time_s": 0.09161791700171307,
+      "music": 0.001386325340718031,
+      "speech": 0.7675589323043823,
+      "noise": 0.0218045674264431,
+      "top3": [
+        [
+          "Speech",
+          0.768
+        ],
+        [
+          "Female speech, woman speaking",
+          0.086
+        ],
+        [
+          "Narration, monologue",
+          0.066
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_086",
+      "condition": "clean",
+      "time_s": 0.18191779096378013,
+      "music": 0.01669422723352909,
+      "speech": 0.7147965431213379,
+      "noise": 0.015266962349414825,
+      "top3": [
+        [
+          "Speech",
+          0.715
+        ],
+        [
+          "Sigh",
+          0.158
+        ],
+        [
+          "Speech synthesizer",
+          0.143
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_087",
+      "condition": "clean",
+      "time_s": 0.09094774996628985,
+      "music": 0.006182574667036533,
+      "speech": 0.7439931631088257,
+      "noise": 0.030295472592115402,
+      "top3": [
+        [
+          "Speech",
+          0.744
+        ],
+        [
+          "Female speech, woman speaking",
+          0.067
+        ],
+        [
+          "Narration, monologue",
+          0.041
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_088",
+      "condition": "clean",
+      "time_s": 0.09160245797829702,
+      "music": 0.006258159875869751,
+      "speech": 0.8620623350143433,
+      "noise": 0.018924769014120102,
+      "top3": [
+        [
+          "Speech",
+          0.862
+        ],
+        [
+          "Speech synthesizer",
+          0.253
+        ],
+        [
+          "Narration, monologue",
+          0.172
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_089",
+      "condition": "clean",
+      "time_s": 0.09080187499057502,
+      "music": 0.012859067879617214,
+      "speech": 0.6434546709060669,
+      "noise": 0.01388490479439497,
+      "top3": [
+        [
+          "Speech",
+          0.643
+        ],
+        [
+          "Gasp",
+          0.047
+        ],
+        [
+          "Narration, monologue",
+          0.043
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_090",
+      "condition": "clean",
+      "time_s": 0.09118429099908099,
+      "music": 0.004634891636669636,
+      "speech": 0.7817459106445312,
+      "noise": 0.041581571102142334,
+      "top3": [
+        [
+          "Speech",
+          0.782
+        ],
+        [
+          "Speech synthesizer",
+          0.087
+        ],
+        [
+          "Narration, monologue",
+          0.061
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_091",
+      "condition": "clean",
+      "time_s": 0.09130012500099838,
+      "music": 0.00284027261659503,
+      "speech": 0.9055508971214294,
+      "noise": 0.018934668973088264,
+      "top3": [
+        [
+          "Speech",
+          0.906
+        ],
+        [
+          "Inside, small room",
+          0.03
+        ],
+        [
+          "Scrape",
+          0.019
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_092",
+      "condition": "clean",
+      "time_s": 0.0908413750003092,
+      "music": 0.011533449403941631,
+      "speech": 0.7869523763656616,
+      "noise": 0.01827664114534855,
+      "top3": [
+        [
+          "Speech",
+          0.787
+        ],
+        [
+          "Narration, monologue",
+          0.038
+        ],
+        [
+          "Female speech, woman speaking",
+          0.024
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_093",
+      "condition": "clean",
+      "time_s": 0.09073220903519541,
+      "music": 0.007904531434178352,
+      "speech": 0.784312903881073,
+      "noise": 0.02272612787783146,
+      "top3": [
+        [
+          "Speech",
+          0.784
+        ],
+        [
+          "Inside, small room",
+          0.034
+        ],
+        [
+          "Female speech, woman speaking",
+          0.023
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_094",
+      "condition": "clean",
+      "time_s": 0.0915050829644315,
+      "music": 0.0010542882373556495,
+      "speech": 0.7505484223365784,
+      "noise": 0.005144221242517233,
+      "top3": [
+        [
+          "Speech",
+          0.751
+        ],
+        [
+          "Speech synthesizer",
+          0.526
+        ],
+        [
+          "Narration, monologue",
+          0.139
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_095",
+      "condition": "clean",
+      "time_s": 0.09081537497695535,
+      "music": 0.0160011425614357,
+      "speech": 0.7991239428520203,
+      "noise": 0.012804271653294563,
+      "top3": [
+        [
+          "Speech",
+          0.799
+        ],
+        [
+          "Male speech, man speaking",
+          0.058
+        ],
+        [
+          "Narration, monologue",
+          0.029
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_096",
+      "condition": "clean",
+      "time_s": 0.0912719169864431,
+      "music": 0.006476516369730234,
+      "speech": 0.7861947417259216,
+      "noise": 0.03426547721028328,
+      "top3": [
+        [
+          "Speech",
+          0.786
+        ],
+        [
+          "Tick",
+          0.034
+        ],
+        [
+          "Tick-tock",
+          0.034
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_097",
+      "condition": "clean",
+      "time_s": 0.09083599998848513,
+      "music": 0.014086741022765636,
+      "speech": 0.6070272326469421,
+      "noise": 0.03067413717508316,
+      "top3": [
+        [
+          "Speech",
+          0.607
+        ],
+        [
+          "Scrape",
+          0.031
+        ],
+        [
+          "Single-lens reflex camera",
+          0.03
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_098",
+      "condition": "clean",
+      "time_s": 0.09096595895243809,
+      "music": 0.003965502604842186,
+      "speech": 0.7874146103858948,
+      "noise": 0.046423427760601044,
+      "top3": [
+        [
+          "Speech",
+          0.787
+        ],
+        [
+          "Zipper (clothing)",
+          0.046
+        ],
+        [
+          "Female speech, woman speaking",
+          0.044
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_en_099",
+      "condition": "clean",
+      "time_s": 0.09081899997545406,
+      "music": 0.016231605783104897,
+      "speech": 0.6771359443664551,
+      "noise": 0.06436390429735184,
+      "top3": [
+        [
+          "Speech",
+          0.677
+        ],
+        [
+          "Single-lens reflex camera",
+          0.064
+        ],
+        [
+          "Male speech, man speaking",
+          0.028
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_100",
+      "condition": "clean",
+      "time_s": 0.1813616660074331,
+      "music": 0.02544274926185608,
+      "speech": 0.7964120507240295,
+      "noise": 0.12322798371315002,
+      "top3": [
+        [
+          "Speech",
+          0.796
+        ],
+        [
+          "Narration, monologue",
+          0.173
+        ],
+        [
+          "Female speech, woman speaking",
+          0.171
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_101",
+      "condition": "clean",
+      "time_s": 0.1816124159959145,
+      "music": 0.008948249742388725,
+      "speech": 0.7778940796852112,
+      "noise": 0.13158145546913147,
+      "top3": [
+        [
+          "Speech",
+          0.778
+        ],
+        [
+          "Female speech, woman speaking",
+          0.226
+        ],
+        [
+          "Narration, monologue",
+          0.14
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_102",
+      "condition": "clean",
+      "time_s": 0.09180637501413003,
+      "music": 0.0016231788322329521,
+      "speech": 0.8180440068244934,
+      "noise": 0.04934348165988922,
+      "top3": [
+        [
+          "Speech",
+          0.818
+        ],
+        [
+          "Female speech, woman speaking",
+          0.185
+        ],
+        [
+          "Conversation",
+          0.144
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_103",
+      "condition": "clean",
+      "time_s": 0.18150379101280123,
+      "music": 0.03491298109292984,
+      "speech": 0.9205496311187744,
+      "noise": 0.037384629249572754,
+      "top3": [
+        [
+          "Speech",
+          0.921
+        ],
+        [
+          "Narration, monologue",
+          0.239
+        ],
+        [
+          "Male speech, man speaking",
+          0.199
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_104",
+      "condition": "clean",
+      "time_s": 0.18182883400004357,
+      "music": 0.018601398915052414,
+      "speech": 0.8241709470748901,
+      "noise": 0.027876781299710274,
+      "top3": [
+        [
+          "Speech",
+          0.824
+        ],
+        [
+          "Female speech, woman speaking",
+          0.371
+        ],
+        [
+          "Narration, monologue",
+          0.3
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_105",
+      "condition": "clean",
+      "time_s": 0.09083920798730105,
+      "music": 0.00854592677205801,
+      "speech": 0.5067312121391296,
+      "noise": 0.08811884373426437,
+      "top3": [
+        [
+          "Fart",
+          0.661
+        ],
+        [
+          "Speech",
+          0.507
+        ],
+        [
+          "Zipper (clothing)",
+          0.088
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_106",
+      "condition": "clean",
+      "time_s": 0.09133141697384417,
+      "music": 0.0025965305976569653,
+      "speech": 0.8054958581924438,
+      "noise": 0.015634311363101006,
+      "top3": [
+        [
+          "Speech",
+          0.805
+        ],
+        [
+          "Female speech, woman speaking",
+          0.136
+        ],
+        [
+          "Conversation",
+          0.098
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_107",
+      "condition": "clean",
+      "time_s": 0.18162758299149573,
+      "music": 0.028447212651371956,
+      "speech": 0.8512604236602783,
+      "noise": 0.047675538808107376,
+      "top3": [
+        [
+          "Speech",
+          0.851
+        ],
+        [
+          "Female speech, woman speaking",
+          0.27
+        ],
+        [
+          "Narration, monologue",
+          0.217
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_108",
+      "condition": "clean",
+      "time_s": 0.18135691701900214,
+      "music": 0.010298117995262146,
+      "speech": 0.7346165776252747,
+      "noise": 0.10178687423467636,
+      "top3": [
+        [
+          "Speech",
+          0.735
+        ],
+        [
+          "Female speech, woman speaking",
+          0.27
+        ],
+        [
+          "Narration, monologue",
+          0.227
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_109",
+      "condition": "clean",
+      "time_s": 0.0911858330364339,
+      "music": 0.00431283051148057,
+      "speech": 0.8956846594810486,
+      "noise": 0.014480534009635448,
+      "top3": [
+        [
+          "Speech",
+          0.896
+        ],
+        [
+          "Narration, monologue",
+          0.309
+        ],
+        [
+          "Female speech, woman speaking",
+          0.265
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_110",
+      "condition": "clean",
+      "time_s": 0.09146070899441838,
+      "music": 0.0016817180439829826,
+      "speech": 0.8569458723068237,
+      "noise": 0.21510618925094604,
+      "top3": [
+        [
+          "Speech",
+          0.857
+        ],
+        [
+          "Clicking",
+          0.215
+        ],
+        [
+          "Narration, monologue",
+          0.105
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_111",
+      "condition": "clean",
+      "time_s": 0.1816654999856837,
+      "music": 0.022150646895170212,
+      "speech": 0.8715081810951233,
+      "noise": 0.03942827880382538,
+      "top3": [
+        [
+          "Speech",
+          0.872
+        ],
+        [
+          "Narration, monologue",
+          0.232
+        ],
+        [
+          "Female speech, woman speaking",
+          0.214
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_112",
+      "condition": "clean",
+      "time_s": 0.09172495797974989,
+      "music": 0.0023753729183226824,
+      "speech": 0.802682101726532,
+      "noise": 0.7487200498580933,
+      "top3": [
+        [
+          "Speech",
+          0.803
+        ],
+        [
+          "Clicking",
+          0.749
+        ],
+        [
+          "Narration, monologue",
+          0.081
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_113",
+      "condition": "clean",
+      "time_s": 0.0913692910107784,
+      "music": 0.0018274845788255334,
+      "speech": 0.8962400555610657,
+      "noise": 0.047308992594480515,
+      "top3": [
+        [
+          "Speech",
+          0.896
+        ],
+        [
+          "Inside, small room",
+          0.167
+        ],
+        [
+          "Silence",
+          0.104
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_114",
+      "condition": "clean",
+      "time_s": 0.09157370799221098,
+      "music": 0.0020377531182020903,
+      "speech": 0.8441150188446045,
+      "noise": 0.011621403507888317,
+      "top3": [
+        [
+          "Speech",
+          0.844
+        ],
+        [
+          "Female speech, woman speaking",
+          0.069
+        ],
+        [
+          "Conversation",
+          0.064
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_115",
+      "condition": "clean",
+      "time_s": 0.09083245898364112,
+      "music": 0.006863745860755444,
+      "speech": 0.7803321480751038,
+      "noise": 0.016468970105051994,
+      "top3": [
+        [
+          "Speech",
+          0.78
+        ],
+        [
+          "Inside, small room",
+          0.039
+        ],
+        [
+          "Snort",
+          0.027
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_116",
+      "condition": "clean",
+      "time_s": 0.18137875001411885,
+      "music": 0.008321824483573437,
+      "speech": 0.8544211983680725,
+      "noise": 0.014524348080158234,
+      "top3": [
+        [
+          "Speech",
+          0.854
+        ],
+        [
+          "Female speech, woman speaking",
+          0.338
+        ],
+        [
+          "Conversation",
+          0.222
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_117",
+      "condition": "clean",
+      "time_s": 0.18137654202291742,
+      "music": 0.0243634395301342,
+      "speech": 0.8070383071899414,
+      "noise": 0.07729902863502502,
+      "top3": [
+        [
+          "Speech",
+          0.807
+        ],
+        [
+          "Narration, monologue",
+          0.313
+        ],
+        [
+          "Female speech, woman speaking",
+          0.267
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_118",
+      "condition": "clean",
+      "time_s": 0.09173762501450256,
+      "music": 0.012021091766655445,
+      "speech": 0.869483470916748,
+      "noise": 0.026476314291357994,
+      "top3": [
+        [
+          "Speech",
+          0.869
+        ],
+        [
+          "Silence",
+          0.084
+        ],
+        [
+          "Male speech, man speaking",
+          0.068
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_119",
+      "condition": "clean",
+      "time_s": 0.1817785000312142,
+      "music": 0.01466145645827055,
+      "speech": 0.8109523057937622,
+      "noise": 0.19954578578472137,
+      "top3": [
+        [
+          "Speech",
+          0.811
+        ],
+        [
+          "Clicking",
+          0.2
+        ],
+        [
+          "Whispering",
+          0.085
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_120",
+      "condition": "clean",
+      "time_s": 0.1831122919684276,
+      "music": 0.0025495162699371576,
+      "speech": 0.880597710609436,
+      "noise": 0.2443513721227646,
+      "top3": [
+        [
+          "Speech",
+          0.881
+        ],
+        [
+          "Speech synthesizer",
+          0.769
+        ],
+        [
+          "Narration, monologue",
+          0.257
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_121",
+      "condition": "clean",
+      "time_s": 0.18155495799146593,
+      "music": 0.015901966020464897,
+      "speech": 0.8728988170623779,
+      "noise": 0.06999126821756363,
+      "top3": [
+        [
+          "Speech",
+          0.873
+        ],
+        [
+          "Speech synthesizer",
+          0.304
+        ],
+        [
+          "Inside, small room",
+          0.091
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_122",
+      "condition": "clean",
+      "time_s": 0.18173604202456772,
+      "music": 0.029339995235204697,
+      "speech": 0.7593507170677185,
+      "noise": 0.03703663870692253,
+      "top3": [
+        [
+          "Speech",
+          0.759
+        ],
+        [
+          "Female speech, woman speaking",
+          0.309
+        ],
+        [
+          "Narration, monologue",
+          0.208
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_123",
+      "condition": "clean",
+      "time_s": 0.0917186249862425,
+      "music": 0.005879170261323452,
+      "speech": 0.8730393052101135,
+      "noise": 0.012475111521780491,
+      "top3": [
+        [
+          "Speech",
+          0.873
+        ],
+        [
+          "Female speech, woman speaking",
+          0.325
+        ],
+        [
+          "Narration, monologue",
+          0.297
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_124",
+      "condition": "clean",
+      "time_s": 0.18167158402502537,
+      "music": 0.013046663254499435,
+      "speech": 0.8899344801902771,
+      "noise": 0.4373153746128082,
+      "top3": [
+        [
+          "Speech",
+          0.89
+        ],
+        [
+          "Clicking",
+          0.437
+        ],
+        [
+          "Male speech, man speaking",
+          0.092
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_125",
+      "condition": "clean",
+      "time_s": 0.18145745899528265,
+      "music": 0.025453895330429077,
+      "speech": 0.8008904457092285,
+      "noise": 0.5860788226127625,
+      "top3": [
+        [
+          "Speech",
+          0.801
+        ],
+        [
+          "Clicking",
+          0.586
+        ],
+        [
+          "Narration, monologue",
+          0.129
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_126",
+      "condition": "clean",
+      "time_s": 0.0913666250417009,
+      "music": 0.0037254164926707745,
+      "speech": 0.8785658478736877,
+      "noise": 0.04536034166812897,
+      "top3": [
+        [
+          "Speech",
+          0.879
+        ],
+        [
+          "Inside, small room",
+          0.089
+        ],
+        [
+          "Writing",
+          0.045
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_127",
+      "condition": "clean",
+      "time_s": 0.0912025420111604,
+      "music": 0.006278039421886206,
+      "speech": 0.840133011341095,
+      "noise": 0.0453854501247406,
+      "top3": [
+        [
+          "Speech",
+          0.84
+        ],
+        [
+          "Female speech, woman speaking",
+          0.074
+        ],
+        [
+          "Conversation",
+          0.06
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_128",
+      "condition": "clean",
+      "time_s": 0.18167762499069795,
+      "music": 0.0229451023042202,
+      "speech": 0.821467399597168,
+      "noise": 0.0448816679418087,
+      "top3": [
+        [
+          "Speech",
+          0.821
+        ],
+        [
+          "Female speech, woman speaking",
+          0.295
+        ],
+        [
+          "Narration, monologue",
+          0.235
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_129",
+      "condition": "clean",
+      "time_s": 0.09095791704021394,
+      "music": 0.013840870000422001,
+      "speech": 0.7839873433113098,
+      "noise": 0.18657101690769196,
+      "top3": [
+        [
+          "Speech",
+          0.784
+        ],
+        [
+          "Zipper (clothing)",
+          0.187
+        ],
+        [
+          "Female speech, woman speaking",
+          0.06
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_130",
+      "condition": "clean",
+      "time_s": 0.09135866700671613,
+      "music": 0.0024798279628157616,
+      "speech": 0.8656161427497864,
+      "noise": 0.1210721954703331,
+      "top3": [
+        [
+          "Speech",
+          0.866
+        ],
+        [
+          "Narration, monologue",
+          0.257
+        ],
+        [
+          "Female speech, woman speaking",
+          0.218
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_131",
+      "condition": "clean",
+      "time_s": 0.09178166597848758,
+      "music": 0.053686898201704025,
+      "speech": 0.8368947505950928,
+      "noise": 0.08983753621578217,
+      "top3": [
+        [
+          "Speech",
+          0.837
+        ],
+        [
+          "Television",
+          0.117
+        ],
+        [
+          "Animal",
+          0.09
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_132",
+      "condition": "clean",
+      "time_s": 0.09165825002128258,
+      "music": 0.001631011487916112,
+      "speech": 0.7585871815681458,
+      "noise": 0.5796080827713013,
+      "top3": [
+        [
+          "Speech",
+          0.759
+        ],
+        [
+          "Clicking",
+          0.58
+        ],
+        [
+          "Inside, small room",
+          0.086
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_133",
+      "condition": "clean",
+      "time_s": 0.09149616700597107,
+      "music": 0.01960563100874424,
+      "speech": 0.772282063961029,
+      "noise": 0.007983525283634663,
+      "top3": [
+        [
+          "Speech",
+          0.772
+        ],
+        [
+          "Female speech, woman speaking",
+          0.329
+        ],
+        [
+          "Narration, monologue",
+          0.136
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_134",
+      "condition": "clean",
+      "time_s": 0.09146908397087827,
+      "music": 0.002826328855007887,
+      "speech": 0.8707683682441711,
+      "noise": 0.07694850862026215,
+      "top3": [
+        [
+          "Speech",
+          0.871
+        ],
+        [
+          "Speech synthesizer",
+          0.39
+        ],
+        [
+          "Narration, monologue",
+          0.084
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_135",
+      "condition": "clean",
+      "time_s": 0.09095275000436231,
+      "music": 0.010579663328826427,
+      "speech": 0.8159096837043762,
+      "noise": 0.020926980301737785,
+      "top3": [
+        [
+          "Speech",
+          0.816
+        ],
+        [
+          "Male speech, man speaking",
+          0.092
+        ],
+        [
+          "Inside, small room",
+          0.031
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_136",
+      "condition": "clean",
+      "time_s": 0.18269458296708763,
+      "music": 0.01797705702483654,
+      "speech": 0.8959043622016907,
+      "noise": 0.0957866758108139,
+      "top3": [
+        [
+          "Speech",
+          0.896
+        ],
+        [
+          "Speech synthesizer",
+          0.122
+        ],
+        [
+          "Narration, monologue",
+          0.12
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_137",
+      "condition": "clean",
+      "time_s": 0.18256783299148083,
+      "music": 0.009511499665677547,
+      "speech": 0.9019237756729126,
+      "noise": 0.038156233727931976,
+      "top3": [
+        [
+          "Speech",
+          0.902
+        ],
+        [
+          "Speech synthesizer",
+          0.305
+        ],
+        [
+          "Narration, monologue",
+          0.161
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_138",
+      "condition": "clean",
+      "time_s": 0.1828594999969937,
+      "music": 0.004589132498949766,
+      "speech": 0.804592490196228,
+      "noise": 0.05246834456920624,
+      "top3": [
+        [
+          "Speech",
+          0.805
+        ],
+        [
+          "Female speech, woman speaking",
+          0.168
+        ],
+        [
+          "Inside, small room",
+          0.14
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_139",
+      "condition": "clean",
+      "time_s": 0.09162745898356661,
+      "music": 0.001426700851880014,
+      "speech": 0.9068980813026428,
+      "noise": 0.02532607689499855,
+      "top3": [
+        [
+          "Speech",
+          0.907
+        ],
+        [
+          "Male speech, man speaking",
+          0.186
+        ],
+        [
+          "Narration, monologue",
+          0.135
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_140",
+      "condition": "clean",
+      "time_s": 0.09165458305506036,
+      "music": 0.008923465386033058,
+      "speech": 0.7727662324905396,
+      "noise": 0.01567210629582405,
+      "top3": [
+        [
+          "Speech",
+          0.773
+        ],
+        [
+          "Narration, monologue",
+          0.072
+        ],
+        [
+          "Female speech, woman speaking",
+          0.048
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_141",
+      "condition": "clean",
+      "time_s": 0.182429083972238,
+      "music": 0.016954176127910614,
+      "speech": 0.8996868133544922,
+      "noise": 0.01589220017194748,
+      "top3": [
+        [
+          "Speech",
+          0.9
+        ],
+        [
+          "Speech synthesizer",
+          0.329
+        ],
+        [
+          "Narration, monologue",
+          0.162
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_142",
+      "condition": "clean",
+      "time_s": 0.09105287498096004,
+      "music": 0.006874760612845421,
+      "speech": 0.7816445827484131,
+      "noise": 0.04856940358877182,
+      "top3": [
+        [
+          "Speech",
+          0.782
+        ],
+        [
+          "Tick",
+          0.049
+        ],
+        [
+          "Male speech, man speaking",
+          0.032
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_143",
+      "condition": "clean",
+      "time_s": 0.181296749971807,
+      "music": 0.02143676206469536,
+      "speech": 0.8574608564376831,
+      "noise": 0.02599019557237625,
+      "top3": [
+        [
+          "Speech",
+          0.857
+        ],
+        [
+          "Female speech, woman speaking",
+          0.201
+        ],
+        [
+          "Conversation",
+          0.127
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_144",
+      "condition": "clean",
+      "time_s": 0.09146075003081933,
+      "music": 0.0016732782823964953,
+      "speech": 0.8001627922058105,
+      "noise": 0.45274412631988525,
+      "top3": [
+        [
+          "Speech",
+          0.8
+        ],
+        [
+          "Clicking",
+          0.453
+        ],
+        [
+          "Narration, monologue",
+          0.069
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_145",
+      "condition": "clean",
+      "time_s": 0.18306595797184855,
+      "music": 0.005570658948272467,
+      "speech": 0.8070074319839478,
+      "noise": 0.30111414194107056,
+      "top3": [
+        [
+          "Speech",
+          0.807
+        ],
+        [
+          "Clicking",
+          0.301
+        ],
+        [
+          "Narration, monologue",
+          0.152
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_146",
+      "condition": "clean",
+      "time_s": 0.09139254101319239,
+      "music": 0.007473630830645561,
+      "speech": 0.8270285129547119,
+      "noise": 0.18376125395298004,
+      "top3": [
+        [
+          "Speech",
+          0.827
+        ],
+        [
+          "Zipper (clothing)",
+          0.184
+        ],
+        [
+          "Quack",
+          0.17
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_147",
+      "condition": "clean",
+      "time_s": 0.18178537499625236,
+      "music": 0.007913428358733654,
+      "speech": 0.8801124691963196,
+      "noise": 0.04031048342585564,
+      "top3": [
+        [
+          "Speech",
+          0.88
+        ],
+        [
+          "Female speech, woman speaking",
+          0.396
+        ],
+        [
+          "Narration, monologue",
+          0.18
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_148",
+      "condition": "clean",
+      "time_s": 0.0913928750087507,
+      "music": 0.0046792346984148026,
+      "speech": 0.8836206793785095,
+      "noise": 0.04792088642716408,
+      "top3": [
+        [
+          "Speech",
+          0.884
+        ],
+        [
+          "Female speech, woman speaking",
+          0.177
+        ],
+        [
+          "Narration, monologue",
+          0.166
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_ru_149",
+      "condition": "clean",
+      "time_s": 0.09158795903204009,
+      "music": 0.003408901859074831,
+      "speech": 0.8013281226158142,
+      "noise": 0.07584165036678314,
+      "top3": [
+        [
+          "Speech",
+          0.801
+        ],
+        [
+          "Female speech, woman speaking",
+          0.205
+        ],
+        [
+          "Narration, monologue",
+          0.183
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_150",
+      "condition": "clean",
+      "time_s": 0.18123575003119186,
+      "music": 0.02372228540480137,
+      "speech": 0.8027471303939819,
+      "noise": 0.03563280776143074,
+      "top3": [
+        [
+          "Speech",
+          0.803
+        ],
+        [
+          "Narration, monologue",
+          0.535
+        ],
+        [
+          "Male speech, man speaking",
+          0.408
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_151",
+      "condition": "clean",
+      "time_s": 0.09093750000465661,
+      "music": 0.01498355995863676,
+      "speech": 0.6944475173950195,
+      "noise": 0.00789832603186369,
+      "top3": [
+        [
+          "Speech",
+          0.694
+        ],
+        [
+          "Male speech, man speaking",
+          0.128
+        ],
+        [
+          "Gasp",
+          0.124
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_152",
+      "condition": "clean",
+      "time_s": 0.09117979102302343,
+      "music": 0.005247065797448158,
+      "speech": 0.8381999731063843,
+      "noise": 0.0640283152461052,
+      "top3": [
+        [
+          "Speech",
+          0.838
+        ],
+        [
+          "Speech synthesizer",
+          0.18
+        ],
+        [
+          "White noise",
+          0.064
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_153",
+      "condition": "clean",
+      "time_s": 0.18236229196190834,
+      "music": 0.026234760880470276,
+      "speech": 0.5656793117523193,
+      "noise": 0.6272196173667908,
+      "top3": [
+        [
+          "Hum",
+          0.627
+        ],
+        [
+          "Speech",
+          0.566
+        ],
+        [
+          "Mains hum",
+          0.361
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_154",
+      "condition": "clean",
+      "time_s": 0.18201287504052743,
+      "music": 0.0112313786521554,
+      "speech": 0.8766336441040039,
+      "noise": 0.030262332409620285,
+      "top3": [
+        [
+          "Speech",
+          0.877
+        ],
+        [
+          "Speech synthesizer",
+          0.375
+        ],
+        [
+          "Narration, monologue",
+          0.292
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_155",
+      "condition": "clean",
+      "time_s": 0.09060179197695106,
+      "music": 0.005965413060039282,
+      "speech": 0.8711969256401062,
+      "noise": 0.01487619336694479,
+      "top3": [
+        [
+          "Speech",
+          0.871
+        ],
+        [
+          "Male speech, man speaking",
+          0.102
+        ],
+        [
+          "Narration, monologue",
+          0.067
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_156",
+      "condition": "clean",
+      "time_s": 0.09136625000974163,
+      "music": 0.0033360207453370094,
+      "speech": 0.915332555770874,
+      "noise": 0.04317842051386833,
+      "top3": [
+        [
+          "Speech",
+          0.915
+        ],
+        [
+          "Speech synthesizer",
+          0.258
+        ],
+        [
+          "Narration, monologue",
+          0.22
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_157",
+      "condition": "clean",
+      "time_s": 0.09097429196117446,
+      "music": 0.0028960206545889378,
+      "speech": 0.8674968481063843,
+      "noise": 0.017812589183449745,
+      "top3": [
+        [
+          "Speech",
+          0.867
+        ],
+        [
+          "Speech synthesizer",
+          0.21
+        ],
+        [
+          "Narration, monologue",
+          0.138
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_158",
+      "condition": "clean",
+      "time_s": 0.09107949997996911,
+      "music": 0.006187882740050554,
+      "speech": 0.906631588935852,
+      "noise": 0.016161968931555748,
+      "top3": [
+        [
+          "Speech",
+          0.907
+        ],
+        [
+          "Speech synthesizer",
+          0.173
+        ],
+        [
+          "Narration, monologue",
+          0.151
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_159",
+      "condition": "clean",
+      "time_s": 0.18295612500514835,
+      "music": 0.02170397900044918,
+      "speech": 0.712622344493866,
+      "noise": 0.1864621937274933,
+      "top3": [
+        [
+          "Speech",
+          0.713
+        ],
+        [
+          "Hum",
+          0.186
+        ],
+        [
+          "Narration, monologue",
+          0.141
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_160",
+      "condition": "clean",
+      "time_s": 0.09065608296077698,
+      "music": 0.004892891738563776,
+      "speech": 0.8761243224143982,
+      "noise": 0.013563426211476326,
+      "top3": [
+        [
+          "Speech",
+          0.876
+        ],
+        [
+          "Speech synthesizer",
+          0.216
+        ],
+        [
+          "Narration, monologue",
+          0.14
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_161",
+      "condition": "clean",
+      "time_s": 0.18256629101233557,
+      "music": 0.015877509489655495,
+      "speech": 0.8732602596282959,
+      "noise": 0.0896114632487297,
+      "top3": [
+        [
+          "Speech",
+          0.873
+        ],
+        [
+          "Speech synthesizer",
+          0.405
+        ],
+        [
+          "Narration, monologue",
+          0.328
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_162",
+      "condition": "clean",
+      "time_s": 0.18169145798310637,
+      "music": 0.006866258569061756,
+      "speech": 0.7880978584289551,
+      "noise": 0.035418327897787094,
+      "top3": [
+        [
+          "Speech",
+          0.788
+        ],
+        [
+          "Speech synthesizer",
+          0.327
+        ],
+        [
+          "Inside, small room",
+          0.121
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_163",
+      "condition": "clean",
+      "time_s": 0.18272283399710432,
+      "music": 0.023611510172486305,
+      "speech": 0.9455287456512451,
+      "noise": 0.018525991588830948,
+      "top3": [
+        [
+          "Speech",
+          0.946
+        ],
+        [
+          "Narration, monologue",
+          0.362
+        ],
+        [
+          "Male speech, man speaking",
+          0.241
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_164",
+      "condition": "clean",
+      "time_s": 0.09128516697091982,
+      "music": 0.009822428226470947,
+      "speech": 0.9563115239143372,
+      "noise": 0.04314950108528137,
+      "top3": [
+        [
+          "Speech",
+          0.956
+        ],
+        [
+          "Speech synthesizer",
+          0.297
+        ],
+        [
+          "Narration, monologue",
+          0.211
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_165",
+      "condition": "clean",
+      "time_s": 0.09130654099863023,
+      "music": 0.0015174131840467453,
+      "speech": 0.47040799260139465,
+      "noise": 0.12337668985128403,
+      "top3": [
+        [
+          "Speech",
+          0.47
+        ],
+        [
+          "Typing",
+          0.123
+        ],
+        [
+          "Computer keyboard",
+          0.109
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_166",
+      "condition": "clean",
+      "time_s": 0.1817726669833064,
+      "music": 0.00851069949567318,
+      "speech": 0.8078382015228271,
+      "noise": 0.08644526451826096,
+      "top3": [
+        [
+          "Speech",
+          0.808
+        ],
+        [
+          "Speech synthesizer",
+          0.257
+        ],
+        [
+          "White noise",
+          0.086
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_167",
+      "condition": "clean",
+      "time_s": 0.0912440000101924,
+      "music": 0.01391039602458477,
+      "speech": 0.6799958348274231,
+      "noise": 0.016426682472229004,
+      "top3": [
+        [
+          "Speech",
+          0.68
+        ],
+        [
+          "Narration, monologue",
+          0.101
+        ],
+        [
+          "Male speech, man speaking",
+          0.097
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_168",
+      "condition": "clean",
+      "time_s": 0.09091458300827071,
+      "music": 0.020336830988526344,
+      "speech": 0.6453790068626404,
+      "noise": 0.014541201293468475,
+      "top3": [
+        [
+          "Speech",
+          0.645
+        ],
+        [
+          "Male speech, man speaking",
+          0.106
+        ],
+        [
+          "Narration, monologue",
+          0.046
+        ]
+      ]
+    },
+    {
+      "clip_id": "clean_he_169",
+      "condition": "clean",
+      "time_s": 0.09143808297812939,
+      "music": 0.002663661492988467,
+      "speech": 0.9413062930107117,
+      "noise": 0.013941151089966297,
+      "top3": [
+        [
+          "Speech",
+          0.941
+        ],
+        [
+          "Narration, monologue",
+          0.19
+        ],
+        [
+          "Speech synthesizer",
+          0.158
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_00",
+      "condition": "pad_zero",
+      "time_s": 0.273900208005216,
+      "music": 0.2724137306213379,
+      "speech": 0.58731609582901,
+      "noise": 0.0258241705596447,
+      "top3": [
+        [
+          "Silence",
+          0.646
+        ],
+        [
+          "Speech",
+          0.587
+        ],
+        [
+          "Music",
+          0.272
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_00",
+      "condition": "pad_floor",
+      "time_s": 0.27310774999205023,
+      "music": 0.0069128707982599735,
+      "speech": 0.7842651009559631,
+      "noise": 0.28323695063591003,
+      "top3": [
+        [
+          "Speech",
+          0.784
+        ],
+        [
+          "Static",
+          0.283
+        ],
+        [
+          "Silence",
+          0.218
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_00",
+      "condition": "music_snr0",
+      "time_s": 0.09105887496843934,
+      "music": 0.46141403913497925,
+      "speech": 0.48020973801612854,
+      "noise": 0.010628296062350273,
+      "top3": [
+        [
+          "Speech",
+          0.48
+        ],
+        [
+          "Music",
+          0.461
+        ],
+        [
+          "Musical instrument",
+          0.193
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_00",
+      "condition": "music_snr10",
+      "time_s": 0.09103858296293765,
+      "music": 0.5960187315940857,
+      "speech": 0.5891640186309814,
+      "noise": 0.023908061906695366,
+      "top3": [
+        [
+          "Music",
+          0.596
+        ],
+        [
+          "Speech",
+          0.589
+        ],
+        [
+          "Acoustic guitar",
+          0.078
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_00",
+      "condition": "noise_snr0",
+      "time_s": 0.09084808395709842,
+      "music": 0.0038423596415668726,
+      "speech": 0.23137204349040985,
+      "noise": 0.09774023294448853,
+      "top3": [
+        [
+          "Speech",
+          0.231
+        ],
+        [
+          "Slap, smack",
+          0.098
+        ],
+        [
+          "Sound effect",
+          0.092
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_00",
+      "condition": "noise_snr5",
+      "time_s": 0.09106912498828024,
+      "music": 0.0037038535811007023,
+      "speech": 0.6837154030799866,
+      "noise": 0.054213862866163254,
+      "top3": [
+        [
+          "Speech",
+          0.684
+        ],
+        [
+          "Walk, footsteps",
+          0.076
+        ],
+        [
+          "Crackle",
+          0.054
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_00",
+      "condition": "noise_snr10",
+      "time_s": 0.09107620798749849,
+      "music": 0.11224344372749329,
+      "speech": 0.6871674656867981,
+      "noise": 0.06356439739465714,
+      "top3": [
+        [
+          "Speech",
+          0.687
+        ],
+        [
+          "Music",
+          0.112
+        ],
+        [
+          "Sound effect",
+          0.064
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_01",
+      "condition": "pad_zero",
+      "time_s": 0.27381712500937283,
+      "music": 0.09092313796281815,
+      "speech": 0.7604669332504272,
+      "noise": 0.0388396717607975,
+      "top3": [
+        [
+          "Speech",
+          0.76
+        ],
+        [
+          "Silence",
+          0.667
+        ],
+        [
+          "Speech synthesizer",
+          0.186
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_01",
+      "condition": "pad_floor",
+      "time_s": 0.1832429589703679,
+      "music": 0.004796136636286974,
+      "speech": 0.7237456440925598,
+      "noise": 0.22839246690273285,
+      "top3": [
+        [
+          "Speech",
+          0.724
+        ],
+        [
+          "White noise",
+          0.228
+        ],
+        [
+          "Silence",
+          0.136
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_01",
+      "condition": "music_snr0",
+      "time_s": 0.09110516699729487,
+      "music": 0.5469863414764404,
+      "speech": 0.5306965708732605,
+      "noise": 0.009151266887784004,
+      "top3": [
+        [
+          "Music",
+          0.547
+        ],
+        [
+          "Speech",
+          0.531
+        ],
+        [
+          "Musical instrument",
+          0.19
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_01",
+      "condition": "music_snr10",
+      "time_s": 0.09103712497744709,
+      "music": 0.5667869448661804,
+      "speech": 0.6602717638015747,
+      "noise": 0.032351892441511154,
+      "top3": [
+        [
+          "Speech",
+          0.66
+        ],
+        [
+          "Music",
+          0.567
+        ],
+        [
+          "Musical instrument",
+          0.035
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_01",
+      "condition": "noise_snr0",
+      "time_s": 0.09105375001672655,
+      "music": 0.0391470268368721,
+      "speech": 0.6090168356895447,
+      "noise": 0.19218392670154572,
+      "top3": [
+        [
+          "Speech",
+          0.609
+        ],
+        [
+          "Vehicle",
+          0.192
+        ],
+        [
+          "Car",
+          0.081
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_01",
+      "condition": "noise_snr5",
+      "time_s": 0.0912337499903515,
+      "music": 0.03403889387845993,
+      "speech": 0.5176504850387573,
+      "noise": 0.09413474798202515,
+      "top3": [
+        [
+          "Speech",
+          0.518
+        ],
+        [
+          "Zipper (clothing)",
+          0.094
+        ],
+        [
+          "Tearing",
+          0.056
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_01",
+      "condition": "noise_snr10",
+      "time_s": 0.09056741604581475,
+      "music": 0.00783610064536333,
+      "speech": 0.609694242477417,
+      "noise": 0.05911106988787651,
+      "top3": [
+        [
+          "Speech",
+          0.61
+        ],
+        [
+          "Computer keyboard",
+          0.059
+        ],
+        [
+          "Inside, small room",
+          0.037
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_02",
+      "condition": "pad_zero",
+      "time_s": 0.36400733300251886,
+      "music": 0.2724137306213379,
+      "speech": 0.772732675075531,
+      "noise": 0.05974825471639633,
+      "top3": [
+        [
+          "Speech",
+          0.773
+        ],
+        [
+          "Silence",
+          0.608
+        ],
+        [
+          "Music",
+          0.272
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_02",
+      "condition": "pad_floor",
+      "time_s": 0.3647623329889029,
+      "music": 0.014617929235100746,
+      "speech": 0.75245201587677,
+      "noise": 0.27816012501716614,
+      "top3": [
+        [
+          "Speech",
+          0.752
+        ],
+        [
+          "Static",
+          0.278
+        ],
+        [
+          "Silence",
+          0.247
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_02",
+      "condition": "music_snr0",
+      "time_s": 0.09117125003831461,
+      "music": 0.47358739376068115,
+      "speech": 0.5110757946968079,
+      "noise": 0.004540452733635902,
+      "top3": [
+        [
+          "Speech",
+          0.511
+        ],
+        [
+          "Music",
+          0.474
+        ],
+        [
+          "Musical instrument",
+          0.284
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_02",
+      "condition": "music_snr10",
+      "time_s": 0.09122750000096858,
+      "music": 0.49705368280410767,
+      "speech": 0.5881242752075195,
+      "noise": 0.008539246395230293,
+      "top3": [
+        [
+          "Speech",
+          0.588
+        ],
+        [
+          "Music",
+          0.497
+        ],
+        [
+          "Violin, fiddle",
+          0.173
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_02",
+      "condition": "noise_snr0",
+      "time_s": 0.09126420796383172,
+      "music": 0.014744682237505913,
+      "speech": 0.5938822627067566,
+      "noise": 0.1690833568572998,
+      "top3": [
+        [
+          "Speech",
+          0.594
+        ],
+        [
+          "Knock",
+          0.169
+        ],
+        [
+          "Inside, small room",
+          0.027
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_02",
+      "condition": "noise_snr5",
+      "time_s": 0.09110391698777676,
+      "music": 0.036499492824077606,
+      "speech": 0.5483241677284241,
+      "noise": 0.20655429363250732,
+      "top3": [
+        [
+          "Speech",
+          0.548
+        ],
+        [
+          "Bird",
+          0.207
+        ],
+        [
+          "Chirp, tweet",
+          0.17
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_02",
+      "condition": "noise_snr10",
+      "time_s": 0.09121979103656486,
+      "music": 0.011958151124417782,
+      "speech": 0.5288047194480896,
+      "noise": 0.026851439848542213,
+      "top3": [
+        [
+          "Speech",
+          0.529
+        ],
+        [
+          "Inside, small room",
+          0.027
+        ],
+        [
+          "Animal",
+          0.027
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_03",
+      "condition": "pad_zero",
+      "time_s": 0.3643332499777898,
+      "music": 0.2724137306213379,
+      "speech": 0.8337200880050659,
+      "noise": 0.051779855042696,
+      "top3": [
+        [
+          "Speech",
+          0.834
+        ],
+        [
+          "Silence",
+          0.673
+        ],
+        [
+          "Music",
+          0.272
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_03",
+      "condition": "pad_floor",
+      "time_s": 0.27416299999458715,
+      "music": 0.003233135910704732,
+      "speech": 0.7427277565002441,
+      "noise": 0.20993852615356445,
+      "top3": [
+        [
+          "Speech",
+          0.743
+        ],
+        [
+          "White noise",
+          0.21
+        ],
+        [
+          "Static",
+          0.165
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_03",
+      "condition": "music_snr0",
+      "time_s": 0.0916592919966206,
+      "music": 0.5966936349868774,
+      "speech": 0.5351748466491699,
+      "noise": 0.002133141504600644,
+      "top3": [
+        [
+          "Saxophone",
+          0.597
+        ],
+        [
+          "Speech",
+          0.535
+        ],
+        [
+          "Music",
+          0.421
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_03",
+      "condition": "music_snr10",
+      "time_s": 0.09167720802361146,
+      "music": 0.5380367636680603,
+      "speech": 0.6457545757293701,
+      "noise": 0.007720203138887882,
+      "top3": [
+        [
+          "Speech",
+          0.646
+        ],
+        [
+          "Music",
+          0.538
+        ],
+        [
+          "Guitar",
+          0.15
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_03",
+      "condition": "noise_snr0",
+      "time_s": 0.0915783749660477,
+      "music": 0.008425102569162846,
+      "speech": 0.27548277378082275,
+      "noise": 0.8279594779014587,
+      "top3": [
+        [
+          "Owl",
+          0.828
+        ],
+        [
+          "Speech",
+          0.275
+        ],
+        [
+          "Bird",
+          0.026
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_03",
+      "condition": "noise_snr5",
+      "time_s": 0.09147033304907382,
+      "music": 0.011017613112926483,
+      "speech": 0.447811096906662,
+      "noise": 0.3665924072265625,
+      "top3": [
+        [
+          "Speech",
+          0.448
+        ],
+        [
+          "Spray",
+          0.367
+        ],
+        [
+          "Steam",
+          0.152
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_03",
+      "condition": "noise_snr10",
+      "time_s": 0.09167449997039512,
+      "music": 0.004330101888626814,
+      "speech": 0.6699192523956299,
+      "noise": 0.13401100039482117,
+      "top3": [
+        [
+          "Speech",
+          0.67
+        ],
+        [
+          "Crumpling, crinkling",
+          0.134
+        ],
+        [
+          "Inside, small room",
+          0.098
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_04",
+      "condition": "pad_zero",
+      "time_s": 0.3652085000067018,
+      "music": 0.2724137306213379,
+      "speech": 0.800768256187439,
+      "noise": 0.05464579164981842,
+      "top3": [
+        [
+          "Speech",
+          0.801
+        ],
+        [
+          "Silence",
+          0.71
+        ],
+        [
+          "Music",
+          0.272
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_04",
+      "condition": "pad_floor",
+      "time_s": 0.3653650829801336,
+      "music": 0.008205175399780273,
+      "speech": 0.7314271330833435,
+      "noise": 0.28521522879600525,
+      "top3": [
+        [
+          "Speech",
+          0.731
+        ],
+        [
+          "Static",
+          0.285
+        ],
+        [
+          "Silence",
+          0.217
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_04",
+      "condition": "music_snr0",
+      "time_s": 0.09120616700965911,
+      "music": 0.5046770572662354,
+      "speech": 0.5277196764945984,
+      "noise": 0.011603644117712975,
+      "top3": [
+        [
+          "Speech",
+          0.528
+        ],
+        [
+          "Music",
+          0.505
+        ],
+        [
+          "Techno",
+          0.091
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_04",
+      "condition": "music_snr10",
+      "time_s": 0.09187387500423938,
+      "music": 0.6616281867027283,
+      "speech": 0.6382702589035034,
+      "noise": 0.04369392991065979,
+      "top3": [
+        [
+          "Music",
+          0.662
+        ],
+        [
+          "Speech",
+          0.638
+        ],
+        [
+          "Tick",
+          0.044
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_04",
+      "condition": "noise_snr0",
+      "time_s": 0.09132325003156438,
+      "music": 0.013159144669771194,
+      "speech": 0.5223252177238464,
+      "noise": 0.15325285494327545,
+      "top3": [
+        [
+          "Speech",
+          0.522
+        ],
+        [
+          "Fire alarm",
+          0.153
+        ],
+        [
+          "Buzzer",
+          0.053
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_04",
+      "condition": "noise_snr5",
+      "time_s": 0.09119845798704773,
+      "music": 0.09079468995332718,
+      "speech": 0.6746760606765747,
+      "noise": 0.06101114675402641,
+      "top3": [
+        [
+          "Speech",
+          0.675
+        ],
+        [
+          "Music",
+          0.091
+        ],
+        [
+          "Tap",
+          0.061
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_04",
+      "condition": "noise_snr10",
+      "time_s": 0.0913805830059573,
+      "music": 0.005752280820161104,
+      "speech": 0.5315278172492981,
+      "noise": 0.05451902002096176,
+      "top3": [
+        [
+          "Speech",
+          0.532
+        ],
+        [
+          "Crackle",
+          0.055
+        ],
+        [
+          "Shuffling cards",
+          0.041
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_05",
+      "condition": "pad_zero",
+      "time_s": 0.3652725000283681,
+      "music": 0.0947406217455864,
+      "speech": 0.8260214328765869,
+      "noise": 0.033874157816171646,
+      "top3": [
+        [
+          "Speech",
+          0.826
+        ],
+        [
+          "Silence",
+          0.616
+        ],
+        [
+          "Speech synthesizer",
+          0.601
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_05",
+      "condition": "pad_floor",
+      "time_s": 0.36526312498608604,
+      "music": 0.0035042008385062218,
+      "speech": 0.7932619452476501,
+      "noise": 0.17229589819908142,
+      "top3": [
+        [
+          "Speech",
+          0.793
+        ],
+        [
+          "Silence",
+          0.256
+        ],
+        [
+          "Speech synthesizer",
+          0.233
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_05",
+      "condition": "music_snr0",
+      "time_s": 0.18320891697658226,
+      "music": 0.47408735752105713,
+      "speech": 0.5499030947685242,
+      "noise": 0.019376594573259354,
+      "top3": [
+        [
+          "Speech",
+          0.55
+        ],
+        [
+          "Music",
+          0.474
+        ],
+        [
+          "Musical instrument",
+          0.202
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_05",
+      "condition": "music_snr10",
+      "time_s": 0.1821736249839887,
+      "music": 0.5668225884437561,
+      "speech": 0.6064466834068298,
+      "noise": 0.04376965016126633,
+      "top3": [
+        [
+          "Speech",
+          0.606
+        ],
+        [
+          "Music",
+          0.567
+        ],
+        [
+          "Gasp",
+          0.1
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_05",
+      "condition": "noise_snr0",
+      "time_s": 0.1826392919756472,
+      "music": 0.10118522495031357,
+      "speech": 0.5164077281951904,
+      "noise": 0.22721445560455322,
+      "top3": [
+        [
+          "Speech",
+          0.516
+        ],
+        [
+          "Vehicle",
+          0.227
+        ],
+        [
+          "Music",
+          0.101
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_05",
+      "condition": "noise_snr5",
+      "time_s": 0.1818817500025034,
+      "music": 0.008834264241158962,
+      "speech": 0.6678611636161804,
+      "noise": 0.5860339999198914,
+      "top3": [
+        [
+          "Speech",
+          0.668
+        ],
+        [
+          "Cat",
+          0.586
+        ],
+        [
+          "Meow",
+          0.576
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_05",
+      "condition": "noise_snr10",
+      "time_s": 0.18232916697161272,
+      "music": 0.02334495633840561,
+      "speech": 0.6589069962501526,
+      "noise": 0.2900342643260956,
+      "top3": [
+        [
+          "Speech",
+          0.659
+        ],
+        [
+          "Bird vocalization, bird call, bird song",
+          0.29
+        ],
+        [
+          "Bird",
+          0.277
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_06",
+      "condition": "pad_zero",
+      "time_s": 0.3644970830064267,
+      "music": 0.2724137306213379,
+      "speech": 0.7988578081130981,
+      "noise": 0.03666958212852478,
+      "top3": [
+        [
+          "Speech",
+          0.799
+        ],
+        [
+          "Silence",
+          0.608
+        ],
+        [
+          "Speech synthesizer",
+          0.539
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_06",
+      "condition": "pad_floor",
+      "time_s": 0.27483429200947285,
+      "music": 0.003161294851452112,
+      "speech": 0.8011294603347778,
+      "noise": 0.21288561820983887,
+      "top3": [
+        [
+          "Speech",
+          0.801
+        ],
+        [
+          "White noise",
+          0.213
+        ],
+        [
+          "Silence",
+          0.157
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_06",
+      "condition": "music_snr0",
+      "time_s": 0.09128979098750278,
+      "music": 0.49184319376945496,
+      "speech": 0.4986838400363922,
+      "noise": 0.0153946653008461,
+      "top3": [
+        [
+          "Speech",
+          0.499
+        ],
+        [
+          "Music",
+          0.492
+        ],
+        [
+          "Piano",
+          0.169
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_06",
+      "condition": "music_snr10",
+      "time_s": 0.09148204198572785,
+      "music": 0.6219716668128967,
+      "speech": 0.6783892512321472,
+      "noise": 0.00979304127395153,
+      "top3": [
+        [
+          "Speech",
+          0.678
+        ],
+        [
+          "Music",
+          0.622
+        ],
+        [
+          "Narration, monologue",
+          0.039
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_06",
+      "condition": "noise_snr0",
+      "time_s": 0.09134583303239197,
+      "music": 0.02007274515926838,
+      "speech": 0.6469457745552063,
+      "noise": 0.0787724107503891,
+      "top3": [
+        [
+          "Speech",
+          0.647
+        ],
+        [
+          "Throbbing",
+          0.079
+        ],
+        [
+          "Run",
+          0.058
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_06",
+      "condition": "noise_snr5",
+      "time_s": 0.09133424999890849,
+      "music": 0.00676744943484664,
+      "speech": 0.882520318031311,
+      "noise": 0.5429282188415527,
+      "top3": [
+        [
+          "Speech",
+          0.883
+        ],
+        [
+          "Telephone bell ringing",
+          0.543
+        ],
+        [
+          "Ringtone",
+          0.308
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_06",
+      "condition": "noise_snr10",
+      "time_s": 0.09156041604001075,
+      "music": 0.007948500104248524,
+      "speech": 0.47058555483818054,
+      "noise": 0.5103724598884583,
+      "top3": [
+        [
+          "Ocean",
+          0.51
+        ],
+        [
+          "Speech",
+          0.471
+        ],
+        [
+          "Waves, surf",
+          0.442
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_07",
+      "condition": "pad_zero",
+      "time_s": 0.3643274580244906,
+      "music": 0.2724137306213379,
+      "speech": 0.7992257475852966,
+      "noise": 0.05554753914475441,
+      "top3": [
+        [
+          "Speech",
+          0.799
+        ],
+        [
+          "Silence",
+          0.608
+        ],
+        [
+          "Music",
+          0.272
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_07",
+      "condition": "pad_floor",
+      "time_s": 0.2740851659909822,
+      "music": 0.0036493418738245964,
+      "speech": 0.722567617893219,
+      "noise": 0.21460233628749847,
+      "top3": [
+        [
+          "Speech",
+          0.723
+        ],
+        [
+          "Silence",
+          0.225
+        ],
+        [
+          "White noise",
+          0.215
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_07",
+      "condition": "music_snr0",
+      "time_s": 0.1815989589667879,
+      "music": 0.5303555130958557,
+      "speech": 0.4535883367061615,
+      "noise": 0.04855579882860184,
+      "top3": [
+        [
+          "Music",
+          0.53
+        ],
+        [
+          "Speech",
+          0.454
+        ],
+        [
+          "Musical instrument",
+          0.119
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_07",
+      "condition": "music_snr10",
+      "time_s": 0.1816675000009127,
+      "music": 0.5171706080436707,
+      "speech": 0.5846924781799316,
+      "noise": 0.11520471423864365,
+      "top3": [
+        [
+          "Speech",
+          0.585
+        ],
+        [
+          "Music",
+          0.517
+        ],
+        [
+          "Writing",
+          0.115
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_07",
+      "condition": "noise_snr0",
+      "time_s": 0.18144208402372897,
+      "music": 0.009512164629995823,
+      "speech": 0.49315059185028076,
+      "noise": 0.8448975086212158,
+      "top3": [
+        [
+          "Beep, bleep",
+          0.845
+        ],
+        [
+          "Speech",
+          0.493
+        ],
+        [
+          "Sine wave",
+          0.23
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_07",
+      "condition": "noise_snr5",
+      "time_s": 0.18155170796671882,
+      "music": 0.011436805129051208,
+      "speech": 0.3706258535385132,
+      "noise": 0.4085456132888794,
+      "top3": [
+        [
+          "Sanding",
+          0.409
+        ],
+        [
+          "Speech",
+          0.371
+        ],
+        [
+          "Rub",
+          0.329
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_07",
+      "condition": "noise_snr10",
+      "time_s": 0.18150187499122694,
+      "music": 0.01863696612417698,
+      "speech": 0.47951123118400574,
+      "noise": 0.5036917328834534,
+      "top3": [
+        [
+          "Siren",
+          0.504
+        ],
+        [
+          "Speech",
+          0.48
+        ],
+        [
+          "Civil defense siren",
+          0.153
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_08",
+      "condition": "pad_zero",
+      "time_s": 0.2743975829798728,
+      "music": 0.03904294967651367,
+      "speech": 0.8227838277816772,
+      "noise": 0.07765904068946838,
+      "top3": [
+        [
+          "Speech",
+          0.823
+        ],
+        [
+          "Silence",
+          0.756
+        ],
+        [
+          "Animal",
+          0.078
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_08",
+      "condition": "pad_floor",
+      "time_s": 0.36589483299758285,
+      "music": 0.0056086452677845955,
+      "speech": 0.7641428112983704,
+      "noise": 0.19819375872612,
+      "top3": [
+        [
+          "Speech",
+          0.764
+        ],
+        [
+          "Silence",
+          0.256
+        ],
+        [
+          "White noise",
+          0.198
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_08",
+      "condition": "music_snr0",
+      "time_s": 0.18180295801721513,
+      "music": 0.5254381895065308,
+      "speech": 0.4917774498462677,
+      "noise": 0.033851973712444305,
+      "top3": [
+        [
+          "Music",
+          0.525
+        ],
+        [
+          "Speech",
+          0.492
+        ],
+        [
+          "Saxophone",
+          0.186
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_08",
+      "condition": "music_snr10",
+      "time_s": 0.18143749999580905,
+      "music": 0.5640218257904053,
+      "speech": 0.5769681334495544,
+      "noise": 0.1301306039094925,
+      "top3": [
+        [
+          "Speech",
+          0.577
+        ],
+        [
+          "Music",
+          0.564
+        ],
+        [
+          "Tick-tock",
+          0.13
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_08",
+      "condition": "noise_snr0",
+      "time_s": 0.18130812497111037,
+      "music": 0.007638171315193176,
+      "speech": 0.6599628329277039,
+      "noise": 0.1554052084684372,
+      "top3": [
+        [
+          "Speech",
+          0.66
+        ],
+        [
+          "Clicking",
+          0.155
+        ],
+        [
+          "Computer keyboard",
+          0.142
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_08",
+      "condition": "noise_snr5",
+      "time_s": 0.18127795797772706,
+      "music": 0.02751273103058338,
+      "speech": 0.587141752243042,
+      "noise": 0.34795767068862915,
+      "top3": [
+        [
+          "Speech",
+          0.587
+        ],
+        [
+          "Vehicle",
+          0.348
+        ],
+        [
+          "Car",
+          0.16
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_08",
+      "condition": "noise_snr10",
+      "time_s": 0.18120300001464784,
+      "music": 0.011637270450592041,
+      "speech": 0.6411190629005432,
+      "noise": 0.04458615556359291,
+      "top3": [
+        [
+          "Speech",
+          0.641
+        ],
+        [
+          "Inside, small room",
+          0.053
+        ],
+        [
+          "Walk, footsteps",
+          0.048
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_zero_09",
+      "condition": "pad_zero",
+      "time_s": 0.27307633304735646,
+      "music": 0.08698995411396027,
+      "speech": 0.8662601709365845,
+      "noise": 0.04398232698440552,
+      "top3": [
+        [
+          "Speech",
+          0.866
+        ],
+        [
+          "Silence",
+          0.533
+        ],
+        [
+          "Inside, small room",
+          0.157
+        ]
+      ]
+    },
+    {
+      "clip_id": "pad_floor_09",
+      "condition": "pad_floor",
+      "time_s": 0.3649225829867646,
+      "music": 0.009531574323773384,
+      "speech": 0.7925257682800293,
+      "noise": 0.2671857476234436,
+      "top3": [
+        [
+          "Speech",
+          0.793
+        ],
+        [
+          "Static",
+          0.267
+        ],
+        [
+          "White noise",
+          0.183
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr0_09",
+      "condition": "music_snr0",
+      "time_s": 0.09155358298448846,
+      "music": 0.39124006032943726,
+      "speech": 0.48854562640190125,
+      "noise": 0.12971891462802887,
+      "top3": [
+        [
+          "Speech",
+          0.489
+        ],
+        [
+          "Music",
+          0.391
+        ],
+        [
+          "Jingle, tinkle",
+          0.13
+        ]
+      ]
+    },
+    {
+      "clip_id": "music_snr10_09",
+      "condition": "music_snr10",
+      "time_s": 0.09178191696992144,
+      "music": 0.5430253148078918,
+      "speech": 0.6266143918037415,
+      "noise": 0.12379738688468933,
+      "top3": [
+        [
+          "Speech",
+          0.627
+        ],
+        [
+          "Music",
+          0.543
+        ],
+        [
+          "Jingle, tinkle",
+          0.124
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr0_09",
+      "condition": "noise_snr0",
+      "time_s": 0.09161545796087012,
+      "music": 0.015606003813445568,
+      "speech": 0.5497698783874512,
+      "noise": 0.249477818608284,
+      "top3": [
+        [
+          "Speech",
+          0.55
+        ],
+        [
+          "Buzzer",
+          0.249
+        ],
+        [
+          "Alarm",
+          0.057
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr5_09",
+      "condition": "noise_snr5",
+      "time_s": 0.09159270901000127,
+      "music": 0.021762266755104065,
+      "speech": 0.5359556078910828,
+      "noise": 0.006661124527454376,
+      "top3": [
+        [
+          "Speech",
+          0.536
+        ],
+        [
+          "Gasp",
+          0.515
+        ],
+        [
+          "Snort",
+          0.301
+        ]
+      ]
+    },
+    {
+      "clip_id": "noise_snr10_09",
+      "condition": "noise_snr10",
+      "time_s": 0.0914572500041686,
+      "music": 0.032318323850631714,
+      "speech": 0.3443356454372406,
+      "noise": 0.07157056778669357,
+      "top3": [
+        [
+          "Speech",
+          0.344
+        ],
+        [
+          "Patter",
+          0.072
+        ],
+        [
+          "Rodents, rats, mice",
+          0.069
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_music_00",
+      "condition": "only_music",
+      "time_s": 0.18212574999779463,
+      "music": 0.7989558577537537,
+      "speech": 0.005396304186433554,
+      "noise": 0.008897395804524422,
+      "top3": [
+        [
+          "Music",
+          0.799
+        ],
+        [
+          "Piano",
+          0.532
+        ],
+        [
+          "Keyboard (musical)",
+          0.386
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_music_01",
+      "condition": "only_music",
+      "time_s": 0.0913182080257684,
+      "music": 0.4952629804611206,
+      "speech": 0.055789362639188766,
+      "noise": 0.031994111835956573,
+      "top3": [
+        [
+          "Music",
+          0.495
+        ],
+        [
+          "Trance music",
+          0.124
+        ],
+        [
+          "Electronic music",
+          0.115
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_music_02",
+      "condition": "only_music",
+      "time_s": 0.1817939579486847,
+      "music": 0.7147764563560486,
+      "speech": 0.05633322894573212,
+      "noise": 0.02212628535926342,
+      "top3": [
+        [
+          "Music",
+          0.715
+        ],
+        [
+          "Musical instrument",
+          0.186
+        ],
+        [
+          "Keyboard (musical)",
+          0.174
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_music_03",
+      "condition": "only_music",
+      "time_s": 0.1829955419525504,
+      "music": 0.7120476961135864,
+      "speech": 0.012998975813388824,
+      "noise": 0.0027829224709421396,
+      "top3": [
+        [
+          "Music",
+          0.712
+        ],
+        [
+          "Violin, fiddle",
+          0.573
+        ],
+        [
+          "Clarinet",
+          0.451
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_music_04",
+      "condition": "only_music",
+      "time_s": 0.2733102919883095,
+      "music": 0.6444628238677979,
+      "speech": 0.023871345445513725,
+      "noise": 0.019991857931017876,
+      "top3": [
+        [
+          "Music",
+          0.644
+        ],
+        [
+          "Clarinet",
+          0.574
+        ],
+        [
+          "Violin, fiddle",
+          0.337
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_music_05",
+      "condition": "only_music",
+      "time_s": 0.27265504200477153,
+      "music": 0.7241561412811279,
+      "speech": 0.019191453233361244,
+      "noise": 0.010310601443052292,
+      "top3": [
+        [
+          "Music",
+          0.724
+        ],
+        [
+          "Musical instrument",
+          0.469
+        ],
+        [
+          "Violin, fiddle",
+          0.456
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_music_06",
+      "condition": "only_music",
+      "time_s": 0.18318925000494346,
+      "music": 0.7629858255386353,
+      "speech": 0.0017861606320366263,
+      "noise": 0.011231358163058758,
+      "top3": [
+        [
+          "Music",
+          0.763
+        ],
+        [
+          "Piano",
+          0.718
+        ],
+        [
+          "Keyboard (musical)",
+          0.614
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_music_07",
+      "condition": "only_music",
+      "time_s": 0.09098970802733675,
+      "music": 0.45376822352409363,
+      "speech": 0.06375260651111603,
+      "noise": 0.032985612750053406,
+      "top3": [
+        [
+          "Music",
+          0.454
+        ],
+        [
+          "Electronic music",
+          0.09
+        ],
+        [
+          "Speech",
+          0.064
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_noise_00",
+      "condition": "only_noise",
+      "time_s": 0.18172804202185944,
+      "music": 0.008122998289763927,
+      "speech": 0.007272306829690933,
+      "noise": 0.7689996957778931,
+      "top3": [
+        [
+          "Fowl",
+          0.769
+        ],
+        [
+          "Honk",
+          0.608
+        ],
+        [
+          "Goose",
+          0.441
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_noise_01",
+      "condition": "only_noise",
+      "time_s": 0.18173408403526992,
+      "music": 0.009099704213440418,
+      "speech": 0.07846679538488388,
+      "noise": 0.21477091312408447,
+      "top3": [
+        [
+          "Ocean",
+          0.215
+        ],
+        [
+          "Vehicle",
+          0.191
+        ],
+        [
+          "Wind",
+          0.165
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_noise_02",
+      "condition": "only_noise",
+      "time_s": 0.2731435000314377,
+      "music": 0.020602602511644363,
+      "speech": 0.05482811853289604,
+      "noise": 0.42800894379615784,
+      "top3": [
+        [
+          "Waterfall",
+          0.428
+        ],
+        [
+          "Pink noise",
+          0.302
+        ],
+        [
+          "Stream",
+          0.187
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_noise_03",
+      "condition": "only_noise",
+      "time_s": 0.27476070896955207,
+      "music": 0.21860256791114807,
+      "speech": 0.001626092242076993,
+      "noise": 0.33227646350860596,
+      "top3": [
+        [
+          "Coin (dropping)",
+          0.332
+        ],
+        [
+          "Rattle",
+          0.301
+        ],
+        [
+          "Rattle (instrument)",
+          0.219
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_noise_04",
+      "condition": "only_noise",
+      "time_s": 0.27337225002702326,
+      "music": 0.0058708153665065765,
+      "speech": 0.0169106163084507,
+      "noise": 0.5765687227249146,
+      "top3": [
+        [
+          "Steam",
+          0.577
+        ],
+        [
+          "Hiss",
+          0.576
+        ],
+        [
+          "Spray",
+          0.218
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_noise_05",
+      "condition": "only_noise",
+      "time_s": 0.0915676670265384,
+      "music": 0.0017552669160068035,
+      "speech": 0.002606957918033004,
+      "noise": 0.4949740171432495,
+      "top3": [
+        [
+          "Fart",
+          0.598
+        ],
+        [
+          "Zipper (clothing)",
+          0.495
+        ],
+        [
+          "Snoring",
+          0.099
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_noise_06",
+      "condition": "only_noise",
+      "time_s": 0.2737374580465257,
+      "music": 0.03736913949251175,
+      "speech": 0.026830533519387245,
+      "noise": 0.4064677357673645,
+      "top3": [
+        [
+          "Mechanical fan",
+          0.406
+        ],
+        [
+          "Microwave oven",
+          0.226
+        ],
+        [
+          "White noise",
+          0.143
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_noise_07",
+      "condition": "only_noise",
+      "time_s": 0.18178329203510657,
+      "music": 0.004207151476293802,
+      "speech": 0.01264888420701027,
+      "noise": 0.7188169360160828,
+      "top3": [
+        [
+          "Bird",
+          0.719
+        ],
+        [
+          "Bird vocalization, bird call, bird song",
+          0.585
+        ],
+        [
+          "Chirp, tweet",
+          0.532
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_zero_00",
+      "condition": "only_zero",
+      "time_s": 0.27356437500566244,
+      "music": 0.2724137306213379,
+      "speech": 0.02078181505203247,
+      "noise": 0.038689613342285156,
+      "top3": [
+        [
+          "Silence",
+          0.608
+        ],
+        [
+          "Music",
+          0.272
+        ],
+        [
+          "Sound effect",
+          0.039
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_zero_01",
+      "condition": "only_zero",
+      "time_s": 0.2732275409507565,
+      "music": 0.2724137306213379,
+      "speech": 0.02244122140109539,
+      "noise": 0.03688864782452583,
+      "top3": [
+        [
+          "Silence",
+          0.608
+        ],
+        [
+          "Music",
+          0.272
+        ],
+        [
+          "Sound effect",
+          0.037
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_zero_02",
+      "condition": "only_zero",
+      "time_s": 0.27420795802026987,
+      "music": 0.2724137306213379,
+      "speech": 0.01611873134970665,
+      "noise": 0.03514382988214493,
+      "top3": [
+        [
+          "Silence",
+          0.608
+        ],
+        [
+          "Music",
+          0.272
+        ],
+        [
+          "Sound effect",
+          0.035
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_zero_03",
+      "condition": "only_zero",
+      "time_s": 0.2738692500279285,
+      "music": 0.2724137306213379,
+      "speech": 0.01611873134970665,
+      "noise": 0.029706334695219994,
+      "top3": [
+        [
+          "Silence",
+          0.626
+        ],
+        [
+          "Music",
+          0.272
+        ],
+        [
+          "Sound effect",
+          0.03
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_floor_00",
+      "condition": "only_floor",
+      "time_s": 0.09127004200126976,
+      "music": 0.006009326316416264,
+      "speech": 0.0034930945839732885,
+      "noise": 0.28658202290534973,
+      "top3": [
+        [
+          "Static",
+          0.287
+        ],
+        [
+          "White noise",
+          0.128
+        ],
+        [
+          "Silence",
+          0.091
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_floor_01",
+      "condition": "only_floor",
+      "time_s": 0.27426937501877546,
+      "music": 0.0031790153589099646,
+      "speech": 0.0008664002525620162,
+      "noise": 0.1951885223388672,
+      "top3": [
+        [
+          "White noise",
+          0.195
+        ],
+        [
+          "Silence",
+          0.162
+        ],
+        [
+          "Static",
+          0.136
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_floor_02",
+      "condition": "only_floor",
+      "time_s": 0.27273995900759473,
+      "music": 0.01560764480382204,
+      "speech": 0.0088003259152174,
+      "noise": 0.2955753207206726,
+      "top3": [
+        [
+          "Static",
+          0.296
+        ],
+        [
+          "White noise",
+          0.171
+        ],
+        [
+          "Silence",
+          0.161
+        ]
+      ]
+    },
+    {
+      "clip_id": "only_floor_03",
+      "condition": "only_floor",
+      "time_s": 0.18294295796658844,
+      "music": 0.0037011306267231703,
+      "speech": 0.0011031253961846232,
+      "noise": 0.21254101395606995,
+      "top3": [
+        [
+          "White noise",
+          0.213
+        ],
+        [
+          "Static",
+          0.204
+        ],
+        [
+          "Silence",
+          0.156
+        ]
+      ]
+    }
+  ],
+  "component": "tagger",
+  "candidate": "ast_mps",
+  "peak_rss_mb": 599.84375,
+  "mlx_peak_mb": 0.0,
+  "wall_s": 46.81664766604081,
+  "env": {
+    "python": "3.12.16",
+    "machine": "arm64",
+    "platform": "macOS-27.2.1-arm64-arm-64bit",
+    "cpu": "Apple M1 Pro",
+    "mem_gb": 32.0,
+    "packages": {
+      "torch": "2.15.0",
+      "torchaudio": "2.11.1",
+      "silero-vad": "6.3",
+      "webrtcvad-wheels": "2.0.14.post1",
+      "speechbrain": "1.1.2",
+      "transformers": "5.24.1",
+      "mlx": "0.32.5",
+      "mlx-audio": "0.6.8",
+      "mlx-whisper": "0.4.3",
+      "parakeet-mlx": "0.7.0",
+      "jiwer": "4.0.0"
+    }
+  }
+}

@@ -1,0 +1,5041 @@
+{
+  "config": {
+    "weights": "mlx-community/whisper-large-v3-turbo",
+    "device": "mlx (GPU)",
+    "method": "model.detect_language on the first 30 s (as in transcribe)"
+  },
+  "load_s": 2.8354685829835944,
+  "compute_s": 346.98501912818756,
+  "audio_s": 2600.191437500001,
+  "rtf": 0.13344595098805584,
+  "metrics": {
+    "accuracy_clean": {
+      "1s": {
+        "en": 1.0,
+        "ru": 0.86,
+        "he": 0.45,
+        "all": 0.8941176470588236,
+        "all_restricted_en_ru_he": 0.9176470588235294,
+        "en_restricted": 1.0,
+        "ru_restricted": 0.94,
+        "he_restricted": 0.45
+      },
+      "3s": {
+        "en": 1.0,
+        "ru": 0.98,
+        "he": 0.85,
+        "all": 0.9764705882352941,
+        "all_restricted_en_ru_he": 0.9823529411764705,
+        "en_restricted": 1.0,
+        "ru_restricted": 1.0,
+        "he_restricted": 0.85
+      },
+      "full": {
+        "en": 1.0,
+        "ru": 1.0,
+        "he": 0.95,
+        "all": 0.9941176470588236,
+        "all_restricted_en_ru_he": 1.0,
+        "en_restricted": 1.0,
+        "ru_restricted": 1.0,
+        "he_restricted": 1.0
+      }
+    },
+    "accuracy_full_by_corruption": {
+      "music_snr0": 1.0,
+      "music_snr10": 1.0,
+      "noise_snr0": 1.0,
+      "noise_snr10": 1.0,
+      "noise_snr5": 1.0,
+      "pad_floor": 1.0,
+      "pad_zero": 1.0
+    },
+    "confusions": {
+      "ru@1s": {
+        "en": 3,
+        "pt": 3,
+        "pl": 1
+      },
+      "ru@3s": {
+        "uk": 1
+      },
+      "he@1s": {
+        "fr": 1,
+        "ar": 3,
+        "es": 1,
+        "pl": 1,
+        "en": 1,
+        "de": 1,
+        "ro": 1,
+        "ru": 1,
+        "pt": 1
+      },
+      "he@3s": {
+        "en": 2,
+        "ar": 1
+      },
+      "he@full": {
+        "ar": 1
+      }
+    },
+    "rtf_by_crop": {
+      "1s": 0.5918960425944533,
+      "3s": 0.19706617075112173,
+      "full": 0.09694791634612271
+    },
+    "ms_per_call_by_crop": {
+      "1s": 591.8960425944533,
+      "3s": 591.1985122533652,
+      "full": 607.7361661031318
+    },
+    "peak_rss_mb": 1847.34375,
+    "mlx_peak_mb": 2379.136709213257
+  },
+  "per_clip": [
+    {
+      "clip_id": "clean_en_000",
+      "condition": "clean",
+      "time_s": 1.7690180420177057,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998829364776611,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5889805000042543
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998843669891357,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899732080288231
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999349117279053,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900538749992847
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_001",
+      "condition": "clean",
+      "time_s": 1.768353708961513,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9816639423370361,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589797416003421
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9996371269226074,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5887992499629036
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998612403869629,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897486250032671
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_002",
+      "condition": "clean",
+      "time_s": 1.769821249996312,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998403787612915,
+        "pred_en_ru_he": "en",
+        "time_s": 0.59018975001527
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998949766159058,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895998750347644
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999901533126831,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900220830226317
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_003",
+      "condition": "clean",
+      "time_s": 1.769850625016261,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9996169805526733,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898834579857066
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998290538787842,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897656250162981
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999409914016724,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901926249498501
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_004",
+      "condition": "clean",
+      "time_s": 1.7694651249912567,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9988116025924683,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895802919985726
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999863862991333,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893192499643192
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999228715896606,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905572919873521
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_005",
+      "condition": "clean",
+      "time_s": 1.7701048330054618,
+      "1s": {
+        "pred": "en",
+        "conf": 0.999871015548706,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5904945000074804
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999854326248169,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893829579581507
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999440908432007,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902173750218935
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_006",
+      "condition": "clean",
+      "time_s": 1.7688401670311578,
+      "1s": {
+        "pred": "en",
+        "conf": 0.99991774559021,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896042920066975
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999139308929443,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895122080110013
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999037981033325,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897159170126542
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_007",
+      "condition": "clean",
+      "time_s": 1.7694865000084974,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997172951698303,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903634579735808
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999920129776001,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893921660026535
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999861478805542,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897227920359001
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_008",
+      "condition": "clean",
+      "time_s": 1.7690245420089923,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998358488082886,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903588749933988
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999053478240967,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894407090381719
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999902606010437,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892168340506032
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_009",
+      "condition": "clean",
+      "time_s": 1.7691943749669008,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9990997314453125,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897190410178155
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999014139175415,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894362920080312
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999167919158936,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900309580028988
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_010",
+      "condition": "clean",
+      "time_s": 1.7707389169954695,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9980533123016357,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5908872919972055
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999014139175415,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893321250332519
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999920129776001,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905095409834757
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_011",
+      "condition": "clean",
+      "time_s": 1.7717568750376813,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9995825886726379,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5914879160118289
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998595714569092,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896573329810053
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999271631240845,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5906004999997094
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_012",
+      "condition": "clean",
+      "time_s": 1.7696995830046944,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997462630271912,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902974999626167
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9996076226234436,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895347500336356
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9997623562812805,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898589579737745
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_013",
+      "condition": "clean",
+      "time_s": 1.7703492500004359,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997281432151794,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905887089902535
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9996951818466187,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895109589910135
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9995853304862976,
+        "pred_en_ru_he": "en",
+        "time_s": 0.590241166006308
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_014",
+      "condition": "clean",
+      "time_s": 1.7700679170084186,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998630285263062,
+        "pred_en_ru_he": "en",
+        "time_s": 0.590201832994353
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999226331710815,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896898750215769
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998173117637634,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901681249961257
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_015",
+      "condition": "clean",
+      "time_s": 1.7711139579769224,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9996788501739502,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5906827920116484
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9993622899055481,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895612080348656
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999293088912964,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5908625419833697
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_016",
+      "condition": "clean",
+      "time_s": 1.7697259999695234,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998049139976501,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901910000247881
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998654127120972,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895615000044927
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998776912689209,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899653329979628
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_017",
+      "condition": "clean",
+      "time_s": 1.7697422920027748,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998676776885986,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900636669830419
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998947381973267,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896860409993678
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999337196350098,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899837499600835
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_018",
+      "condition": "clean",
+      "time_s": 1.7698926670127548,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9986428618431091,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897960410220549
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999871015548706,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897797079524025
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999954342842102,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903088749619201
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_019",
+      "condition": "clean",
+      "time_s": 1.7698742499924265,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9999110698699951,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905567080480978
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999873161315918,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893214999814518
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999256134033203,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899882499943487
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_020",
+      "condition": "clean",
+      "time_s": 1.7696647500270046,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9945816397666931,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898492909618653
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999812662601471,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895937079912983
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998798370361328,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902140410034917
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_021",
+      "condition": "clean",
+      "time_s": 1.7700623749988154,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998732805252075,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903870000038296
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999165534973145,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898365409811959
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999246597290039,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589829667005688
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_022",
+      "condition": "clean",
+      "time_s": 1.771251292026136,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9999169111251831,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5909833750338294
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998304843902588,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897187080117874
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999326467514038,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905404579825699
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_023",
+      "condition": "clean",
+      "time_s": 1.7704619170399383,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9986079335212708,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902784589561634
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998879432678223,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897065000026487
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999381303787231,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5904672499746084
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_024",
+      "condition": "clean",
+      "time_s": 1.769978958007414,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9716722965240479,
+        "pred_en_ru_he": "en",
+        "time_s": 0.59045249997871
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998227953910828,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894334170152433
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999477863311768,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900845410069451
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_025",
+      "condition": "clean",
+      "time_s": 1.769928166992031,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998371601104736,
+        "pred_en_ru_he": "en",
+        "time_s": 0.59003191703232
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998781681060791,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897531250375323
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998806715011597,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901346249738708
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_026",
+      "condition": "clean",
+      "time_s": 1.7701752919820137,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9999010562896729,
+        "pred_en_ru_he": "en",
+        "time_s": 0.590575042006094
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998997449874878,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894872500211932
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998514652252197,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901048330124468
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_027",
+      "condition": "clean",
+      "time_s": 1.7704476669896394,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9996898174285889,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5911126660066657
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997983574867249,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896235830150545
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999900221824646,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897026250022464
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_028",
+      "condition": "clean",
+      "time_s": 1.770690832985565,
+      "1s": {
+        "pred": "en",
+        "conf": 0.999884843826294,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5908537500072271
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998151659965515,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893936249776743
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999756395816803,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5904353749938309
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_029",
+      "condition": "clean",
+      "time_s": 1.769630375027191,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9995929598808289,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905160839902237
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999138116836548,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893907090066932
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999886155128479,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897159590385854
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_030",
+      "condition": "clean",
+      "time_s": 1.769826625008136,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998902082443237,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898970419657417
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998981952667236,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893996249651536
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999325275421143,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905221669818275
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_031",
+      "condition": "clean",
+      "time_s": 1.7706495829625055,
+      "1s": {
+        "pred": "en",
+        "conf": 0.986098051071167,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5910339169786312
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9992440938949585,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895656670327298
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999223947525024,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900406669825315
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_032",
+      "condition": "clean",
+      "time_s": 1.7691997910151258,
+      "1s": {
+        "pred": "en",
+        "conf": 0.999861478805542,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902712920214981
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998624324798584,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589130665990524
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999192953109741,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897889159969054
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_033",
+      "condition": "clean",
+      "time_s": 1.7695722909993492,
+      "1s": {
+        "pred": "en",
+        "conf": 0.969808042049408,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897023329744115
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9988797307014465,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894293750170618
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.994758665561676,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5904326250310987
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_034",
+      "condition": "clean",
+      "time_s": 1.770381041977089,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997288584709167,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5906903750146739
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997010827064514,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895967920077965
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998225569725037,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900860410183668
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_035",
+      "condition": "clean",
+      "time_s": 1.7698645000346005,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9856553077697754,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900672079878859
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999029636383057,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897921249852516
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998786449432373,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899970000027679
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_036",
+      "condition": "clean",
+      "time_s": 1.7711372500052676,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9999202489852905,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5907712909975089
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998989105224609,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896213339874521
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999521970748901,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5907351669739
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_037",
+      "condition": "clean",
+      "time_s": 1.7690773340291344,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998418092727661,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898181660450064
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998964071273804,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894241249770857
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999281167984009,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898272920167074
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_038",
+      "condition": "clean",
+      "time_s": 1.7702463750028983,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9995336532592773,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900525830220431
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999845027923584,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900795829948038
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999159574508667,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901062499615364
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_039",
+      "condition": "clean",
+      "time_s": 1.770898833987303,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998643398284912,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5909055410302244
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999014139175415,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895978749613278
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999221563339233,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903853329946287
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_040",
+      "condition": "clean",
+      "time_s": 1.7684216250199825,
+      "1s": {
+        "pred": "en",
+        "conf": 0.999886155128479,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893303749617189
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9995373487472534,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892952919821255
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999336004257202,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897887920145877
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_041",
+      "condition": "clean",
+      "time_s": 1.7680814579944126,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9991596937179565,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896122499834746
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998385906219482,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589074166957289
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998471736907959,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893863329547457
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_042",
+      "condition": "clean",
+      "time_s": 1.7700910000130534,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9962617754936218,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901493330020458
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999159574508667,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893095410428941
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999502897262573,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5906222499907017
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_043",
+      "condition": "clean",
+      "time_s": 1.7697204579599202,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998340606689453,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905240409774706
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999862551689148,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892704169964418
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999363422393799,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899160419940017
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_044",
+      "condition": "clean",
+      "time_s": 1.7692307920078747,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998613595962524,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903704999946058
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999061822891235,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896174169611186
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998490810394287,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892337500117719
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_045",
+      "condition": "clean",
+      "time_s": 1.7683382920222357,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9975516200065613,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900589169468731
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9981435537338257,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891667910036631
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9994320273399353,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891040409915149
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_046",
+      "condition": "clean",
+      "time_s": 1.7681831249501556,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9600028991699219,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895399170112796
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997745156288147,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892733750515617
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9992048144340515,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893622500007041
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_047",
+      "condition": "clean",
+      "time_s": 1.7680332500021905,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997698664665222,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896993749774992
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999023675918579,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893353340215981
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999001026153564,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5889909999677911
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_048",
+      "condition": "clean",
+      "time_s": 1.7690977499587461,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998958110809326,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903346670093015
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998331069946289,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894061249564402
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998026490211487,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893494170159101
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_049",
+      "condition": "clean",
+      "time_s": 1.7679106669966131,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9984986782073975,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589382125006523
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998124241828918,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589280208980199
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999094009399414,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892402920289896
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_050",
+      "condition": "clean",
+      "time_s": 1.7692537499824539,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998949766159058,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903787499992177
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997134804725647,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892730829655193
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998733997344971,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895933340070769
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_051",
+      "condition": "clean",
+      "time_s": 1.7691891670110635,
+      "1s": {
+        "pred": "en",
+        "conf": 0.999045193195343,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899758330197074
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9996067881584167,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891956249834038
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999114274978638,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900087910122238
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_052",
+      "condition": "clean",
+      "time_s": 1.769024916982744,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997842907905579,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903740000212565
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998798370361328,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892202499671839
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999276399612427,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894212499842979
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_053",
+      "condition": "clean",
+      "time_s": 1.769049083988648,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998179078102112,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903027089661919
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998339414596558,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5889981670188718
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999103546142578,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589739290997386
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_054",
+      "condition": "clean",
+      "time_s": 1.7686978750280105,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9988144636154175,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903107920312323
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9979178309440613,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892206659773365
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999716579914093,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891583330230787
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_055",
+      "condition": "clean",
+      "time_s": 1.769024792010896,
+      "1s": {
+        "pred": "en",
+        "conf": 0.5518118143081665,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899936250061728
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9989340901374817,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589310374984052
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998356103897095,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897127910284325
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_056",
+      "condition": "clean",
+      "time_s": 1.7679554580245167,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9987461566925049,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589484625030309
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999854326248169,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891875000088476
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998743534088135,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892758749541827
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_057",
+      "condition": "clean",
+      "time_s": 1.769306417030748,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9992904663085938,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903106250334531
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997583031654358,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5889187499997206
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998542070388794,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900662500062026
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_058",
+      "condition": "clean",
+      "time_s": 1.7684018749860115,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998148083686829,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900600419845432
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998871088027954,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5889318339759484
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999276399612427,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894014170044102
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_059",
+      "condition": "clean",
+      "time_s": 1.7682047080015764,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997952580451965,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897998749860562
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999428987503052,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5890861249645241
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999906063079834,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893113749916665
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_060",
+      "condition": "clean",
+      "time_s": 1.7684397920384072,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9387903213500977,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898064580396749
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9603140354156494,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5889741660212167
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9985520243644714,
+        "pred_en_ru_he": "en",
+        "time_s": 0.58965087501565
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_061",
+      "condition": "clean",
+      "time_s": 1.7691517499624752,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998773336410522,
+        "pred_en_ru_he": "en",
+        "time_s": 0.590192792005837
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999258518218994,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895699999528006
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999021291732788,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893807499669492
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_062",
+      "condition": "clean",
+      "time_s": 1.768854666966945,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9994483590126038,
+        "pred_en_ru_he": "en",
+        "time_s": 0.590012333006598
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999910831451416,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891767920111306
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999927282333374,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896576250088401
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_063",
+      "condition": "clean",
+      "time_s": 1.7688503750250675,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997968077659607,
+        "pred_en_ru_he": "en",
+        "time_s": 0.590127624978777
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9993718266487122,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892703750287183
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9995092153549194,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894442500430159
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_064",
+      "condition": "clean",
+      "time_s": 1.7680986669729464,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9696993231773376,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897453330107965
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9890810251235962,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5889017499866895
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9935410022735596,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894435420050286
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_065",
+      "condition": "clean",
+      "time_s": 1.7690583340008743,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9995054006576538,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902643750305288
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999277591705322,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5888880839920603
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999402761459351,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898970420239493
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_066",
+      "condition": "clean",
+      "time_s": 1.7694642499554902,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9860225915908813,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5906682080239989
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998719692230225,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891827500308864
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999347925186157,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896056249621324
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_067",
+      "condition": "clean",
+      "time_s": 1.7692935839877464,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9937694668769836,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900258750189096
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997145533561707,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5890218329732306
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999887228012085,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902375000296161
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_068",
+      "condition": "clean",
+      "time_s": 1.7688771249959245,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9996777772903442,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898708750028163
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999359667301178,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892361250007525
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9996589422225952,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897622090415098
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_069",
+      "condition": "clean",
+      "time_s": 1.7692104580346495,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9846850633621216,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899551670299843
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998418092727661,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893290410167538
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999305009841919,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899187090108171
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_070",
+      "condition": "clean",
+      "time_s": 1.7691294170217589,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998193383216858,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5904482080368325
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998989105224609,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893974580103531
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.999924898147583,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892752090003341
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_071",
+      "condition": "clean",
+      "time_s": 1.7684658339712769,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9806520938873291,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897932079969905
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9981934428215027,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893175000092015
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998675584793091,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893468330032192
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_072",
+      "condition": "clean",
+      "time_s": 1.7701677909935825,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997928738594055,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5904390419600531
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9996193647384644,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5889819579897448
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999406337738037,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5907378749689087
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_073",
+      "condition": "clean",
+      "time_s": 1.7693219580105506,
+      "1s": {
+        "pred": "en",
+        "conf": 0.998723566532135,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5904666669666767
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998086094856262,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891500000143424
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999158382415771,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896965829888359
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_074",
+      "condition": "clean",
+      "time_s": 1.7683715000166558,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998778104782104,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900736659532413
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9996304512023926,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891370000317693
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9996451139450073,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891533750109375
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_075",
+      "condition": "clean",
+      "time_s": 1.7698643750045449,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9693844318389893,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5910320410039276
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9985775947570801,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892278749961406
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999440908432007,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895958750043064
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_076",
+      "condition": "clean",
+      "time_s": 1.7701971660135314,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9990608096122742,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5906575419940054
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998682737350464,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898172500310466
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999486207962036,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5897117920103483
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_077",
+      "condition": "clean",
+      "time_s": 1.7688352499972098,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9936028122901917,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903943339944817
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9993228912353516,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5890987089951523
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9997653365135193,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589334583026357
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_078",
+      "condition": "clean",
+      "time_s": 1.7690858749556355,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9996997117996216,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902117910445668
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997480511665344,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892435410059988
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9993041753768921,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589621959021315
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_079",
+      "condition": "clean",
+      "time_s": 1.7691117910435423,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998503923416138,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903576669516042
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998351335525513,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891766250133514
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999103546142578,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895687909796834
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_080",
+      "condition": "clean",
+      "time_s": 1.7683529169880785,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9972047209739685,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893168339971453
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998972415924072,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891637500026263
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998456239700317,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898642920074053
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_081",
+      "condition": "clean",
+      "time_s": 1.7681162090157159,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997105002403259,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898239579983056
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9996932744979858,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589151333027985
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9996663331985474,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891323329997249
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_082",
+      "condition": "clean",
+      "time_s": 1.7684184579993598,
+      "1s": {
+        "pred": "en",
+        "conf": 0.998329222202301,
+        "pred_en_ru_he": "en",
+        "time_s": 0.590051333012525
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9985330104827881,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891868330072612
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998738765716553,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891725840047002
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_083",
+      "condition": "clean",
+      "time_s": 1.7696481670136563,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998892545700073,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905336659634486
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998563528060913,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894203339703381
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999444484710693,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896848340053111
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_084",
+      "condition": "clean",
+      "time_s": 1.7689726669923402,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9959051609039307,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900672919815406
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9988446235656738,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894649580004625
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998908042907715,
+        "pred_en_ru_he": "en",
+        "time_s": 0.58943062502658
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_085",
+      "condition": "clean",
+      "time_s": 1.7685829999973066,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9999070167541504,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589909499976784
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998989105224609,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5890227920026518
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999287128448486,
+        "pred_en_ru_he": "en",
+        "time_s": 0.58964229200501
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_086",
+      "condition": "clean",
+      "time_s": 1.7687887089559808,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997788071632385,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900682909996249
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997711777687073,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892376250121742
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9996823072433472,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894752500462346
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_087",
+      "condition": "clean",
+      "time_s": 1.7687262910185382,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9995761513710022,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899864170351066
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9994193315505981,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892459999886341
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998281002044678,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894852500059642
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_088",
+      "condition": "clean",
+      "time_s": 1.769444042001851,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998297691345215,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5904261670075357
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997506737709045,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894269580021501
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.99977046251297,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895820839796215
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_089",
+      "condition": "clean",
+      "time_s": 1.7691161669790745,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998063445091248,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901689589954913
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.999882698059082,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892057919991203
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999097585678101,
+        "pred_en_ru_he": "en",
+        "time_s": 0.589732708001975
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_090",
+      "condition": "clean",
+      "time_s": 1.7692427079891786,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9991735816001892,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905598329845816
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997866749763489,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891850409680046
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999305009841919,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894895420060493
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_091",
+      "condition": "clean",
+      "time_s": 1.7693559170002118,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9996668100357056,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5905179580440745
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998726844787598,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892002920154482
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999358654022217,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896299169980921
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_092",
+      "condition": "clean",
+      "time_s": 1.7686397079960443,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9828708171844482,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900845000287518
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998489618301392,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891821670229547
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999279975891113,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893635409884155
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_093",
+      "condition": "clean",
+      "time_s": 1.768107375013642,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9959420561790466,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893747090012766
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999139308929443,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5890374580048956
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999063014984131,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896871669683605
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_094",
+      "condition": "clean",
+      "time_s": 1.7690933330450207,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9880164265632629,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901991659775376
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.995766282081604,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5890117500093766
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998158812522888,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898748750332743
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_095",
+      "condition": "clean",
+      "time_s": 1.7691961250384338,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9997672438621521,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899102910188958
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998757839202881,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892964579979889
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998917579650879,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5899811249691993
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_096",
+      "condition": "clean",
+      "time_s": 1.7691983750555664,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9998692274093628,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903540420113131
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9999231100082397,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5889458330348134
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9999220371246338,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5898869590018876
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_097",
+      "condition": "clean",
+      "time_s": 1.768610458006151,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9993540644645691,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5900590000092052
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9998229146003723,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891495000105351
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998902082443237,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893939999514259
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_098",
+      "condition": "clean",
+      "time_s": 1.768549999978859,
+      "1s": {
+        "pred": "en",
+        "conf": 0.9960322976112366,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5895298339892179
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9991680383682251,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5896957500372082
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9995774626731873,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893156660022214
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_en_099",
+      "condition": "clean",
+      "time_s": 1.768237375013996,
+      "1s": {
+        "pred": "en",
+        "conf": 0.999154806137085,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894819159875624
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.9997829794883728,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5893253340036608
+      },
+      "full": {
+        "pred": "en",
+        "conf": 0.9998859167098999,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5894216249580495
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "clean_ru_100",
+      "condition": "clean",
+      "time_s": 1.7696976250153966,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9969894289970398,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5902153329807334
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9988433122634888,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893973329802975
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9996190071105957,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.590076708002016
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_101",
+      "condition": "clean",
+      "time_s": 1.7688648329931311,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.999242901802063,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5895761660067365
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9994634985923767,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896720419987105
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993268251419067,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896082080435008
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_102",
+      "condition": "clean",
+      "time_s": 1.7705334580386989,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9990222454071045,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5906935000093654
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9993756413459778,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896702089812607
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993042945861816,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5901595830218866
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_103",
+      "condition": "clean",
+      "time_s": 1.7692182910395786,
+      "1s": {
+        "pred": "en",
+        "conf": 0.6231361627578735,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902343750349246
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9985230565071106,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892793749808334
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993903636932373,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896950410096906
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_104",
+      "condition": "clean",
+      "time_s": 1.7695363750099204,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9987253546714783,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5902710829977877
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9986775517463684,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589416665956378
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995705485343933,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5898387089837343
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_105",
+      "condition": "clean",
+      "time_s": 1.7690464580082335,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9985517859458923,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5904592910083011
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9967294931411743,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.58931437501451
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9994021654129028,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892652079928666
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_106",
+      "condition": "clean",
+      "time_s": 1.7688302909955382,
+      "1s": {
+        "pred": "pt",
+        "conf": 0.6899780631065369,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5899853329756297
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9995143413543701,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894779579830356
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995009899139404,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589358999975957
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_107",
+      "condition": "clean",
+      "time_s": 1.7705120000173338,
+      "1s": {
+        "pred": "pl",
+        "conf": 0.2743096649646759,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5910069999517873
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9988177418708801,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893271249951795
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993332028388977,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5901688329759054
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_108",
+      "condition": "clean",
+      "time_s": 1.7690574169973843,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9857680201530457,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5899825000087731
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9989399313926697,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892884159693494
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9990072846412659,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5897771670133807
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_109",
+      "condition": "clean",
+      "time_s": 1.7692224170314148,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.42032590508461,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5907704580458812
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9989066123962402,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893475419725291
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995960593223572,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5890933749615215
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_110",
+      "condition": "clean",
+      "time_s": 1.76830495899776,
+      "1s": {
+        "pred": "pt",
+        "conf": 0.35767775774002075,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894544170005247
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9986327290534973,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891549160005525
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9989653825759888,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896881670341827
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_111",
+      "condition": "clean",
+      "time_s": 1.7693299999809824,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9979289770126343,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5904650000156835
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9985987544059753,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893408340052702
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.999355137348175,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5895143750240095
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_112",
+      "condition": "clean",
+      "time_s": 1.769908457994461,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9987433552742004,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5905327909858897
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9983803033828735,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893667080090381
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9622568488121033,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.590000832977239
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_113",
+      "condition": "clean",
+      "time_s": 1.768822459038347,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9989755153656006,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5904307090095244
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9993698000907898,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892766669858247
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993126392364502,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891073339735158
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_114",
+      "condition": "clean",
+      "time_s": 1.7679334999993443,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.7753264904022217,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892940829508007
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9993969202041626,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892569579882547
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9996217489242554,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893744169734418
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_115",
+      "condition": "clean",
+      "time_s": 1.7691701670410112,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9966901540756226,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5905766669893637
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9971678853034973,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5889712910284288
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9991040825843811,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896142079727724
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_116",
+      "condition": "clean",
+      "time_s": 1.7691642910358496,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9852519035339355,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5902429579873569
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9994550347328186,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892966249957681
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995288848876953,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896141250268556
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_117",
+      "condition": "clean",
+      "time_s": 1.7696059169829823,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9426898956298828,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5905786670045927
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.998166024684906,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589063209015876
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995546936988831,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5899547499720939
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_118",
+      "condition": "clean",
+      "time_s": 1.768890083010774,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9923906922340393,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5897188750095665
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9527426958084106,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892307080212049
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.8134486079216003,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5899323329795152
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_119",
+      "condition": "clean",
+      "time_s": 1.7692460420075804,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9988775849342346,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5900070840143599
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9993533492088318,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891524580074474
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9994298815727234,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5900785410194658
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_120",
+      "condition": "clean",
+      "time_s": 1.769636459008325,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9776116609573364,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5900328750140034
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9985709190368652,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5890879159560427
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9994099140167236,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.590506624954287
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_121",
+      "condition": "clean",
+      "time_s": 1.7695065829902887,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9993937015533447,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5899879999924451
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.999152660369873,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891971249948256
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9994714856147766,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5903134580003098
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_122",
+      "condition": "clean",
+      "time_s": 1.7693375420058146,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.999119222164154,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5904479589662515
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9972583055496216,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5890339589677751
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9994027614593506,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5898449170053937
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_123",
+      "condition": "clean",
+      "time_s": 1.7691053749877028,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9987217783927917,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5905119170201942
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9986391663551331,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5889383339672349
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995064735412598,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.58964699995704
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_124",
+      "condition": "clean",
+      "time_s": 1.7687915000133216,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9985516667366028,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896956670330837
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9987105131149292,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5895388330100104
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.999398946762085,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5895492080016993
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_125",
+      "condition": "clean",
+      "time_s": 1.7688843329669908,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.997006356716156,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5902965830173343
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9953399896621704,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891665000235662
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9987591505050659,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894130420056172
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_126",
+      "condition": "clean",
+      "time_s": 1.7696858750423416,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9993178844451904,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5902205830207095
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9978467226028442,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892976250033826
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9964994192123413,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5901595409959555
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_127",
+      "condition": "clean",
+      "time_s": 1.7680447910097428,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9991633892059326,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893257909920067
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9988173842430115,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893093749764375
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995046854019165,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894017079845071
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_128",
+      "condition": "clean",
+      "time_s": 1.7691554589546286,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9939364790916443,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5904645830160007
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9987285733222961,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892519999761134
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995985627174377,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894295829930343
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_129",
+      "condition": "clean",
+      "time_s": 1.768062875024043,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9989103078842163,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894937499542721
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.999423623085022,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891317919595167
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995819926261902,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894289590069093
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_130",
+      "condition": "clean",
+      "time_s": 1.7695519579574466,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9987622499465942,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5911290000076406
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9975172281265259,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589132166991476
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995513558387756,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892775839893147
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_131",
+      "condition": "clean",
+      "time_s": 1.7678484590142034,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9987667798995972,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891872079810128
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9993394017219543,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892697920207866
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9990921020507812,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893833750160411
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_132",
+      "condition": "clean",
+      "time_s": 1.7698026659782045,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9065527319908142,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5904954579891637
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9992495179176331,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589587084017694
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9985505938529968,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5897097080014646
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_133",
+      "condition": "clean",
+      "time_s": 1.7688478749478236,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.997931957244873,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5898411250091158
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.998246431350708,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893830839777365
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.999658465385437,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896149579784833
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_134",
+      "condition": "clean",
+      "time_s": 1.769418416020926,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.8201709389686584,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5904013339895755
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9989935755729675,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894657500321046
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993818998336792,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5895417500287294
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_135",
+      "condition": "clean",
+      "time_s": 1.7695598340360448,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.965973436832428,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5905150420148857
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9981527924537659,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892293750075623
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993420243263245,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5898058749735355
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_136",
+      "condition": "clean",
+      "time_s": 1.7696692080353387,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9678894877433777,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5903645409853198
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9994032382965088,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894501670263708
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9994832277297974,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5898463750490919
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_137",
+      "condition": "clean",
+      "time_s": 1.769042250001803,
+      "1s": {
+        "pred": "pt",
+        "conf": 0.6037725210189819,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5904219169751741
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9985800981521606,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589482749986928
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.999281108379364,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891272500157356
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_138",
+      "condition": "clean",
+      "time_s": 1.7687545829685405,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9991300702095032,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893463749671355
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.999264657497406,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5894373339833692
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9992687106132507,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5899635829846375
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_139",
+      "condition": "clean",
+      "time_s": 1.7691510409931652,
+      "1s": {
+        "pred": "en",
+        "conf": 0.6810204386711121,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902147080050781
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9987340569496155,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892131659784354
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9994149208068848,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5897151249810122
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_140",
+      "condition": "clean",
+      "time_s": 1.7693114999565296,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.998712420463562,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5902789169922471
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9991658926010132,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589512458012905
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993742108345032,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5895122079527937
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_141",
+      "condition": "clean",
+      "time_s": 1.7697187500307336,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9986036419868469,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5904192500165664
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9978299736976624,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896772920386866
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995390176773071,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896128329914063
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_142",
+      "condition": "clean",
+      "time_s": 1.7692723330110312,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9974018335342407,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5901956249726936
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9981873631477356,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5897112080128863
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9989018440246582,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893576249945909
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_143",
+      "condition": "clean",
+      "time_s": 1.7688889160053805,
+      "1s": {
+        "pred": "en",
+        "conf": 0.7960633039474487,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5903293750016019
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.8969727158546448,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892692500492558
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9991959929466248,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5892770409700461
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_144",
+      "condition": "clean",
+      "time_s": 1.7690513750421815,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.6622216105461121,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5906670829863288
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.999159574508667,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891439999686554
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9992477893829346,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589231625024695
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_145",
+      "condition": "clean",
+      "time_s": 1.7700690000201575,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.23838163912296295,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5908335410058498
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9806113243103027,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589193833002355
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9988082647323608,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5900313329766504
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_146",
+      "condition": "clean",
+      "time_s": 1.769002165994607,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.7910510897636414,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5901891669491306
+      },
+      "3s": {
+        "pred": "uk",
+        "conf": 0.48724082112312317,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891419999534264
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.8387932777404785,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5896603330038488
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_147",
+      "condition": "clean",
+      "time_s": 1.7706078750197776,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9956117272377014,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5909130410291255
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.998895525932312,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5893152909702621
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995319843292236,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5903703750227578
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_148",
+      "condition": "clean",
+      "time_s": 1.7692668749950826,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9946171641349792,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5905132499756292
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.9989548921585083,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5891613750136457
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995148181915283,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.589581582986284
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_ru_149",
+      "condition": "clean",
+      "time_s": 1.7695072920178063,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.9989995360374451,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.590983750007581
+      },
+      "3s": {
+        "pred": "ru",
+        "conf": 0.999408483505249,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5889995830366388
+      },
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995404481887817,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5895139999920502
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "clean_he_150",
+      "condition": "clean",
+      "time_s": 1.768870290950872,
+      "1s": {
+        "pred": "he",
+        "conf": 0.911518394947052,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5902009590063244
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9947624802589417,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5890787090174854
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9945883750915527,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5895794579992071
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_151",
+      "condition": "clean",
+      "time_s": 1.7686817920184694,
+      "1s": {
+        "pred": "fr",
+        "conf": 0.31427237391471863,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5902261250303127
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9759266972541809,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5891364170238376
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9911121726036072,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5893099580425769
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_152",
+      "condition": "clean",
+      "time_s": 1.769557832973078,
+      "1s": {
+        "pred": "ar",
+        "conf": 0.5655789971351624,
+        "pred_en_ru_he": "en",
+        "time_s": 0.590417624975089
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.991611659526825,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5893553750356659
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9924929738044739,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5897767909918912
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_153",
+      "condition": "clean",
+      "time_s": 1.7695964999729767,
+      "1s": {
+        "pred": "es",
+        "conf": 0.405905544757843,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5901857500430197
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.3854619562625885,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5891583750490099
+      },
+      "full": {
+        "pred": "ar",
+        "conf": 0.888983964920044,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5902444589883089
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_154",
+      "condition": "clean",
+      "time_s": 1.7694892089930363,
+      "1s": {
+        "pred": "he",
+        "conf": 0.9403389096260071,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5903747910051607
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9876267313957214,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5890764169744216
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9963088631629944,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5900284579838626
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_155",
+      "condition": "clean",
+      "time_s": 1.7684830839862116,
+      "1s": {
+        "pred": "he",
+        "conf": 0.9828352332115173,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5899842500220984
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9946531057357788,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5893988750176504
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9954373240470886,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5890922920079902
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_156",
+      "condition": "clean",
+      "time_s": 1.7680172079708427,
+      "1s": {
+        "pred": "he",
+        "conf": 0.9918694496154785,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5893959160312079
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9953676462173462,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5891087090130895
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.995648205280304,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5895044999779202
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_157",
+      "condition": "clean",
+      "time_s": 1.768637333996594,
+      "1s": {
+        "pred": "pl",
+        "conf": 0.20373816788196564,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5899043749668635
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.992324948310852,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5890132919885218
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9962600469589233,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5897117920103483
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_158",
+      "condition": "clean",
+      "time_s": 1.7697222919669002,
+      "1s": {
+        "pred": "ar",
+        "conf": 0.9671206474304199,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5909409590531141
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9922780990600586,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5890557499951683
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9943483471870422,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5897170840180479
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_159",
+      "condition": "clean",
+      "time_s": 1.7696071669925004,
+      "1s": {
+        "pred": "en",
+        "conf": 0.3944457769393921,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5907379999989644
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.6100254058837891,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5893115000217222
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9788237810134888,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5895473750424571
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_160",
+      "condition": "clean",
+      "time_s": 1.7675758330151439,
+      "1s": {
+        "pred": "he",
+        "conf": 0.957822859287262,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5890548339812085
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9896379709243774,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5893677090061828
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9956861734390259,
+        "pred_en_ru_he": "he",
+        "time_s": 0.589144249970559
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_161",
+      "condition": "clean",
+      "time_s": 1.7701070830225945,
+      "1s": {
+        "pred": "de",
+        "conf": 0.30137449502944946,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5906479170080274
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9938952326774597,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5889594170148484
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9940723776817322,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5904891249956563
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_162",
+      "condition": "clean",
+      "time_s": 1.7696189159760252,
+      "1s": {
+        "pred": "ar",
+        "conf": 0.9789808392524719,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5907580829807557
+      },
+      "3s": {
+        "pred": "ar",
+        "conf": 0.78855299949646,
+        "pred_en_ru_he": "en",
+        "time_s": 0.5892194170155562
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9947019219398499,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5896305000060238
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_163",
+      "condition": "clean",
+      "time_s": 1.7686686250381172,
+      "1s": {
+        "pred": "he",
+        "conf": 0.9903824925422668,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5902152080088854
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9904622435569763,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5889627080177888
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9961385130882263,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5894801670219749
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_164",
+      "condition": "clean",
+      "time_s": 1.7687470000237226,
+      "1s": {
+        "pred": "he",
+        "conf": 0.9652404189109802,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5897727079573087
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9877724051475525,
+        "pred_en_ru_he": "he",
+        "time_s": 0.589525249961298
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9949394464492798,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5894413329660892
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_165",
+      "condition": "clean",
+      "time_s": 1.7685722089954652,
+      "1s": {
+        "pred": "ro",
+        "conf": 0.42642930150032043,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.5899924580007792
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.5569057464599609,
+        "pred_en_ru_he": "he",
+        "time_s": 0.5890844580135308
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9959281086921692,
+        "pred_en_ru_he": "he",
+        "time_s": 0.589487207995262
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_166",
+      "condition": "clean",
+      "time_s": 2.069599917042069,
+      "1s": {
+        "pred": "ru",
+        "conf": 0.44287168979644775,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.625925416010432
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.4635047912597656,
+        "pred_en_ru_he": "he",
+        "time_s": 0.7228937910404056
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9894475936889648,
+        "pred_en_ru_he": "he",
+        "time_s": 0.7207715410040691
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_167",
+      "condition": "clean",
+      "time_s": 2.036637332988903,
+      "1s": {
+        "pred": "he",
+        "conf": 0.9304684996604919,
+        "pred_en_ru_he": "he",
+        "time_s": 0.7321382079971954
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9876153469085693,
+        "pred_en_ru_he": "he",
+        "time_s": 0.6533572920016013
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.994572103023529,
+        "pred_en_ru_he": "he",
+        "time_s": 0.65113074996043
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_168",
+      "condition": "clean",
+      "time_s": 1.9466199580347165,
+      "1s": {
+        "pred": "he",
+        "conf": 0.86384516954422,
+        "pred_en_ru_he": "he",
+        "time_s": 0.6456673329812475
+      },
+      "3s": {
+        "pred": "he",
+        "conf": 0.9786347150802612,
+        "pred_en_ru_he": "he",
+        "time_s": 0.6523820000002161
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9921838641166687,
+        "pred_en_ru_he": "he",
+        "time_s": 0.6485552920494229
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "clean_he_169",
+      "condition": "clean",
+      "time_s": 1.9464560000342317,
+      "1s": {
+        "pred": "pt",
+        "conf": 0.7977756857872009,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6466385000385344
+      },
+      "3s": {
+        "pred": "en",
+        "conf": 0.20308004319667816,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6484130829921924
+      },
+      "full": {
+        "pred": "he",
+        "conf": 0.9623886942863464,
+        "pred_en_ru_he": "he",
+        "time_s": 0.6513901670114137
+      },
+      "language": "he"
+    },
+    {
+      "clip_id": "pad_zero_00",
+      "condition": "pad_zero",
+      "time_s": 0.6348686250275932,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999309778213501,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6348533749696799
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_floor_00",
+      "condition": "pad_floor",
+      "time_s": 0.6466980829718523,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998503923416138,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6466875830083154
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr0_00",
+      "condition": "music_snr0",
+      "time_s": 0.6457028340082616,
+      "full": {
+        "pred": "en",
+        "conf": 0.999645471572876,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6456924169906415
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr10_00",
+      "condition": "music_snr10",
+      "time_s": 0.6458896250114776,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998519420623779,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6458793329657055
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr0_00",
+      "condition": "noise_snr0",
+      "time_s": 0.646299249958247,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999241828918457,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6462879169848748
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr5_00",
+      "condition": "noise_snr5",
+      "time_s": 0.6443240420194343,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998500347137451,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6443149579572491
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr10_00",
+      "condition": "noise_snr10",
+      "time_s": 0.6797350830165669,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999114274978638,
+        "pred_en_ru_he": "en",
+        "time_s": 0.679728040995542
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_zero_01",
+      "condition": "pad_zero",
+      "time_s": 0.6597662919666618,
+      "full": {
+        "pred": "en",
+        "conf": 0.9997604489326477,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6597566669806838
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_floor_01",
+      "condition": "pad_floor",
+      "time_s": 0.6634802499902435,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998375177383423,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6634692500228994
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr0_01",
+      "condition": "music_snr0",
+      "time_s": 0.6509285420179367,
+      "full": {
+        "pred": "en",
+        "conf": 0.9988492727279663,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6509177080006339
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr10_01",
+      "condition": "music_snr10",
+      "time_s": 0.6485078750411049,
+      "full": {
+        "pred": "en",
+        "conf": 0.9992244243621826,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6484949169680476
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr0_01",
+      "condition": "noise_snr0",
+      "time_s": 0.6480469580274075,
+      "full": {
+        "pred": "en",
+        "conf": 0.9836580157279968,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6480373340309598
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr5_01",
+      "condition": "noise_snr5",
+      "time_s": 0.6490402499912307,
+      "full": {
+        "pred": "en",
+        "conf": 0.9996441602706909,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6490242080180906
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr10_01",
+      "condition": "noise_snr10",
+      "time_s": 0.6465442089829594,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998579025268555,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6465310410130769
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_zero_02",
+      "condition": "pad_zero",
+      "time_s": 0.6509962920099497,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998927116394043,
+        "pred_en_ru_he": "en",
+        "time_s": 0.650988417037297
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_floor_02",
+      "condition": "pad_floor",
+      "time_s": 0.6422143750241958,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998703002929688,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6422083330107853
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr0_02",
+      "condition": "music_snr0",
+      "time_s": 0.643436708021909,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998278617858887,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6434315409860574
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr10_02",
+      "condition": "music_snr10",
+      "time_s": 0.6458671659929678,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998674392700195,
+        "pred_en_ru_he": "en",
+        "time_s": 0.645861666998826
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr0_02",
+      "condition": "noise_snr0",
+      "time_s": 0.6473422920098528,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999034404754639,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6473381249816157
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr5_02",
+      "condition": "noise_snr5",
+      "time_s": 0.6452195000019856,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998812675476074,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6452148749958724
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr10_02",
+      "condition": "noise_snr10",
+      "time_s": 0.6451148749911226,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998891353607178,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6451102499850094
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_zero_03",
+      "condition": "pad_zero",
+      "time_s": 0.6489829999627545,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999170303344727,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6489765829755925
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_floor_03",
+      "condition": "pad_floor",
+      "time_s": 0.6494037499651313,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999260902404785,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6493986250134185
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr0_03",
+      "condition": "music_snr0",
+      "time_s": 0.6465996660408564,
+      "full": {
+        "pred": "en",
+        "conf": 0.9996966123580933,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6465949999983422
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr10_03",
+      "condition": "music_snr10",
+      "time_s": 0.6461552500259131,
+      "full": {
+        "pred": "en",
+        "conf": 0.9997547268867493,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6461502910242416
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr0_03",
+      "condition": "noise_snr0",
+      "time_s": 0.646312750002835,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999305009841919,
+        "pred_en_ru_he": "en",
+        "time_s": 0.646304499998223
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr5_03",
+      "condition": "noise_snr5",
+      "time_s": 0.646379791025538,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999414682388306,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6463661669986323
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr10_03",
+      "condition": "noise_snr10",
+      "time_s": 0.6461908749770373,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999483823776245,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6461813749629073
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_zero_04",
+      "condition": "pad_zero",
+      "time_s": 0.6476786249550059,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999231100082397,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6476680419873446
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_floor_04",
+      "condition": "pad_floor",
+      "time_s": 0.6316967500024475,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999368190765381,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6316750000114553
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr0_04",
+      "condition": "music_snr0",
+      "time_s": 0.6443858749698848,
+      "full": {
+        "pred": "en",
+        "conf": 0.9988210797309875,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6443723340053111
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr10_04",
+      "condition": "music_snr10",
+      "time_s": 0.6448178330319934,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998934268951416,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6448021659743972
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr0_04",
+      "condition": "noise_snr0",
+      "time_s": 0.6443574159638956,
+      "full": {
+        "pred": "en",
+        "conf": 0.999747097492218,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6443407500046305
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr5_04",
+      "condition": "noise_snr5",
+      "time_s": 0.6472159579861909,
+      "full": {
+        "pred": "en",
+        "conf": 0.9999041557312012,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6472034169710241
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr10_04",
+      "condition": "noise_snr10",
+      "time_s": 0.6424732089508325,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998883008956909,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6424610000103712
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_zero_05",
+      "condition": "pad_zero",
+      "time_s": 0.6481052080052905,
+      "full": {
+        "pred": "en",
+        "conf": 0.9997237324714661,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6480920830508694
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_floor_05",
+      "condition": "pad_floor",
+      "time_s": 0.631488665996585,
+      "full": {
+        "pred": "en",
+        "conf": 0.9995456337928772,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6314753749757074
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr0_05",
+      "condition": "music_snr0",
+      "time_s": 0.6461645409581251,
+      "full": {
+        "pred": "en",
+        "conf": 0.9997503161430359,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6461379579850473
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr10_05",
+      "condition": "music_snr10",
+      "time_s": 0.6477292089839466,
+      "full": {
+        "pred": "en",
+        "conf": 0.9995612502098083,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6477144579985179
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr0_05",
+      "condition": "noise_snr0",
+      "time_s": 0.6475446670083329,
+      "full": {
+        "pred": "en",
+        "conf": 0.9997925162315369,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6475342910271138
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr5_05",
+      "condition": "noise_snr5",
+      "time_s": 0.6460525000002235,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998937845230103,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6460380830103531
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr10_05",
+      "condition": "noise_snr10",
+      "time_s": 0.6442433339543641,
+      "full": {
+        "pred": "en",
+        "conf": 0.9997853636741638,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6442292089923285
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_zero_06",
+      "condition": "pad_zero",
+      "time_s": 0.6447088749846444,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998964071273804,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6446986250230111
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_floor_06",
+      "condition": "pad_floor",
+      "time_s": 0.6483676659991033,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998606443405151,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6483548749820329
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr0_06",
+      "condition": "music_snr0",
+      "time_s": 0.6466543329879642,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998194575309753,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6466378339682706
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "music_snr10_06",
+      "condition": "music_snr10",
+      "time_s": 0.646373333001975,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998571872711182,
+        "pred_en_ru_he": "en",
+        "time_s": 0.646362625004258
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr0_06",
+      "condition": "noise_snr0",
+      "time_s": 0.647053666994907,
+      "full": {
+        "pred": "en",
+        "conf": 0.9995197057723999,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6470444580190815
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr5_06",
+      "condition": "noise_snr5",
+      "time_s": 0.6464206249802373,
+      "full": {
+        "pred": "en",
+        "conf": 0.9998953342437744,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6464150000247173
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "noise_snr10_06",
+      "condition": "noise_snr10",
+      "time_s": 0.6466169579653069,
+      "full": {
+        "pred": "en",
+        "conf": 0.9963498115539551,
+        "pred_en_ru_he": "en",
+        "time_s": 0.6466123749851249
+      },
+      "language": "en"
+    },
+    {
+      "clip_id": "pad_zero_07",
+      "condition": "pad_zero",
+      "time_s": 0.6489771669730544,
+      "full": {
+        "pred": "ru",
+        "conf": 0.999572217464447,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6489720829995349
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "pad_floor_07",
+      "condition": "pad_floor",
+      "time_s": 0.6467440830310807,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9996047616004944,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6467371250037104
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "music_snr0_07",
+      "condition": "music_snr0",
+      "time_s": 0.6473410410108045,
+      "full": {
+        "pred": "ru",
+        "conf": 0.999150276184082,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6473329159780405
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "music_snr10_07",
+      "condition": "music_snr10",
+      "time_s": 0.6473358339862898,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993757605552673,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6473264170344919
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "noise_snr0_07",
+      "condition": "noise_snr0",
+      "time_s": 0.6471742080175318,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995394945144653,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6471647080034018
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "noise_snr5_07",
+      "condition": "noise_snr5",
+      "time_s": 0.6443765419535339,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9996703863143921,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6443637909833342
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "noise_snr10_07",
+      "condition": "noise_snr10",
+      "time_s": 0.646530999976676,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9994598031044006,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.646516083041206
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "pad_zero_08",
+      "condition": "pad_zero",
+      "time_s": 0.6454077910166234,
+      "full": {
+        "pred": "ru",
+        "conf": 0.998916506767273,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6453984589898027
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "pad_floor_08",
+      "condition": "pad_floor",
+      "time_s": 0.6521410000277683,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9995206594467163,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6521310830139555
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "music_snr0_08",
+      "condition": "music_snr0",
+      "time_s": 0.6455939169973135,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9268373250961304,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.645583791017998
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "music_snr10_08",
+      "condition": "music_snr10",
+      "time_s": 0.6467905419995077,
+      "full": {
+        "pred": "ru",
+        "conf": 0.991465151309967,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6467805000138469
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "noise_snr0_08",
+      "condition": "noise_snr0",
+      "time_s": 0.6455791250336915,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9993084669113159,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6455673750024289
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "noise_snr5_08",
+      "condition": "noise_snr5",
+      "time_s": 0.6458102089818567,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9972625970840454,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6457972499774769
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "noise_snr10_08",
+      "condition": "noise_snr10",
+      "time_s": 0.6467257919721305,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9986976385116577,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6467143330373801
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "pad_zero_09",
+      "condition": "pad_zero",
+      "time_s": 0.6473561669699848,
+      "full": {
+        "pred": "ru",
+        "conf": 0.998889148235321,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6473468329641037
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "pad_floor_09",
+      "condition": "pad_floor",
+      "time_s": 0.6495980420149863,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9994544386863708,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6495851660147309
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "music_snr0_09",
+      "condition": "music_snr0",
+      "time_s": 0.647011749970261,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9948453903198242,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6469927920261398
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "music_snr10_09",
+      "condition": "music_snr10",
+      "time_s": 0.6468597080092877,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9984482526779175,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6468464170466177
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "noise_snr0_09",
+      "condition": "noise_snr0",
+      "time_s": 0.6464412090135738,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9952878952026367,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6464260829961859
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "noise_snr5_09",
+      "condition": "noise_snr5",
+      "time_s": 0.6460058750235476,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9951731562614441,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6459935829625465
+      },
+      "language": "ru"
+    },
+    {
+      "clip_id": "noise_snr10_09",
+      "condition": "noise_snr10",
+      "time_s": 0.6475763330236077,
+      "full": {
+        "pred": "ru",
+        "conf": 0.9975895881652832,
+        "pred_en_ru_he": "ru",
+        "time_s": 0.6475638329866342
+      },
+      "language": "ru"
+    }
+  ],
+  "component": "lid",
+  "candidate": "whisper_turbo",
+  "peak_rss_mb": 1847.34375,
+  "mlx_peak_mb": 2379.136709213257,
+  "wall_s": 351.2402542500058,
+  "env": {
+    "python": "3.12.16",
+    "machine": "arm64",
+    "platform": "macOS-27.2.1-arm64-arm-64bit",
+    "cpu": "Apple M1 Pro",
+    "mem_gb": 32.0,
+    "packages": {
+      "torch": "2.15.0",
+      "torchaudio": "2.11.1",
+      "silero-vad": "6.3",
+      "webrtcvad-wheels": "2.0.14.post1",
+      "speechbrain": "1.1.2",
+      "transformers": "5.24.1",
+      "mlx": "0.32.5",
+      "mlx-audio": "0.6.8",
+      "mlx-whisper": "0.4.3",
+      "parakeet-mlx": "0.7.0",
+      "jiwer": "4.0.0"
+    }
+  }
+}

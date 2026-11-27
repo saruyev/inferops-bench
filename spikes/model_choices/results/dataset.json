@@ -1,0 +1,102 @@
+{
+  "seed": 20261127,
+  "sample_rate": 16000,
+  "n_clips": 264,
+  "clips_per_condition": {
+    "clean": 170,
+    "pad_zero": 10,
+    "pad_floor": 10,
+    "music_snr0": 10,
+    "music_snr10": 10,
+    "noise_snr0": 10,
+    "noise_snr5": 10,
+    "noise_snr10": 10,
+    "only_music": 8,
+    "only_noise": 8,
+    "only_zero": 4,
+    "only_floor": 4
+  },
+  "total_audio_s": 3062.018875,
+  "params": {
+    "speech_duration_s": [
+      3.0,
+      20.0
+    ],
+    "noise_floor_dbfs_rms": -60.0,
+    "pad_lead_tail_s": [
+      5.0,
+      20.0
+    ],
+    "nonspeech_duration_s": [
+      5.0,
+      30.0
+    ],
+    "nonspeech_level_dbfs_rms": -20.0,
+    "corruption_sources": [
+      "librispeech:4970-29095-0002",
+      "librispeech:7021-79759-0003",
+      "librispeech:1284-1181-0011",
+      "librispeech:8555-284447-0000",
+      "librispeech:1221-135767-0010",
+      "librispeech:1188-133604-0037",
+      "librispeech:2300-131720-0015",
+      "fleurs_ru:1984:17852357297340585600.wav",
+      "fleurs_ru:1847:300029084780656442.wav",
+      "fleurs_ru:1758:3856597593993028555.wav"
+    ]
+  },
+  "ground_truth": "Original utterances count as speech end to end (internal pauses included); padded regions, music-only, noise-only and silence clips are non-speech. music_present / noise_present mark an added music or noise bed; the -60 dBFS noise floor is not counted as noise.",
+  "sources": {
+    "librispeech_test_clean": {
+      "url": "https://huggingface.co/datasets/openslr/librispeech_asr/resolve/main/clean/test/0000.parquet",
+      "local": "librispeech/test-clean.parquet",
+      "homepage": "https://www.openslr.org/12/",
+      "mirror": "https://huggingface.co/datasets/openslr/librispeech_asr",
+      "license": "CC-BY-4.0",
+      "note": "openslr.org mirror ran at ~80 KB/s, so the identical HF parquet was used."
+    },
+    "fleurs_ru_test": {
+      "url": "https://huggingface.co/datasets/google/fleurs/resolve/main/data/ru_ru/audio/test.tar.gz",
+      "tsv": "https://huggingface.co/datasets/google/fleurs/resolve/main/data/ru_ru/test.tsv",
+      "local": "fleurs/ru_ru/test.tar.gz",
+      "homepage": "https://huggingface.co/datasets/google/fleurs",
+      "license": "CC-BY-4.0"
+    },
+    "fleurs_he_test": {
+      "url": "https://huggingface.co/datasets/google/fleurs/resolve/main/data/he_il/audio/test.tar.gz",
+      "tsv": "https://huggingface.co/datasets/google/fleurs/resolve/main/data/he_il/test.tsv",
+      "local": "fleurs/he_il/test.tar.gz",
+      "homepage": "https://huggingface.co/datasets/google/fleurs",
+      "license": "CC-BY-4.0"
+    },
+    "musan_noise": {
+      "url": "https://huggingface.co/datasets/Akiki-AI/akiki-vad-silero623-v1-musan-noise/resolve/main/data/musan_noise/train-00000.parquet",
+      "local": "musan_hf/noise/train.parquet",
+      "homepage": "https://www.openslr.org/17/",
+      "mirror": "https://huggingface.co/datasets/Akiki-AI/akiki-vad-silero623-v1-musan-noise",
+      "license": "CC-BY-4.0 (per-recording audio_license field; MUSAN noise subset)",
+      "note": "Partial MUSAN mirror (104 of 930 noise recordings, original audio, 16 kHz). Full MUSAN is an 11 GB tarball; only the audio column is used."
+    },
+    "musan_music_cc_by_3": {
+      "url": "https://huggingface.co/datasets/Akiki-AI/akiki-vad-silero623-v1-musan-music-cc-by-3.0/resolve/main/data/musan_music/train-00000.parquet",
+      "local": "musan_hf/music_by3/train.parquet",
+      "homepage": "https://www.openslr.org/17/",
+      "mirror": "https://huggingface.co/datasets/Akiki-AI/akiki-vad-silero623-v1-musan-music-cc-by-3.0",
+      "license": "CC-BY-3.0 (per-recording; MUSAN music, documented instrumental)"
+    },
+    "musan_music_cc_by_sa_3": {
+      "url": "https://huggingface.co/datasets/Akiki-AI/akiki-vad-silero623-v1-musan-music-cc-by-sa-3.0/resolve/main/data/musan_music/train-00000.parquet",
+      "local": "musan_hf/music_bysa3/train.parquet",
+      "homepage": "https://www.openslr.org/17/",
+      "mirror": "https://huggingface.co/datasets/Akiki-AI/akiki-vad-silero623-v1-musan-music-cc-by-sa-3.0",
+      "license": "CC-BY-SA-3.0 (per-recording; MUSAN music, documented instrumental)"
+    },
+    "audioset_ontology": {
+      "url": "https://raw.githubusercontent.com/audioset/ontology/master/ontology.json",
+      "local": "audioset/ontology.json",
+      "homepage": "https://github.com/audioset/ontology",
+      "license": "CC-BY-SA-4.0",
+      "note": "Used only to build the music / noise / speech class mapping."
+    }
+  }
+}
