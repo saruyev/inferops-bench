@@ -7,7 +7,7 @@ so a broken manifest fails at once with every problem listed, not halfway throug
 
 import csv
 import json
-from collections.abc import Iterator, Mapping
+from collections.abc import Callable, Iterator, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal, Protocol
@@ -19,6 +19,9 @@ from paribus.engine.types import MetaValue, SampleRecord
 type TimeUnit = Literal["s", "ms"]
 type MetaType = Literal["str", "int", "float", "bool"]
 type RawRow = dict[str, Any]
+# A reader yields (line number, raw line content); a parser turns that content into a RawRow.
+type Reader = Callable[[Path], Iterator[tuple[int, Any]]]
+type Parser = Callable[[Any], RawRow]
 
 # Stop collecting problems after this many; the rest of the file is still not trusted.
 MAX_ISSUES = 20
@@ -90,13 +93,14 @@ class ManifestSource:
         meta_types: Mapping[str, MetaType] | None = None,
     ) -> None:
         """Store the settings; the file is read only when `records()` is called."""
-        if path.suffix not in (".jsonl", ".csv"):
+        if path.suffix not in _FORMATS:
             raise ValueError(f"manifest must be .jsonl or .csv, got {path.name}")
         self.path = path
         self.license = license
         self.name = name or path.stem
         self.time_unit = time_unit
         self.meta_types = dict(meta_types or {})
+        self._read, self._parse = _FORMATS[path.suffix]
 
     def records(self) -> Iterator[SampleRecord]:
         """Validate the whole manifest, then yield its records in file order.
@@ -104,45 +108,32 @@ class ManifestSource:
         Raises:
             ManifestError: If any line is invalid, an id repeats or an audio file is missing.
         """
-        rows = _read_csv(self.path) if self.path.suffix == ".csv" else _read_jsonl(self.path)
-        records, issues = self._validate(rows)
+        records, issues = self._validate()
         if issues:
             raise ManifestError(self.path, issues[:MAX_ISSUES], len(issues) > MAX_ISSUES)
         yield from records
 
-    def _validate(
-        self, rows: Iterator[tuple[int, RawRow | ManifestIssue]]
-    ) -> tuple[list[SampleRecord], list[ManifestIssue]]:
-        """Turn raw rows into records, collecting problems instead of stopping at the first.
+    def _validate(self) -> tuple[list[SampleRecord], list[ManifestIssue]]:
+        """Read and check every line, collecting problems instead of stopping at the first.
 
-        Collection stops one problem past `MAX_ISSUES`, so the caller can tell the list
-        was cut short.
+        All problems take one path: parsing, conversion and schema validation raise, and
+        the error becomes an issue for that line. Collection stops one problem past
+        `MAX_ISSUES`, so the caller can tell the list was cut short.
         """
         records: list[SampleRecord] = []
         issues: list[ManifestIssue] = []
         first_line_of: dict[str, int] = {}
-        for line, row in rows:
+        for line, raw in self._read(self.path):
             if len(issues) > MAX_ISSUES:
                 break
-            if isinstance(row, ManifestIssue):
-                issues.append(row)
-                continue
             try:
-                record = self._to_record(row)
+                record = self._to_record(self._parse(raw))
             except (ValidationError, ValueError, TypeError) as error:
                 issues.append(ManifestIssue(line, _describe(error)))
                 continue
-            if record.id in first_line_of:
-                issues.append(
-                    ManifestIssue(
-                        line,
-                        f"duplicate id {record.id!r}, first on line {first_line_of[record.id]}",
-                    )
-                )
-                continue
-            first_line_of[record.id] = line
-            if not record.audio.is_file():
-                issues.append(ManifestIssue(line, f"audio file not found: {record.audio}"))
+            problem = _cross_record_problem(record, line, first_line_of)
+            if problem:
+                issues.append(ManifestIssue(line, problem))
                 continue
             records.append(record)
         return records, issues
@@ -157,41 +148,64 @@ class ManifestSource:
         return SampleRecord.model_validate(row)
 
 
-def _read_jsonl(path: Path) -> Iterator[tuple[int, RawRow | ManifestIssue]]:
-    """Yield (line number, parsed object) per non-blank line, or an issue if it is not JSON."""
+def _cross_record_problem(
+    record: SampleRecord, line: int, first_line_of: dict[str, int]
+) -> str | None:
+    """Return what is wrong with a valid record in the context of the file, if anything.
+
+    Checks what one record cannot check on its own: that its id is not taken by an earlier
+    line, and that its audio file exists. Records the id's first line in `first_line_of`.
+    """
+    if record.id in first_line_of:
+        return f"duplicate id {record.id!r}, first on line {first_line_of[record.id]}"
+    first_line_of[record.id] = line
+    if not record.audio.is_file():
+        return f"audio file not found: {record.audio}"
+    return None
+
+
+def _read_jsonl_lines(path: Path) -> Iterator[tuple[int, str]]:
+    """Yield (line number, text) for every non-blank line; parsing is left to the caller."""
     with path.open(encoding="utf-8") as lines:
         for number, text in enumerate(lines, start=1):
-            if not text.strip():
-                continue
-            try:
-                value = json.loads(text)
-            except json.JSONDecodeError as error:
-                yield number, ManifestIssue(number, f"not valid JSON: {error.msg}")
-                continue
-            if not isinstance(value, dict):
-                yield number, ManifestIssue(number, "each line must be a JSON object")
-                continue
-            yield number, value
+            if text.strip():
+                yield number, text
 
 
-def _read_csv(path: Path) -> Iterator[tuple[int, RawRow | ManifestIssue]]:
-    """Yield (line number, row in `SampleRecord` shape) per CSV data row.
+def _parse_jsonl_line(text: str) -> RawRow:
+    """Parse one JSONL line into a dict.
 
-    Empty cells are dropped, `meta.<key>` columns are gathered into `meta`, and
-    `output_text` becomes a transcript with text only. The line number is where the row
-    ends, which differs from its start only for quoted multi-line cells.
+    Raises:
+        ValueError: If the line is not JSON or not a JSON object.
+    """
+    try:
+        value = json.loads(text)
+    except json.JSONDecodeError as error:
+        raise ValueError(f"not valid JSON: {error.msg}") from None
+    if not isinstance(value, dict):
+        raise ValueError("each line must be a JSON object")
+    return value
+
+
+def _read_csv_rows(path: Path) -> Iterator[tuple[int, dict[str | None, Any]]]:
+    """Yield (line number, cells by column) for every CSV data row.
+
+    The line number is where the row ends, which differs from its start only for quoted
+    cells that contain line breaks.
     """
     with path.open(encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
         for cells in reader:
-            yield reader.line_num, _csv_row_to_record_shape(cells)
+            yield reader.line_num, cells
 
 
 def _csv_row_to_record_shape(cells: Mapping[str | None, str | list[str] | None]) -> RawRow:
     """Map one CSV row to the nested shape `SampleRecord` expects.
 
-    Extra cells beyond the header (DictReader puts them under the key None) are kept under
-    an invalid key so that validation reports them instead of silently dropping them.
+    Empty cells are dropped, `meta.<key>` columns are gathered into `meta`, and
+    `output_text` becomes a transcript with text only. Extra cells beyond the header
+    (DictReader puts them under the key None) are kept under an invalid key, so that
+    validation reports them instead of silently dropping them.
     """
     row: RawRow = {}
     meta: dict[str, str] = {}
@@ -209,6 +223,12 @@ def _csv_row_to_record_shape(cells: Mapping[str | None, str | list[str] | None])
     if meta:
         row["meta"] = meta
     return row
+
+
+_FORMATS: dict[str, tuple[Reader, Parser]] = {
+    ".jsonl": (_read_jsonl_lines, _parse_jsonl_line),
+    ".csv": (_read_csv_rows, _csv_row_to_record_shape),
+}
 
 
 def _scale_times(row: RawRow, factor: float) -> RawRow:
