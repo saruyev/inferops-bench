@@ -1,8 +1,10 @@
 """Data loading: sources of sample records, starting with JSONL/CSV manifests.
 
-A source yields `SampleRecord`s. `ManifestSource` reads a manifest file the user (or a
-dataset builder) wrote. The whole file is validated before the first record is yielded,
-so a broken manifest fails at once with every problem listed, not halfway through a run.
+A source yields `SampleRecord`s and is built from one config object; the config models
+validate what users write in YAML, so a typo in a key fails like a typo in a manifest.
+`ManifestSource` reads a manifest file the user (or a dataset builder) wrote. The whole
+file is validated before the first record is yielded, so a broken manifest fails at once
+with every problem listed, not halfway through a run.
 """
 
 import csv
@@ -12,7 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal, Protocol
 
-from pydantic import ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from paribus.engine.types import MetaValue, SampleRecord
 
@@ -43,25 +45,60 @@ class Source(Protocol):
 
 
 @dataclass(frozen=True)
-class ManifestIssue:
-    """One problem found in a manifest, with the 1-based line it was found on."""
+class SourceIssue:
+    """One problem found in a source.
 
-    line: int
+    `where` points at it: `file:line` for a manifest, the file path for a folder.
+    """
+
+    where: str
     message: str
 
 
-class ManifestError(ValueError):
-    """A manifest failed validation; `issues` lists every problem found (up to a cap)."""
+class SourceError(ValueError):
+    """A source failed validation; `issues` lists every problem found (up to a cap)."""
 
-    def __init__(self, path: Path, issues: list[ManifestIssue], truncated: bool) -> None:
+    def __init__(self, source: str, issues: list[SourceIssue], truncated: bool) -> None:
         """Build the error message from the issues, one per line."""
-        self.path = path
+        self.source = source
         self.issues = issues
         self.truncated = truncated
-        lines = [f"{path}:{issue.line}: {issue.message}" for issue in issues]
+        lines = [f"{issue.where}: {issue.message}" for issue in issues]
         if truncated:
             lines.append(f"... stopped after {len(issues)} problems")
-        super().__init__("invalid manifest\n" + "\n".join(lines))
+        super().__init__(f"invalid source {source!r}\n" + "\n".join(lines))
+
+
+class SourceConfig(BaseModel):
+    """Settings every source has: its type, the license of its data and an optional name.
+
+    `license` is required on purpose: every dataset paribus touches says under which terms,
+    and `private` marks the user's own data, which never leaves their machine.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    type: str
+    license: str = Field(min_length=1)
+    name: str | None = None
+
+
+class ManifestConfig(SourceConfig):
+    """Settings of a `.jsonl` or `.csv` manifest source.
+
+    Attributes:
+        path: The manifest file; its suffix picks the format.
+        time_unit: Unit of every time in the file (offset, speech segments, transcript
+            timestamps). Records always come out in seconds.
+        meta_types: Declared types of metadata keys. Values of declared keys are parsed
+            (from CSV text) or checked (in JSONL); undeclared keys stay as they are, which
+            in CSV means strings.
+    """
+
+    type: Literal["manifest"] = "manifest"
+    path: Path
+    time_unit: TimeUnit = "s"
+    meta_types: dict[str, MetaType] = Field(default_factory=dict)
 
 
 class ManifestSource:
@@ -71,49 +108,34 @@ class ManifestSource:
     `output` transcript. CSV is flat: the record's scalar fields as columns, metadata as
     `meta.<key>` columns, and the pipeline's output text as `output_text`; an empty cell
     means "not set". Relative audio paths are resolved against the manifest's folder.
-
-    Args:
-        path: The manifest file; its suffix picks the format.
-        license: License of the data, e.g. `CC-BY-4.0`, or `private` for the user's own.
-        name: Name of the source; defaults to the file name without its suffix.
-        time_unit: Unit of every time in the file (offset, speech segments, transcript
-            timestamps). Records always come out in seconds.
-        meta_types: Declared types of metadata keys. Values of declared keys are parsed
-            (from CSV text) or checked (in JSONL); undeclared keys stay as they are, which
-            in CSV means strings.
+    The source is named after the file (without suffix) unless the config names it.
     """
 
-    def __init__(
-        self,
-        path: Path,
-        *,
-        license: str,
-        name: str | None = None,
-        time_unit: TimeUnit = "s",
-        meta_types: Mapping[str, MetaType] | None = None,
-    ) -> None:
-        """Store the settings; the file is read only when `records()` is called."""
-        if path.suffix not in _FORMATS:
-            raise ValueError(f"manifest must be .jsonl or .csv, got {path.name}")
-        self.path = path
-        self.license = license
-        self.name = name or path.stem
-        self.time_unit = time_unit
-        self.meta_types = dict(meta_types or {})
-        self._read, self._parse = _FORMATS[path.suffix]
+    def __init__(self, config: ManifestConfig) -> None:
+        """Keep the config; the file is read only when `records()` is called.
+
+        Raises:
+            ValueError: If the file is neither `.jsonl` nor `.csv`.
+        """
+        if config.path.suffix not in _FORMATS:
+            raise ValueError(f"manifest must be .jsonl or .csv, got {config.path.name}")
+        self.config = config
+        self.name = config.name or config.path.stem
+        self.license = config.license
+        self._read, self._parse = _FORMATS[config.path.suffix]
 
     def records(self) -> Iterator[SampleRecord]:
         """Validate the whole manifest, then yield its records in file order.
 
         Raises:
-            ManifestError: If any line is invalid, an id repeats or an audio file is missing.
+            SourceError: If any line is invalid, an id repeats or an audio file is missing.
         """
         records, issues = self._validate()
         if issues:
-            raise ManifestError(self.path, issues[:MAX_ISSUES], len(issues) > MAX_ISSUES)
+            raise SourceError(self.name, issues[:MAX_ISSUES], len(issues) > MAX_ISSUES)
         yield from records
 
-    def _validate(self) -> tuple[list[SampleRecord], list[ManifestIssue]]:
+    def _validate(self) -> tuple[list[SampleRecord], list[SourceIssue]]:
         """Read and check every line, collecting problems instead of stopping at the first.
 
         All problems take one path: parsing, conversion and schema validation raise, and
@@ -121,30 +143,31 @@ class ManifestSource:
         `MAX_ISSUES`, so the caller can tell the list was cut short.
         """
         records: list[SampleRecord] = []
-        issues: list[ManifestIssue] = []
+        issues: list[SourceIssue] = []
         first_line_of: dict[str, int] = {}
-        for line, raw in self._read(self.path):
+        for line, raw in self._read(self.config.path):
             if len(issues) > MAX_ISSUES:
                 break
+            where = f"{self.config.path}:{line}"
             try:
                 record = self._to_record(self._parse(raw))
             except (ValidationError, ValueError, TypeError) as error:
-                issues.append(ManifestIssue(line, _describe(error)))
+                issues.append(SourceIssue(where, _describe(error)))
                 continue
             problem = _cross_record_problem(record, line, first_line_of)
             if problem:
-                issues.append(ManifestIssue(line, problem))
+                issues.append(SourceIssue(where, problem))
                 continue
             records.append(record)
         return records, issues
 
     def _to_record(self, row: RawRow) -> SampleRecord:
         """Apply unit conversion, metadata types and path resolution, then validate."""
-        row = _scale_times(row, _TIME_FACTORS[self.time_unit])
+        row = _scale_times(row, _TIME_FACTORS[self.config.time_unit])
         if "meta" in row:
-            row["meta"] = _coerce_meta(row["meta"], self.meta_types)
+            row["meta"] = _coerce_meta(row["meta"], self.config.meta_types)
         if "audio" in row:
-            row["audio"] = _resolve(Path(row["audio"]), self.path.parent)
+            row["audio"] = _resolve(Path(row["audio"]), self.config.path.parent)
         return SampleRecord.model_validate(row)
 
 

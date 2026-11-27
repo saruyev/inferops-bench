@@ -2,10 +2,12 @@
 
 import json
 from pathlib import Path
+from typing import Any
 
 import pytest
+from pydantic import ValidationError
 
-from paribus.engine.data import MAX_ISSUES, ManifestError, ManifestSource
+from paribus.engine.data import MAX_ISSUES, ManifestConfig, ManifestSource, SourceError
 
 
 def _audio(folder: Path, *names: str) -> None:
@@ -23,20 +25,26 @@ def _jsonl(path: Path, *rows: dict[str, object] | str) -> Path:
     return path
 
 
-def _issues(error: pytest.ExceptionInfo[ManifestError]) -> list[tuple[int, str]]:
-    """The (line, message) pairs of a ManifestError, for compact assertions."""
-    return [(issue.line, issue.message) for issue in error.value.issues]
+def _source(path: Path, **settings: Any) -> ManifestSource:
+    """A manifest source for `path` with license `private` unless overridden."""
+    return ManifestSource(ManifestConfig(path=path, **{"license": "private", **settings}))
+
+
+def _issues(error: pytest.ExceptionInfo[SourceError]) -> list[tuple[int, str]]:
+    """The (line, message) pairs of a SourceError on a manifest, for compact assertions."""
+    return [(int(issue.where.rsplit(":", 1)[1]), issue.message) for issue in error.value.issues]
 
 
 def test_unsupported_suffix_is_rejected(tmp_path: Path) -> None:
     """Only .jsonl and .csv are manifests."""
     with pytest.raises(ValueError, match=r"\.jsonl or \.csv"):
-        ManifestSource(tmp_path / "data.json", license="private")
+        _source(tmp_path / "data.json")
 
 
 def test_name_defaults_to_file_stem(tmp_path: Path) -> None:
     """Without an explicit name the source is named after its file."""
-    assert ManifestSource(tmp_path / "calls.jsonl", license="private").name == "calls"
+    assert _source(tmp_path / "calls.jsonl").name == "calls"
+    assert _source(tmp_path / "calls.jsonl", name="prod").name == "prod"
 
 
 def test_jsonl_records_come_out_in_order_with_resolved_paths(tmp_path: Path) -> None:
@@ -51,7 +59,7 @@ def test_jsonl_records_come_out_in_order_with_resolved_paths(tmp_path: Path) -> 
         {"id": "2", "audio": str(absolute)},
     )
 
-    records = list(ManifestSource(manifest, license="CC-BY-4.0").records())
+    records = list(_source(manifest, license="CC-BY-4.0").records())
 
     assert [r.id for r in records] == ["1", "2"]
     assert records[0].audio == (tmp_path / "a/1.wav").resolve()
@@ -74,7 +82,7 @@ def test_jsonl_keeps_a_nested_transcript(tmp_path: Path) -> None:
     }
     manifest = _jsonl(tmp_path / "m.jsonl", {"id": "1", "audio": "1.wav", "output": output})
 
-    (record,) = ManifestSource(manifest, license="private").records()
+    (record,) = _source(manifest).records()
 
     assert record.output is not None
     assert record.output.segments is not None
@@ -105,7 +113,7 @@ def test_milliseconds_are_converted_to_seconds(tmp_path: Path) -> None:
     }
     manifest = _jsonl(tmp_path / "m.jsonl", row)
 
-    (record,) = ManifestSource(manifest, license="private", time_unit="ms").records()
+    (record,) = _source(manifest, time_unit="ms").records()
 
     assert record.offset == 30.0
     assert record.speech_segments == [(0.0, 1.5)]
@@ -126,7 +134,7 @@ def test_csv_maps_flat_columns_meta_and_output_text(tmp_path: Path) -> None:
         encoding="utf-8",
     )
 
-    first, second = ManifestSource(manifest, license="private").records()
+    first, second = _source(manifest).records()
 
     assert first.channel == 0
     assert first.output is not None and first.output.text == "hello"
@@ -142,11 +150,7 @@ def test_csv_meta_types_are_parsed(tmp_path: Path) -> None:
         "id,audio,meta.agents,meta.score,meta.vip,meta.note\n1,1.wav,2,0.5,TRUE,7\n",
         encoding="utf-8",
     )
-    source = ManifestSource(
-        manifest,
-        license="private",
-        meta_types={"agents": "int", "score": "float", "vip": "bool"},
-    )
+    source = _source(manifest, meta_types={"agents": "int", "score": "float", "vip": "bool"})
 
     (record,) = source.records()
 
@@ -161,9 +165,9 @@ def test_csv_meta_value_that_does_not_parse_is_an_error(
     _audio(tmp_path, "1.wav")
     manifest = tmp_path / "m.csv"
     manifest.write_text(f"id,audio,meta.k\n1,1.wav,{value}\n", encoding="utf-8")
-    source = ManifestSource(manifest, license="private", meta_types={"k": meta_type})  # type: ignore[dict-item]
+    source = _source(manifest, meta_types={"k": meta_type})
 
-    with pytest.raises(ManifestError) as error:
+    with pytest.raises(SourceError) as error:
         list(source.records())
 
     assert _issues(error) == [(2, f"meta.k: {value!r} is not a valid {meta_type}")]
@@ -177,11 +181,9 @@ def test_jsonl_meta_types_are_checked(tmp_path: Path) -> None:
         {"id": "1", "audio": "1.wav", "meta": {"score": 1, "vip": False}},
         {"id": "2", "audio": "2.wav", "meta": {"score": 1, "vip": 0}},
     )
-    source = ManifestSource(
-        manifest, license="private", meta_types={"score": "float", "vip": "bool"}
-    )
+    source = _source(manifest, meta_types={"score": "float", "vip": "bool"})
 
-    with pytest.raises(ManifestError) as error:
+    with pytest.raises(SourceError) as error:
         list(source.records())
 
     assert _issues(error) == [(2, "meta.vip: 0 is not a valid bool")]
@@ -200,8 +202,8 @@ def test_problems_are_collected_with_line_numbers(tmp_path: Path) -> None:
         "[1, 2]",
     )
 
-    with pytest.raises(ManifestError) as error:
-        list(ManifestSource(manifest, license="private").records())
+    with pytest.raises(SourceError) as error:
+        list(_source(manifest).records())
 
     lines = [line for line, _ in _issues(error)]
     messages = [message for _, message in _issues(error)]
@@ -212,15 +214,15 @@ def test_problems_are_collected_with_line_numbers(tmp_path: Path) -> None:
     assert messages[3].startswith("audio file not found")
     assert messages[4] == "each line must be a JSON object"
     assert not error.value.truncated
-    assert f"{manifest}:2:" in str(error.value)
+    assert f"{manifest}:2: not valid JSON" in str(error.value)
 
 
 def test_issue_list_is_capped(tmp_path: Path) -> None:
     """A badly broken file reports the first MAX_ISSUES problems and says it stopped."""
     manifest = _jsonl(tmp_path / "m.jsonl", *["{bad"] * (MAX_ISSUES + 5))
 
-    with pytest.raises(ManifestError) as error:
-        list(ManifestSource(manifest, license="private").records())
+    with pytest.raises(SourceError) as error:
+        list(_source(manifest).records())
 
     assert len(error.value.issues) == MAX_ISSUES
     assert error.value.truncated
@@ -231,9 +233,9 @@ def test_nothing_is_yielded_from_an_invalid_manifest(tmp_path: Path) -> None:
     """Validation covers the whole file before the first record comes out."""
     _audio(tmp_path, "1.wav")
     manifest = _jsonl(tmp_path / "m.jsonl", {"id": "1", "audio": "1.wav"}, "{bad")
-    records = ManifestSource(manifest, license="private").records()
+    records = _source(manifest).records()
 
-    with pytest.raises(ManifestError):
+    with pytest.raises(SourceError):
         next(records)
 
 
@@ -243,7 +245,15 @@ def test_csv_extra_cells_are_reported(tmp_path: Path) -> None:
     manifest = tmp_path / "m.csv"
     manifest.write_text("id,audio\n1,1.wav,surprise\n", encoding="utf-8")
 
-    with pytest.raises(ManifestError) as error:
-        list(ManifestSource(manifest, license="private").records())
+    with pytest.raises(SourceError) as error:
+        list(_source(manifest).records())
 
     assert "Extra inputs are not permitted" in _issues(error)[0][1]
+
+
+def test_config_rejects_unknown_keys_and_empty_license(tmp_path: Path) -> None:
+    """Config typos fail like manifest typos, and a license must be declared."""
+    with pytest.raises(ValidationError):
+        ManifestConfig.model_validate({"path": "m.jsonl", "license": "x", "time_units": "ms"})
+    with pytest.raises(ValidationError):
+        ManifestConfig(path=tmp_path / "m.jsonl", license="")
