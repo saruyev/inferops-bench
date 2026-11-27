@@ -1,7 +1,7 @@
 [project]
-name = "inferops-bench"
+name = "paribus"
 version = "0.1.0"
-description = "Incident-investigation agent for simulated LLM inference infrastructure, plus a reproducible benchmark for it."
+description = "Find the input slices behind your ASR pipeline's hallucinations and costs, and prove every fix with a controlled experiment."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.13"
@@ -21,7 +21,7 @@ dependencies = [
 ]
 
 [project.scripts]
-inferops-bench = "inferops_bench.cli:app"
+paribus = "paribus.cli:app"
 
 [project.optional-dependencies]
 report = [
@@ -49,10 +49,10 @@ select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
 python_version = "3.13"
 strict = true
 mypy_path = "src"
-packages = ["inferops_bench"]
+packages = ["paribus"]
 
 [[tool.mypy.overrides]]
-module = "inferops_bench.agent.*"
+module = "paribus.agent.*"
 disallow_untyped_calls = false
 disallow_any_generics = false
 

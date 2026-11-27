@@ -2,4 +2,4 @@
 
 from importlib.metadata import version
 
-__version__ = version("inferops-bench")
+__version__ = version("paribus")

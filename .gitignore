@@ -222,7 +222,7 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# inferops-bench
+# paribus
 .env*
 .venv/
 results/*
