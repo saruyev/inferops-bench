@@ -22,10 +22,23 @@ _LEGACY_LANGUAGE_CODES = {"iw": "he", "ji": "yi", "in": "id", "jw": "jv"}
 
 
 class _Frozen(BaseModel):
+    """Base for all types here: immutable, and unknown fields are an error.
+
+    Immutable, so records and transcripts can be cached by content hash safely.
+    Unknown fields fail, so a typo in a manifest (`lang` for `language`) is reported
+    instead of being silently dropped.
+    """
+
     model_config = ConfigDict(frozen=True, extra="forbid")
 
 
 def _check_span(start: float, end: float) -> None:
+    """Raise ValueError unless 0 <= start <= end.
+
+    Containment (a word inside its segment, a segment inside the audio) is not checked:
+    real models emit words that overrun their segment by tens of milliseconds, and such
+    overruns are better measured as a feature than rejected as invalid data.
+    """
     if start < 0:
         raise ValueError(f"start must be >= 0, got {start}")
     if end < start:
@@ -33,6 +46,12 @@ def _check_span(start: float, end: float) -> None:
 
 
 class Word(_Frozen):
+    """One recognized word with its time span and the raw signals the model gave for it.
+
+    `signals` keeps values under the model's own names (e.g. `logprob`, `prob`); there is
+    no normalized confidence, because models do not share a scale.
+    """
+
     text: str
     start: float
     end: float
@@ -40,11 +59,20 @@ class Word(_Frozen):
 
     @model_validator(mode="after")
     def _span(self) -> Self:
+        """Check that the word's time span is valid."""
         _check_span(self.start, self.end)
         return self
 
 
 class TextSegment(_Frozen):
+    """A stretch of recognized text, optionally with its words and per-segment signals.
+
+    `channel` says which audio channel the segment came from when one record covers
+    several channels. Words are nested here; a model that returns only words gets them
+    wrapped into one segment by its adapter. Segments are not required to be sorted:
+    in multichannel output, segments of different channels interleave.
+    """
+
     start: float
     end: float
     text: str
@@ -54,11 +82,14 @@ class TextSegment(_Frozen):
 
     @model_validator(mode="after")
     def _span(self) -> Self:
+        """Check that the segment's time span is valid."""
         _check_span(self.start, self.end)
         return self
 
 
 class Transcript(_Frozen):
+    """ASR output for one record: full text, optional segments, transcript-level signals."""
+
     text: str
     segments: list[TextSegment] | None = None
     signals: Signals = Field(default_factory=dict)
@@ -72,6 +103,12 @@ class SampleRecord(_Frozen):
     Records that come from the same call, conversation or batch share a `group_id`;
     `offset` is where this record starts on the group's timeline, in seconds. Times
     inside the record stay local: time in the group = `offset` + local time.
+
+    Optional fields: `language` is the expected language (ISO 639-1), `reference` a gold
+    transcript, `output` the pipeline's existing transcript (offline mode),
+    `speech_segments` ground-truth speech spans (synthetic test sets only), and `meta`
+    flat user metadata that slice search can use as features. Duration, sample rate and
+    content hash are not stored; they are computed from the audio when it is loaded.
     """
 
     id: str = Field(min_length=1)
@@ -88,6 +125,7 @@ class SampleRecord(_Frozen):
     @field_validator("language")
     @classmethod
     def _language(cls, value: str | None) -> str | None:
+        """Normalize to a lowercase ISO 639-1 code, mapping obsolete codes (iw -> he)."""
         if value is None:
             return None
         code = value.strip().lower()
@@ -101,12 +139,14 @@ class SampleRecord(_Frozen):
     def _speech_segments(
         cls, value: list[tuple[float, float]] | None
     ) -> list[tuple[float, float]] | None:
+        """Check that every ground-truth speech span is valid."""
         for start, end in value or []:
             _check_span(start, end)
         return value
 
     @model_validator(mode="after")
     def _offset_needs_group(self) -> Self:
+        """Reject an offset without a group: it is a position on the group's timeline."""
         if self.offset is not None and self.group_id is None:
             raise ValueError("offset is a position on a group's timeline and needs group_id")
         return self
