@@ -19,16 +19,16 @@ test-integration:
 	uv run pytest tests/integration
 
 eval:
-	uv run inferops-bench eval --mode replay
+	uv run paribus eval --mode replay
 
 eval-live:
-	INFEROPS_ENV=live uv run --extra keychain inferops-bench eval --mode record
+	PARIBUS_ENV=live uv run --extra keychain paribus eval --mode record
 
 estimate:
-	uv run inferops-bench estimate
+	uv run paribus estimate
 
 report:
-	uv run --extra report inferops-bench report
+	uv run --extra report paribus report
 
 clean:
 	rm -rf .mypy_cache .pytest_cache .ruff_cache htmlcov .coverage

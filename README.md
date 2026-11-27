@@ -1,2 +1,2 @@
-# inferops-bench
-Incident-investigation agent for LLM inference infrastructure, with a reproducible benchmark: simulated faults, evidence-checked diagnoses, cost &amp; accuracy evals.
+# paribus
+Find the input slices behind your ASR pipeline's hallucinations and costs, and prove every fix with a controlled experiment.

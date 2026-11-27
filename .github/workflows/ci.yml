@@ -14,7 +14,7 @@ concurrency:
 
 env:
   # CI never talks to the Anthropic API: replay-only config, no key in the environment.
-  INFEROPS_ENV: ci
+  PARIBUS_ENV: ci
   UV_FROZEN: "1"
   UV_PYTHON_DOWNLOADS: automatic
 
