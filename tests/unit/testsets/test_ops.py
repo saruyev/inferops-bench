@@ -1,0 +1,154 @@
+"""Tests for testsets.ops, on synthetic tones instead of speech."""
+
+import numpy as np
+import pytest
+
+from testsets import ops
+from testsets.ops import Clip
+
+_RATE = 16000
+
+
+def _tone(seconds: float = 1.0, hz: float = 440, level: float = 0.1) -> np.ndarray:
+    """A sine tone standing in for speech."""
+    t = np.arange(int(_RATE * seconds)) / _RATE
+    return (level * np.sin(2 * np.pi * hz * t)).astype(np.float32)
+
+
+def _speech(seconds: float = 1.0) -> Clip:
+    """A clip that is speech from start to end."""
+    return Clip(_tone(seconds), _RATE, [(0.0, seconds)])
+
+
+def _rms(samples: np.ndarray) -> float:
+    """Root mean square of samples."""
+    return float(np.sqrt(np.mean(np.square(samples, dtype=np.float64))))
+
+
+def _peak_hz(samples: np.ndarray, rate: int) -> float:
+    """The frequency with the most energy."""
+    spectrum = np.abs(np.fft.rfft(samples))
+    return float(np.fft.rfftfreq(samples.size, 1 / rate)[spectrum.argmax()])
+
+
+@pytest.mark.parametrize("snr_db", [0.0, 10.0])
+def test_mix_sets_the_snr_against_speech(snr_db: float) -> None:
+    """The added background is `snr_db` below the speech, by RMS."""
+    clip = _speech()
+    background = ops.noise_floor(clip.frames, -20, np.random.default_rng(0))
+
+    mixed = ops.mix(clip, background, snr_db)
+
+    added = mixed.samples - clip.samples
+    assert 20 * np.log10(_rms(clip.samples) / _rms(added)) == pytest.approx(snr_db, abs=0.01)
+
+
+def test_mix_measures_speech_only_inside_speech_spans() -> None:
+    """Padding first must not make the background louder than the SNR says."""
+    rng = np.random.default_rng(0)
+    padded = ops.pad(_speech(), ops.zeros(3 * _RATE), ops.zeros(0))
+    background = ops.noise_floor(padded.frames, -20, rng)
+
+    mixed = ops.mix(padded, background, 0.0)
+
+    speech = padded.samples[3 * _RATE :]
+    added = (mixed.samples - padded.samples)[3 * _RATE :]
+    assert _rms(added) == pytest.approx(_rms(speech), rel=0.05)
+
+
+def test_mix_scales_down_instead_of_clipping() -> None:
+    """A loud mix is scaled as a whole, so the SNR survives and nothing clips."""
+    clip = Clip(_tone(level=0.95), _RATE, [(0.0, 1.0)])
+    background = _tone(hz=1000, level=0.95)
+
+    mixed = ops.mix(clip, background, 0.0)
+
+    assert np.abs(mixed.samples).max() == pytest.approx(0.98, abs=1e-4)
+
+
+def test_mix_needs_speech_and_a_background_of_the_same_length() -> None:
+    """Mistakes in the builder fail loudly instead of producing a wrong SNR."""
+    with pytest.raises(ValueError, match="needs speech"):
+        ops.mix(Clip(_tone(), _RATE, []), _tone(), 0.0)
+    with pytest.raises(ValueError, match="frames"):
+        ops.mix(_speech(), _tone(seconds=0.5), 0.0)
+    with pytest.raises(ValueError, match="silent"):
+        ops.mix(_speech(), ops.zeros(_RATE), 0.0)
+
+
+def test_pad_shifts_speech_by_what_is_added_in_front() -> None:
+    """Speech spans move by the length of `before`; `after` only lengthens the clip."""
+    padded = ops.pad(_speech(), ops.zeros(_RATE // 2), ops.zeros(_RATE))
+
+    assert padded.frames == int(2.5 * _RATE)
+    assert padded.speech == [(0.5, 1.5)]
+
+
+def test_generate_makes_a_clip_without_speech() -> None:
+    """A generated clip has no speech spans: any transcript of it is a hallucination."""
+    clip = ops.generate(ops.zeros(_RATE), _RATE)
+
+    assert clip.speech == [] and clip.frames == _RATE
+
+
+def test_excerpt_is_reproducible_and_loops_short_sources() -> None:
+    """The same seed gives the same stretch; a short source is looped to fill."""
+    source = _tone(seconds=0.25)
+
+    first = ops.excerpt(source, _RATE, np.random.default_rng(3))
+    second = ops.excerpt(source, _RATE, np.random.default_rng(3))
+
+    assert first.shape == (_RATE,)
+    assert np.array_equal(first, second)
+
+
+def test_noise_floor_has_the_requested_level() -> None:
+    """White noise at -60 dBFS has an RMS of 0.001."""
+    noise = ops.noise_floor(10 * _RATE, -60, np.random.default_rng(0))
+
+    assert _rms(noise) == pytest.approx(0.001, rel=0.01)
+
+
+def test_draw_takes_fixed_values_and_ranges() -> None:
+    """A number is used as is; a range is sampled within its bounds."""
+    rng = np.random.default_rng(0)
+
+    assert ops.draw(5.0, rng) == 5.0
+    assert all(2 <= ops.draw((2.0, 3.0), rng) <= 3 for _ in range(100))
+
+
+def test_resample_keeps_duration_and_speech() -> None:
+    """Narrowband 8 kHz halves the frames; spans in seconds do not change."""
+    clip = ops.resample(_speech(), 8000)
+
+    assert clip.sample_rate == 8000 and clip.frames == 8000
+    assert clip.speech == [(0.0, 1.0)]
+    assert _peak_hz(clip.samples, 8000) == pytest.approx(440, abs=2)
+
+
+def test_gain_changes_level_and_clips_at_full_scale() -> None:
+    """-6 dB halves the amplitude; +20 dB clips instead of being scaled back."""
+    clip = Clip(_tone(level=0.5), _RATE, [(0.0, 1.0)])
+    quieter = ops.gain(clip, -6.0206)
+    louder = ops.gain(clip, 20.0)
+
+    assert np.abs(quieter.samples).max() == pytest.approx(0.25, abs=1e-3)
+    assert np.abs(louder.samples).max() == 1.0
+
+
+@pytest.mark.parametrize(("name", "bitrate"), [("pcm_mulaw", None), ("opus", 12000)])
+def test_codec_round_trip_keeps_length_rate_and_pitch(name: str, bitrate: int | None) -> None:
+    """The codec changes the samples but not their length, rate or content."""
+    clip = _speech()
+
+    coded = ops.codec(clip, name, bitrate)
+
+    assert coded.sample_rate == _RATE and coded.frames == clip.frames
+    assert not np.array_equal(coded.samples, clip.samples)
+    assert _peak_hz(coded.samples, _RATE) == pytest.approx(440, abs=2)
+
+
+def test_unknown_codec_is_an_error() -> None:
+    """Only the codecs the recipe allows are accepted."""
+    with pytest.raises(ValueError, match="unknown codec 'mp3'"):
+        ops.codec(_speech(), "mp3")
