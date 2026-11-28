@@ -34,7 +34,7 @@ def test_record_is_immutable() -> None:
     record = SampleRecord(id="a", audio=Path("a.wav"))
 
     with pytest.raises(ValidationError):
-        record.id = "b"  # type: ignore[misc]
+        record.id = "b"
 
 
 @pytest.mark.parametrize(
