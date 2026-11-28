@@ -1,20 +1,26 @@
 """Tests for paribus.engine.data."""
 
 import json
+from collections.abc import Iterator
 from pathlib import Path
 from typing import Any
 
 import pytest
 from pydantic import ValidationError
 
+from paribus.engine import data
 from paribus.engine.data import (
     MAX_ISSUES,
     FolderConfig,
     FolderSource,
     ManifestConfig,
     ManifestSource,
+    SourceConfig,
     SourceError,
+    build_source,
+    register_source,
 )
+from paribus.engine.types import SampleRecord
 
 
 def _audio(folder: Path, *names: str) -> None:
@@ -369,3 +375,77 @@ def test_folder_config_validates_language_once(tmp_path: Path) -> None:
     """A bad folder language fails in the config, not once per file."""
     with pytest.raises(ValidationError):
         FolderConfig(root=tmp_path, license="private", language="english")
+
+
+@pytest.fixture
+def registry(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Give a test its own copy of the source registry, so registrations do not leak."""
+    monkeypatch.setattr(data, "_SOURCE_TYPES", dict(data._SOURCE_TYPES))
+
+
+def test_build_source_builds_built_in_types(tmp_path: Path) -> None:
+    """`manifest` and `folder` are registered on import and build their own source class."""
+    manifest = build_source({"type": "manifest", "path": tmp_path / "m.jsonl", "license": "x"})
+    folder = build_source({"type": "folder", "root": tmp_path, "license": "x"})
+
+    assert isinstance(manifest, ManifestSource)
+    assert isinstance(folder, FolderSource)
+
+
+def test_build_source_rejects_unknown_type() -> None:
+    """A typo in `type` fails with the list of types that exist."""
+    with pytest.raises(ValueError, match="unknown source type 'manfest', known: folder, manifest"):
+        build_source({"type": "manfest", "license": "x"})
+
+
+def test_build_source_requires_type() -> None:
+    """Without `type` there is no way to pick the config, so it is an error, not a default."""
+    with pytest.raises(ValueError, match="needs a 'type'"):
+        build_source({"path": "m.jsonl", "license": "x"})
+
+
+def test_build_source_rejects_unknown_key(tmp_path: Path) -> None:
+    """Settings are validated by the type's config, so a misspelled key fails at build time."""
+    with pytest.raises(ValidationError, match="time_units"):
+        build_source(
+            {"type": "manifest", "path": tmp_path / "m.jsonl", "license": "x", "time_units": "ms"}
+        )
+
+
+@pytest.mark.usefixtures("registry")
+def test_register_source_refuses_existing_type() -> None:
+    """A built-in type cannot be replaced by registering the same name again."""
+    with pytest.raises(ValueError, match="'folder' is already registered"):
+        register_source("folder", FolderConfig, FolderSource)
+
+
+class _ListConfig(SourceConfig):
+    """Config of the test-only source type below: records are given inline."""
+
+    type: str = "list"
+    ids: list[str]
+
+
+class _ListSource:
+    """A test-only source that yields one record per configured id."""
+
+    def __init__(self, config: _ListConfig) -> None:
+        """Keep the config and take name and license from it."""
+        self.config = config
+        self.name = config.name or "list"
+        self.license = config.license
+
+    def records(self) -> Iterator[SampleRecord]:
+        """Yield a record per id, all pointing at the same placeholder audio."""
+        for record_id in self.config.ids:
+            yield SampleRecord(id=record_id, audio=Path("a.wav"))
+
+
+@pytest.mark.usefixtures("registry")
+def test_register_source_adds_custom_type() -> None:
+    """A source type defined outside paribus is built like a built-in one."""
+    register_source("list", _ListConfig, _ListSource)
+
+    source = build_source({"type": "list", "license": "private", "ids": ["a", "b"]})
+
+    assert [record.id for record in source.records()] == ["a", "b"]

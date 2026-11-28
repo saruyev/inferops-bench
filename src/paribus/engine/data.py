@@ -284,6 +284,52 @@ class FolderSource:
         return SampleRecord.model_validate(row)
 
 
+# Source types by the `type` key of their config: the config class that validates the
+# settings, and the factory that builds the source from a validated config.
+_SOURCE_TYPES: dict[str, tuple[type[SourceConfig], Callable[[Any], Source]]] = {}
+
+
+def register_source[C: SourceConfig](
+    source_type: str, config_cls: type[C], factory: Callable[[C], Source]
+) -> None:
+    """Make `source_type` buildable by `build_source`.
+
+    The registry is open so that new kinds of sources (a database, an object store) can be
+    added without changing paribus. A type can be registered only once, so a plugin cannot
+    silently replace a built-in source.
+
+    Raises:
+        ValueError: If `source_type` is already registered.
+    """
+    if source_type in _SOURCE_TYPES:
+        raise ValueError(f"source type {source_type!r} is already registered")
+    _SOURCE_TYPES[source_type] = (config_cls, factory)
+
+
+def build_source(raw: Mapping[str, Any]) -> Source:
+    """Build a source from its settings as written in YAML, picking the class by `type`.
+
+    The whole mapping, `type` included, is validated by the registered config class, so
+    unknown keys and wrong values fail here, before any data is read.
+
+    Raises:
+        ValueError: If `type` is missing or not registered.
+        ValidationError: If the settings do not match the type's config.
+    """
+    source_type = raw.get("type")
+    known = ", ".join(sorted(_SOURCE_TYPES))
+    if source_type is None:
+        raise ValueError(f"source config needs a 'type', one of: {known}")
+    if source_type not in _SOURCE_TYPES:
+        raise ValueError(f"unknown source type {source_type!r}, known: {known}")
+    config_cls, factory = _SOURCE_TYPES[source_type]
+    return factory(config_cls.model_validate(raw))
+
+
+register_source("manifest", ManifestConfig, ManifestSource)
+register_source("folder", FolderConfig, FolderSource)
+
+
 def _find_audio(root: Path, patterns: Sequence[str]) -> list[Path]:
     """Return the audio files under `root` matching any pattern, sorted, without duplicates.
 
