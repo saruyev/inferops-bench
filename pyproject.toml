@@ -7,6 +7,7 @@ license = "MIT"
 requires-python = ">=3.13"
 dependencies = [
     "anthropic>=2.14.0",
+    "av>=19.0.2",
     "fastmcp>=4.2",
     "langgraph>=1.2.24",
     "langgraph-checkpoint-sqlite>=3.1.3",
@@ -16,6 +17,7 @@ dependencies = [
     "pydantic>=2.14.4",
     "pydantic-settings>=2.16.3",
     "pyyaml>=6.0.4",
+    "soxr>=1.1.0",
     "typer>=0.29.3",
 ]
 
@@ -54,8 +56,8 @@ mypy_path = "src"
 packages = ["paribus"]
 
 [[tool.mypy.overrides]]
-# datasets ships no type hints.
-module = "datasets"
+# These ship no type hints.
+module = ["datasets", "soxr"]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
