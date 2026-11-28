@@ -309,6 +309,11 @@ class HFConfig(SourceConfig):
         transcripts: What `text_column` is: a gold `reference` or a pipeline `output`.
         id_column: Column holding record ids; without it ids are `<split>/<index>`.
         language: Expected language of every record, if known.
+        meta_columns: Columns copied into each record's `meta` (speaker, sex, a clip's
+            own license), so slice search can use them. Values must be scalars.
+        speech_segments_column: Column holding ground-truth speech spans, e.g. forced
+            alignments of words: a list of `{start, end}` items (other keys ignored) or
+            of `[start, end]` pairs, in seconds. It becomes `speech_segments`.
         limit: Read only the first `limit` rows, so a big dataset is not read in full.
         cache_dir: Where audio files are written; defaults to `~/.cache/paribus/hf`.
     """
@@ -323,6 +328,8 @@ class HFConfig(SourceConfig):
     transcripts: Literal["none", "reference", "output"] = "none"
     id_column: str | None = None
     language: str | None = None
+    meta_columns: list[str] = Field(default_factory=list)
+    speech_segments_column: str | None = None
     limit: int | None = Field(default=None, ge=1)
     cache_dir: Path | None = None
 

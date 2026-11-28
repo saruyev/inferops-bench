@@ -198,3 +198,42 @@ def test_build_source_builds_an_hf_source() -> None:
 
     assert isinstance(source, HFDatasetSource)
     assert source.name == _DATASET
+
+
+def test_meta_columns_are_copied_into_meta(tmp_path: Path, hub: dict[str, Any]) -> None:
+    """Configured scalar columns become metadata that slice search can use."""
+    hub["rows"] = {"audio": _wav(tmp_path, "x"), "sex": ["F"], "speaker": [1089]}
+
+    (record,) = _source(tmp_path, meta_columns=["sex", "speaker"]).records()
+
+    assert record.meta == {"sex": "F", "speaker": 1089}
+
+
+@pytest.mark.parametrize(
+    "words",
+    [
+        [{"word": "hi", "start": 0.5, "end": 0.9}, {"word": "there", "start": 1.0, "end": 1.4}],
+        [[0.5, 0.9], [1.0, 1.4]],
+    ],
+)
+def test_speech_segments_come_from_aligned_spans(
+    tmp_path: Path, hub: dict[str, Any], words: list[Any]
+) -> None:
+    """Word alignments become ground-truth speech spans; extra keys like `word` are ignored."""
+    hub["rows"] = {"audio": _wav(tmp_path, "x"), "words": [words]}
+
+    (record,) = _source(tmp_path, speech_segments_column="words").records()
+
+    assert record.speech_segments == [(0.5, 0.9), (1.0, 1.4)]
+
+
+def test_speech_segments_of_the_wrong_shape_are_reported(
+    tmp_path: Path, hub: dict[str, Any]
+) -> None:
+    """A column that is not spans fails on its row instead of being guessed at."""
+    hub["rows"] = {"audio": _wav(tmp_path, "x"), "words": [["hi", "there"]]}
+
+    with pytest.raises(SourceError) as error:
+        list(_source(tmp_path, speech_segments_column="words").records())
+
+    assert error.value.issues[0].message == "column 'words' must hold spans with start and end"
