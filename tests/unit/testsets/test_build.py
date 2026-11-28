@@ -1,0 +1,180 @@
+"""Tests for testsets.build: a whole build on small folders of synthetic tones."""
+
+import json
+import wave
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+import pytest
+
+from paribus.engine.data import ManifestConfig, ManifestSource
+from testsets.build import build
+from testsets.recipe import Recipe
+
+_RATE = 16000
+
+
+def _write_tone(path: Path, seconds: float, hz: float, level: float = 0.1) -> None:
+    """Write a mono 16-bit wav tone; a stand-in for a phrase or a background clip."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    t = np.arange(int(_RATE * seconds)) / _RATE
+    pcm = np.round(level * np.sin(2 * np.pi * hz * t) * 32767).astype("<i2")
+    with wave.open(str(path), "wb") as out:
+        out.setnchannels(1)
+        out.setsampwidth(2)
+        out.setframerate(_RATE)
+        out.writeframes(pcm.tobytes())
+
+
+@pytest.fixture
+def inputs(tmp_path: Path) -> Path:
+    """Folders `speech/` (four phrases with transcripts) and `music/` (two clips)."""
+    for number, seconds in enumerate([1.0, 1.5, 2.0, 6.0]):
+        _write_tone(tmp_path / "speech" / f"p{number}.wav", seconds, 300 + 50 * number)
+        (tmp_path / "speech" / f"p{number}.txt").write_text(f"phrase {number}", encoding="utf-8")
+    _write_tone(tmp_path / "music" / "m0.wav", 3.0, 1000)
+    _write_tone(tmp_path / "music" / "m1.wav", 0.5, 2000)
+    return tmp_path
+
+
+def _recipe(root: Path, *conditions: dict[str, Any], take: int = 3) -> Recipe:
+    """A recipe over the fixture folders with the given conditions."""
+    return Recipe.model_validate(
+        {
+            "name": "tiny",
+            "seed": 7,
+            "speech": [
+                {
+                    "source": {
+                        "type": "folder",
+                        "root": str(root / "speech"),
+                        "license": "CC0-1.0",
+                        "transcripts": "reference",
+                        "language": "en",
+                    },
+                    "take": take,
+                    "duration": [0.5, 3.0],
+                }
+            ],
+            "backgrounds": {
+                "music": {
+                    "source": {
+                        "type": "folder",
+                        "root": str(root / "music"),
+                        "license": "CC-BY-3.0",
+                    }
+                }
+            },
+            "conditions": list(conditions) or [{"name": "clean"}],
+        }
+    )
+
+
+def _files(root: Path) -> dict[str, bytes]:
+    """Every file under a built set, by relative path."""
+    return {
+        p.relative_to(root).as_posix(): p.read_bytes()
+        for p in sorted(root.rglob("*"))
+        if p.is_file()
+    }
+
+
+_PADDED = {"name": "padded", "ops": [{"pad": {"before": [1, 2], "after": 0.5, "fill": "floor"}}]}
+_MUSIC = {"name": "music", "ops": [{"mix": {"background": "music", "snr_db": [0, 10]}}]}
+_ONLY_MUSIC = {
+    "name": "only_music",
+    "speech": "none",
+    "count": 2,
+    "ops": [{"generate": {"fill": "music", "seconds": 1}}],
+}
+
+
+def test_built_set_reads_back_as_a_manifest(inputs: Path, tmp_path: Path) -> None:
+    """The output is an ordinary manifest: paribus reads it like user data."""
+    manifest = build(_recipe(inputs, {"name": "clean"}, _MUSIC, _ONLY_MUSIC), tmp_path / "out")
+
+    records = list(ManifestSource(ManifestConfig(path=manifest, license="mixed")).records())
+
+    assert len(records) == 3 + 3 + 2
+    clean = [r for r in records if r.meta["condition"] == "clean"]
+    assert {r.reference for r in clean} <= {"phrase 0", "phrase 1", "phrase 2"}
+    assert all(r.meta["speech_truth"] == "utterance_bounds" for r in clean)
+    assert all(r.language == "en" for r in clean)
+    music = [r for r in records if r.meta["condition"] == "music"]
+    assert all(0 <= float(r.meta["snr_db"]) <= 10 for r in music)
+    assert all(str(r.meta["background_id"]).startswith("music/") for r in music)
+    no_speech = [r for r in records if r.meta["condition"] == "only_music"]
+    assert all(r.speech_segments == [] and r.reference is None for r in no_speech)
+
+
+def test_duration_filter_leaves_out_long_phrases(inputs: Path, tmp_path: Path) -> None:
+    """The 6-second phrase is outside [0.5, 3] and is never chosen."""
+    manifest = build(_recipe(inputs), tmp_path / "out")
+
+    rows = [json.loads(line) for line in manifest.read_text().splitlines()]
+
+    assert all("p3" not in row["id"] for row in rows)
+
+
+def test_too_few_phrases_is_an_error(inputs: Path, tmp_path: Path) -> None:
+    """Asking for more phrases than pass the filter fails instead of building a smaller set."""
+    with pytest.raises(ValueError, match=r"has 3 phrases .* takes 4"):
+        build(_recipe(inputs, take=4), tmp_path / "out")
+
+
+def test_padding_moves_the_speech_spans(inputs: Path, tmp_path: Path) -> None:
+    """After padding, speech starts at `pad_before` and the clip is longer by both pads."""
+    manifest = build(_recipe(inputs, _PADDED), tmp_path / "out")
+
+    for line in manifest.read_text().splitlines():
+        row = json.loads(line)
+        ((start, end),) = row["speech_segments"]
+        assert start == pytest.approx(row["meta"]["pad_before"], abs=1e-3)
+        with wave.open(str(manifest.parent / row["audio"])) as clip:
+            seconds = clip.getnframes() / clip.getframerate()
+        assert seconds == pytest.approx(end + row["meta"]["pad_after"], abs=1e-3)
+
+
+def test_rebuild_is_byte_identical(inputs: Path, tmp_path: Path) -> None:
+    """The same recipe gives the same files, down to the noise and the drawn settings."""
+    recipe = _recipe(inputs, _PADDED, _MUSIC, _ONLY_MUSIC)
+
+    first = build(recipe, tmp_path / "a").parent
+    second = build(recipe, tmp_path / "b").parent
+
+    assert _files(first) == _files(second)
+
+
+def test_adding_a_condition_changes_no_existing_clip(inputs: Path, tmp_path: Path) -> None:
+    """Each clip's randomness depends on its own condition, not on the conditions before it."""
+    before = build(_recipe(inputs, _MUSIC), tmp_path / "a").parent
+    after = build(_recipe(inputs, _PADDED, _MUSIC), tmp_path / "b").parent
+
+    old = {k: v for k, v in _files(before).items() if k.startswith("audio/music/")}
+    new = {k: v for k, v in _files(after).items() if k.startswith("audio/music/")}
+    assert old == new
+
+
+def test_existing_set_needs_force(inputs: Path, tmp_path: Path) -> None:
+    """A built set is not overwritten by accident; with force it is rebuilt."""
+    recipe = _recipe(inputs)
+    build(recipe, tmp_path / "out")
+
+    with pytest.raises(FileExistsError, match="--force"):
+        build(recipe, tmp_path / "out")
+    assert build(recipe, tmp_path / "out", force=True).is_file()
+    assert not (tmp_path / "out" / ".tiny.partial").exists()
+
+
+def test_sources_json_lists_inputs_with_licenses(inputs: Path, tmp_path: Path) -> None:
+    """Every input is recorded with its config, and backgrounds with their license counts."""
+    manifest = build(_recipe(inputs, _MUSIC), tmp_path / "out")
+
+    sources = json.loads((manifest.parent / "sources.json").read_text())
+
+    speech, music = sources["inputs"]
+    assert speech["role"] == "speech" and speech["source"]["license"] == "CC0-1.0"
+    assert music["role"] == "background:music"
+    assert music["clips_in_pool_by_license"] == {"CC-BY-3.0": 2}
+    assert music["clips_used"] == 3
