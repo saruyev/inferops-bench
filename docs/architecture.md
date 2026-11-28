@@ -322,7 +322,7 @@ paribus/
     settings/     app.py  secret_providers.py
     cli.py
   config/         base.yaml  dev.yaml  ci.yaml  live.yaml  models/  features/  asr/
-  datasets/       build scripts for the corrupted public test sets (data itself is not committed)
+  testsets/       build scripts for the corrupted public test sets (data itself is not committed)
   examples/       demo dataset manifest + recorded session
   cassettes/
   docs/           architecture.md  sessions/   (annotated example investigations)
