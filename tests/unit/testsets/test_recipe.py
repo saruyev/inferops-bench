@@ -10,7 +10,7 @@ from pydantic import ValidationError
 from testsets.recipe import Codec, Generate, Mix, Pad, Resample, load_recipe
 
 _SPEECH = {"source": {"type": "folder", "root": "speech", "license": "CC-BY-4.0"}, "take": 5}
-_BEDS = {"music": {"source": {"type": "folder", "root": "music", "license": "CC-BY-3.0"}}}
+_BACKGROUNDS = {"music": {"source": {"type": "folder", "root": "music", "license": "CC-BY-3.0"}}}
 
 
 def _recipe(tmp_path: Path, **overrides: Any) -> Path:
@@ -19,7 +19,7 @@ def _recipe(tmp_path: Path, **overrides: Any) -> Path:
         "name": "t0",
         "seed": 13,
         "speech": [_SPEECH],
-        "beds": _BEDS,
+        "backgrounds": _BACKGROUNDS,
         "conditions": [{"name": "clean"}],
         **overrides,
     }
@@ -40,7 +40,7 @@ def test_operations_parse_from_their_yaml_form(tmp_path: Path) -> None:
         {
             "name": "phone",
             "ops": [
-                {"mix": {"bed": "music", "snr_db": [0, 10]}},
+                {"mix": {"background": "music", "snr_db": [0, 10]}},
                 {"pad": {"before": 2, "fill": "floor"}},
                 {"resample": 8000},
                 {"codec": "pcm_mulaw"},
@@ -51,7 +51,7 @@ def test_operations_parse_from_their_yaml_form(tmp_path: Path) -> None:
     (condition,) = load_recipe(path).conditions
 
     assert condition.ops == [
-        Mix(bed="music", snr_db=(0, 10)),
+        Mix(background="music", snr_db=(0, 10)),
         Pad(before=2, fill="floor"),
         Resample(rate=8000),
         Codec(name="pcm_mulaw"),
@@ -90,9 +90,12 @@ def test_a_no_speech_condition_starts_with_generate(tmp_path: Path) -> None:
             {"name": "x", "speech": "none", "ops": [{"generate": {"fill": "zero", "seconds": 1}}]},
             "needs count",
         ),
-        ({"name": "x", "ops": [{"mix": {"bed": "rain", "snr_db": 0}}]}, "unknown bed 'rain'"),
-        ({"name": "x", "ops": [{"pad": {"fill": "rain"}}]}, "unknown bed 'rain'"),
-        ({"name": "x", "ops": [{"mix": {"bed": "music", "snr": 0}}]}, "snr_db"),
+        (
+            {"name": "x", "ops": [{"mix": {"background": "rain", "snr_db": 0}}]},
+            "unknown background 'rain'",
+        ),
+        ({"name": "x", "ops": [{"pad": {"fill": "rain"}}]}, "unknown background 'rain'"),
+        ({"name": "x", "ops": [{"mix": {"background": "music", "snr": 0}}]}, "snr_db"),
         ({"name": "x", "ops": [{"reverb": {}}]}, "unknown operation 'reverb'"),
         ({"name": "x", "ops": [{"mix": {}, "pad": {}}]}, "one key"),
         ({"name": "x", "ops": [{"pad": 3}]}, "needs a mapping"),
@@ -115,20 +118,20 @@ def test_condition_names_must_be_unique(tmp_path: Path) -> None:
         load_recipe(path)
 
 
-def test_bed_cannot_shadow_a_built_in_fill(tmp_path: Path) -> None:
-    """A bed called `zero` would make `fill: zero` ambiguous."""
-    path = _recipe(tmp_path, beds={"zero": _BEDS["music"]})
+def test_background_cannot_shadow_a_built_in_fill(tmp_path: Path) -> None:
+    """A background called `zero` would make `fill: zero` ambiguous."""
+    path = _recipe(tmp_path, backgrounds={"zero": _BACKGROUNDS["music"]})
 
     with pytest.raises(ValidationError, match="reserved"):
         load_recipe(path)
 
 
-def test_bed_license_filter_needs_both_settings(tmp_path: Path) -> None:
+def test_background_license_filter_needs_both_settings(tmp_path: Path) -> None:
     """An allow-list without the column to check it against would filter nothing."""
-    beds = {"music": {**_BEDS["music"], "licenses": ["CC-BY-3.0"]}}
+    backgrounds = {"music": {**_BACKGROUNDS["music"], "licenses": ["CC-BY-3.0"]}}
 
     with pytest.raises(ValidationError, match="go together"):
-        load_recipe(_recipe(tmp_path, beds=beds))
+        load_recipe(_recipe(tmp_path, backgrounds=backgrounds))
 
 
 def test_source_configs_are_validated_like_build_source(tmp_path: Path) -> None:

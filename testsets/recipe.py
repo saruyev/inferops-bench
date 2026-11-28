@@ -1,7 +1,7 @@
 """The YAML recipe of a test set: which speech, which backgrounds, which corruptions.
 
 A recipe is data, not code: adding a condition or a dataset is a YAML change. Every
-operation is written as a one-key mapping, `{mix: {bed: music, snr_db: 0}}`, and an
+operation is written as a one-key mapping, `{mix: {background: music, snr_db: 0}}`, and an
 operation with one main setting accepts it bare: `{resample: 8000}`, `{codec: opus}`.
 
 Settings that vary from clip to clip are a `Range`: a number for a fixed value, or
@@ -33,7 +33,7 @@ def _ordered(value: float | tuple[float, float]) -> float | tuple[float, float]:
 
 type Range = Annotated[float | tuple[float, float], AfterValidator(_ordered)]
 
-# Fill names that `pad` and `generate` understand without a bed of that name.
+# Fill names that `pad` and `generate` understand without a background of that name.
 _BUILT_IN_FILLS = ("zero", "floor")
 
 
@@ -78,7 +78,7 @@ class SpeechInput(_Model):
         return value
 
 
-class Bed(_Model):
+class Background(_Model):
     """A pool of background audio (music, noise) mixed under speech or played alone.
 
     Attributes:
@@ -108,20 +108,20 @@ class _Op(_Model):
 
 
 class Mix(_Op):
-    """Mix a bed under the speech at `snr_db`, measured against the speech's RMS."""
+    """Mix a background under the speech at `snr_db`, measured against the speech's RMS."""
 
     op: Literal["mix"] = "mix"
-    bed: str
+    background: str
     snr_db: Range
 
-    shorthand: ClassVar[str | None] = "bed"
+    shorthand: ClassVar[str | None] = "background"
 
 
 class Pad(_Op):
     """Add `before` and `after` seconds of `fill` around the speech.
 
     `fill` is `zero` (digital silence), `floor` (white noise at `floor_dbfs`) or the name
-    of a bed.
+    of a background.
     """
 
     op: Literal["pad"] = "pad"
@@ -251,7 +251,7 @@ class Recipe(_Model):
         seed: Seed of every random choice, so a recipe always builds the same clips.
         sample_rate: Rate of the speech before any `resample` operation.
         speech: Sources of the phrases that every speech condition corrupts.
-        beds: Background pools by name, referred to by `mix`, `pad` and `generate`.
+        backgrounds: Background pools by name, referred to by `mix`, `pad` and `generate`.
         conditions: The corruptions; names must be unique.
     """
 
@@ -259,37 +259,39 @@ class Recipe(_Model):
     seed: int
     sample_rate: int = Field(default=16000, gt=0)
     speech: list[SpeechInput] = Field(min_length=1)
-    beds: dict[str, Bed] = Field(default_factory=dict)
+    backgrounds: dict[str, Background] = Field(default_factory=dict)
     conditions: list[Condition] = Field(min_length=1)
 
-    @field_validator("beds")
+    @field_validator("backgrounds")
     @classmethod
-    def _bed_names(cls, value: dict[str, Bed]) -> dict[str, Bed]:
-        """Keep bed names apart from the built-in fills, so `fill: zero` is unambiguous."""
+    def _background_names(cls, value: dict[str, Background]) -> dict[str, Background]:
+        """Keep background names apart from the built-in fills, so `fill: zero` is unambiguous."""
         for name in value:
             if name in _BUILT_IN_FILLS:
-                raise ValueError(f"bed name {name!r} is reserved for the built-in fill")
+                raise ValueError(f"background name {name!r} is reserved for the built-in fill")
         return value
 
     @model_validator(mode="after")
     def _consistent(self) -> Self:
-        """Check that condition names are unique and every bed an operation uses exists."""
+        """Check that condition names are unique and every background an operation uses exists."""
         names = [condition.name for condition in self.conditions]
         duplicates = sorted({name for name in names if names.count(name) > 1})
         if duplicates:
             raise ValueError(f"condition names repeat: {', '.join(duplicates)}")
         for condition in self.conditions:
             for op in condition.ops:
-                bed = _bed_of(op)
-                if bed is not None and bed not in self.beds:
-                    raise ValueError(f"condition {condition.name!r} uses unknown bed {bed!r}")
+                background = _background_of(op)
+                if background is not None and background not in self.backgrounds:
+                    raise ValueError(
+                        f"condition {condition.name!r} uses unknown background {background!r}"
+                    )
         return self
 
 
-def _bed_of(op: _Op) -> str | None:
-    """Return the bed an operation draws from, if it draws from one."""
+def _background_of(op: _Op) -> str | None:
+    """Return the background an operation draws from, if it draws from one."""
     if isinstance(op, Mix):
-        return op.bed
+        return op.background
     if isinstance(op, Pad | Generate) and op.fill not in _BUILT_IN_FILLS:
         return op.fill
     return None
