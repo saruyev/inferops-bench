@@ -394,7 +394,9 @@ def test_build_source_builds_built_in_types(tmp_path: Path) -> None:
 
 def test_build_source_rejects_unknown_type() -> None:
     """A typo in `type` fails with the list of types that exist."""
-    with pytest.raises(ValueError, match="unknown source type 'manfest', known: folder, manifest"):
+    with pytest.raises(
+        ValueError, match="unknown source type 'manfest', known: folder, hf, manifest"
+    ):
         build_source({"type": "manfest", "license": "x"})
 
 

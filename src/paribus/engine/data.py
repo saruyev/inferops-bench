@@ -1,11 +1,12 @@
-"""Data loading: sources of sample records (JSONL/CSV manifests and audio folders).
+"""Data loading: sources of sample records (manifests, audio folders, Hub datasets).
 
 A source yields `SampleRecord`s and is built from one config object; the config models
 validate what users write in YAML, so a typo in a key fails like a typo in a manifest.
 `ManifestSource` reads a manifest file the user (or a dataset builder) wrote;
-`FolderSource` turns a folder of audio files into records. Every source is validated as a
-whole before the first record is yielded, so broken input fails at once with every
-problem listed, not halfway through a run.
+`FolderSource` turns a folder of audio files into records; `HFConfig` describes a
+Hugging Face dataset, read by `paribus.engine.hf.HFDatasetSource`. Every source is
+validated as a whole before the first record is yielded, so broken input fails at once
+with every problem listed, not halfway through a run.
 """
 
 import csv
@@ -13,9 +14,16 @@ import json
 from collections.abc import Callable, Iterator, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Literal, Protocol
+from typing import Any, Literal, Protocol, Self
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    ValidationError,
+    field_validator,
+    model_validator,
+)
 
 from paribus.engine.types import MetaValue, SampleRecord, normalize_language
 
@@ -284,6 +292,69 @@ class FolderSource:
         return SampleRecord.model_validate(row)
 
 
+class HFConfig(SourceConfig):
+    """Settings of a Hugging Face Hub dataset; the source itself is in `paribus.engine.hf`.
+
+    The config lives here, without the `datasets` dependency, so that a config with
+    `type: hf` is validated even where the `paribus[hf]` extra is not installed.
+
+    Attributes:
+        dataset: Repository id on the Hub, e.g. `openslr/librispeech_asr`.
+        revision: Commit sha or tag to read. Required, because a dataset can change under
+            a branch name, and then two runs would quietly read different data.
+        subset: The dataset's configuration (`name` in `datasets.load_dataset`), if any.
+        split: Split to read, e.g. `test`.
+        audio_column: Column holding the audio.
+        text_column: Column holding a transcript; needed when `transcripts` is not `none`.
+        transcripts: What `text_column` is: a gold `reference` or a pipeline `output`.
+        id_column: Column holding record ids; without it ids are `<split>/<index>`.
+        language: Expected language of every record, if known.
+        limit: Read only the first `limit` rows, so a big dataset is not read in full.
+        cache_dir: Where audio files are written; defaults to `~/.cache/paribus/hf`.
+    """
+
+    type: Literal["hf"] = "hf"
+    dataset: str = Field(min_length=1)
+    revision: str = Field(min_length=1)
+    subset: str | None = None
+    split: str = Field(min_length=1)
+    audio_column: str = "audio"
+    text_column: str | None = None
+    transcripts: Literal["none", "reference", "output"] = "none"
+    id_column: str | None = None
+    language: str | None = None
+    limit: int | None = Field(default=None, ge=1)
+    cache_dir: Path | None = None
+
+    @field_validator("language")
+    @classmethod
+    def _language(cls, value: str | None) -> str | None:
+        """Validate the dataset's language once here, not once per row."""
+        return None if value is None else normalize_language(value)
+
+    @model_validator(mode="after")
+    def _transcripts_need_a_column(self) -> Self:
+        """Reject a transcript role without the column that holds the transcripts."""
+        if self.transcripts != "none" and self.text_column is None:
+            raise ValueError(f"transcripts={self.transcripts!r} needs text_column")
+        return self
+
+
+def _hf_source(config: HFConfig) -> Source:
+    """Build a `HFDatasetSource`, importing it only now, since it needs `paribus[hf]`.
+
+    Raises:
+        ImportError: If the `datasets` package is not installed.
+    """
+    try:
+        from paribus.engine.hf import HFDatasetSource
+    except ModuleNotFoundError as error:
+        if error.name != "datasets":
+            raise
+        raise ImportError("source type 'hf' needs the extra: pip install 'paribus[hf]'") from None
+    return HFDatasetSource(config)
+
+
 # Source types by the `type` key of their config: the config class that validates the
 # settings, and the factory that builds the source from a validated config.
 _SOURCE_TYPES: dict[str, tuple[type[SourceConfig], Callable[[Any], Source]]] = {}
@@ -328,6 +399,7 @@ def build_source(raw: Mapping[str, Any]) -> Source:
 
 register_source("manifest", ManifestConfig, ManifestSource)
 register_source("folder", FolderConfig, FolderSource)
+register_source("hf", HFConfig, _hf_source)
 
 
 def _find_audio(root: Path, patterns: Sequence[str]) -> list[Path]:

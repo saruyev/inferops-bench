@@ -32,6 +32,9 @@ tracing = [
 keychain = [
     "keyring>=25.7.0",
 ]
+hf = [
+    "datasets>=5.2.0",
+]
 
 [build-system]
 requires = ["uv_build>=0.13.10,<0.14"]
@@ -51,6 +54,11 @@ mypy_path = "src"
 packages = ["paribus"]
 
 [[tool.mypy.overrides]]
+# datasets ships no type hints.
+module = "datasets"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
 module = "paribus.agent.*"
 disallow_untyped_calls = false
 disallow_any_generics = false
@@ -67,6 +75,7 @@ filterwarnings = [
 
 [dependency-groups]
 dev = [
+    "datasets>=5.2.0",
     "hypothesis>=6.170.17",
     "mypy>=2.4.1",
     "pre-commit>=4.7.0",
