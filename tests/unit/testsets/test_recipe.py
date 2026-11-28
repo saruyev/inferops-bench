@@ -1,0 +1,145 @@
+"""Tests for testsets.recipe: what a valid recipe looks like and which mistakes fail."""
+
+from pathlib import Path
+from typing import Any
+
+import pytest
+import yaml
+from pydantic import ValidationError
+
+from testsets.recipe import Codec, Generate, Mix, Pad, Resample, load_recipe
+
+_SPEECH = {"source": {"type": "folder", "root": "speech", "license": "CC-BY-4.0"}, "take": 5}
+_BEDS = {"music": {"source": {"type": "folder", "root": "music", "license": "CC-BY-3.0"}}}
+
+
+def _recipe(tmp_path: Path, **overrides: Any) -> Path:
+    """Write a small valid recipe, with top-level keys replaced by `overrides`."""
+    recipe = {
+        "name": "t0",
+        "seed": 13,
+        "speech": [_SPEECH],
+        "beds": _BEDS,
+        "conditions": [{"name": "clean"}],
+        **overrides,
+    }
+    path = tmp_path / "recipe.yaml"
+    path.write_text(yaml.safe_dump(recipe), encoding="utf-8")
+    return path
+
+
+def _conditions(tmp_path: Path, *conditions: dict[str, Any]) -> Path:
+    """A recipe with only the given conditions."""
+    return _recipe(tmp_path, conditions=list(conditions))
+
+
+def test_operations_parse_from_their_yaml_form(tmp_path: Path) -> None:
+    """One-key mappings and bare shorthand values both become typed operations."""
+    path = _conditions(
+        tmp_path,
+        {
+            "name": "phone",
+            "ops": [
+                {"mix": {"bed": "music", "snr_db": [0, 10]}},
+                {"pad": {"before": 2, "fill": "floor"}},
+                {"resample": 8000},
+                {"codec": "pcm_mulaw"},
+            ],
+        },
+    )
+
+    (condition,) = load_recipe(path).conditions
+
+    assert condition.ops == [
+        Mix(bed="music", snr_db=(0, 10)),
+        Pad(before=2, fill="floor"),
+        Resample(rate=8000),
+        Codec(name="pcm_mulaw"),
+    ]
+
+
+def test_a_no_speech_condition_starts_with_generate(tmp_path: Path) -> None:
+    """Clips without speech are generated from a fill, `count` of them."""
+    path = _conditions(
+        tmp_path,
+        {"name": "only_music", "speech": "none", "count": 8, "ops": [{"generate": "music"}]},
+    )
+
+    with pytest.raises(ValidationError, match="seconds"):
+        load_recipe(path)
+
+    path = _conditions(
+        tmp_path,
+        {
+            "name": "only_music",
+            "speech": "none",
+            "count": 8,
+            "ops": [{"generate": {"fill": "music", "seconds": [5, 15]}}],
+        },
+    )
+    (condition,) = load_recipe(path).conditions
+    assert condition.ops == [Generate(fill="music", seconds=(5, 15))]
+
+
+@pytest.mark.parametrize(
+    ("condition", "message"),
+    [
+        ({"name": "x", "ops": [{"generate": {"fill": "zero", "seconds": 5}}]}, "only for"),
+        ({"name": "x", "speech": "none", "count": 2, "ops": []}, "start with generate"),
+        (
+            {"name": "x", "speech": "none", "ops": [{"generate": {"fill": "zero", "seconds": 1}}]},
+            "needs count",
+        ),
+        ({"name": "x", "ops": [{"mix": {"bed": "rain", "snr_db": 0}}]}, "unknown bed 'rain'"),
+        ({"name": "x", "ops": [{"pad": {"fill": "rain"}}]}, "unknown bed 'rain'"),
+        ({"name": "x", "ops": [{"mix": {"bed": "music", "snr": 0}}]}, "snr_db"),
+        ({"name": "x", "ops": [{"reverb": {}}]}, "unknown operation 'reverb'"),
+        ({"name": "x", "ops": [{"mix": {}, "pad": {}}]}, "one key"),
+        ({"name": "x", "ops": [{"pad": 3}]}, "needs a mapping"),
+        ({"name": "x", "ops": [{"gain": {"db": [3, -3]}}]}, "low end 3"),
+        ({"name": "x", "ops": [{"codec": {"name": "pcm_mulaw", "bitrate": 8000}}]}, "opus only"),
+        ({"name": "x y"}, "pattern"),
+    ],
+)
+def test_condition_mistakes_fail(tmp_path: Path, condition: dict[str, Any], message: str) -> None:
+    """Each mistake fails at load time with a message that names it."""
+    with pytest.raises(ValidationError, match=message):
+        load_recipe(_conditions(tmp_path, condition))
+
+
+def test_condition_names_must_be_unique(tmp_path: Path) -> None:
+    """Two conditions with one name would write to the same folder."""
+    path = _conditions(tmp_path, {"name": "clean"}, {"name": "clean"})
+
+    with pytest.raises(ValidationError, match="repeat: clean"):
+        load_recipe(path)
+
+
+def test_bed_cannot_shadow_a_built_in_fill(tmp_path: Path) -> None:
+    """A bed called `zero` would make `fill: zero` ambiguous."""
+    path = _recipe(tmp_path, beds={"zero": _BEDS["music"]})
+
+    with pytest.raises(ValidationError, match="reserved"):
+        load_recipe(path)
+
+
+def test_bed_license_filter_needs_both_settings(tmp_path: Path) -> None:
+    """An allow-list without the column to check it against would filter nothing."""
+    beds = {"music": {**_BEDS["music"], "licenses": ["CC-BY-3.0"]}}
+
+    with pytest.raises(ValidationError, match="go together"):
+        load_recipe(_recipe(tmp_path, beds=beds))
+
+
+def test_source_configs_are_validated_like_build_source(tmp_path: Path) -> None:
+    """A typo inside a source config fails when the recipe is loaded, not mid-build."""
+    speech = {**_SPEECH, "source": {**_SPEECH["source"], "rooot": "x"}}
+
+    with pytest.raises(ValidationError, match="rooot"):
+        load_recipe(_recipe(tmp_path, speech=[speech]))
+
+
+def test_duration_filter_must_be_ordered(tmp_path: Path) -> None:
+    """A duration filter of [20, 3] would keep nothing."""
+    with pytest.raises(ValidationError, match="duration"):
+        load_recipe(_recipe(tmp_path, speech=[{**_SPEECH, "duration": [20, 3]}]))
